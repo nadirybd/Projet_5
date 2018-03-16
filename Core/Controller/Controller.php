@@ -13,6 +13,20 @@ class Controller
 	protected $templates = 'default';
 
 	/**
+	* @var stocke l'instance de la classe TopicsModel
+	*/
+	protected $topicsModel;
+
+	/**
+	* Méthode __construct
+	*/
+	public function __construct(){
+		if($this->topicsModel === null){
+			$this->topicsModel = new \App\Model\TopicsModel();
+		}
+	}
+
+	/**
 	* Méthode render qui affiche la vue en reliant le fichier vue et le 
 	* templates
 	*/

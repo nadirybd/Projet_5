@@ -52,6 +52,33 @@ a
 	box-shadow: 0 0 10px #0aa2cb;
 }
 
+/***************************
+			WIDGET
+****************************/
+.widget-container
+{
+	display: flex;
+	justify-content: stretch;
+	align-items: stretch;
+}
+
+.widget
+{
+	padding: 100px 0;
+	width: 100%;
+	text-align: center;
+}
+
+.widget .icon-widget
+{
+	margin-bottom: 60px;
+}
+
+.widget .fas
+{
+	border-bottom: 1px solid black;
+	padding-bottom: 15px;
+}
 
 /***************************
 		EN-TÊTE DU SITE
@@ -117,7 +144,9 @@ nav ul li a:hover
 /*** SLIDER ***/
 #slider
 {
-	background: url('/Forum/public/images/slider.jpg');
+	background-image: url('/Forum/public/images/slider3.jpg');
+	background-size: cover;
+	background-attachment: fixed;
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -134,32 +163,31 @@ nav ul li a:hover
 }
 
 /*** WIDGET ***/
-#widget-container
-{
-	display: flex;
-	justify-content: stretch;
-	align-items: stretch;
-}
-
-.widget
-{
-	padding: 100px 0;
-	width: 100%;
-	text-align: center;
-}
-
-.widget p:first-child
-{
-	margin-bottom: 60px;
-}
-
-.widget .fas
-{
-	border-bottom: 1px solid black;
-	padding-bottom: 15px;
-}
-
 .wd-1, .wd-3
 {
+	background-color: #e2e2e2;
+}
 
+.wd-4
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: url('/Forum/public/images/banner/banner.jpg');
+}
+
+#last-topic
+{
+	padding: 50px 80px;
+	text-align: left;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+}
+
+.wd-4 h3
+{
+	text-align: center;
+	font-size: 1.5em;
+	margin-bottom: 40px;
 }
