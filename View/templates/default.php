@@ -2,13 +2,36 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
+		<link href="https://fonts.googleapis.com/css?family=Bitter|Roboto+Slab" rel="stylesheet" />
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="/Forum/public/css/style.css" />
+
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
 	<body>
-		<div class="main-container">
-			<div class="contains">
+		<header>
+			<div id="logo">
+				<img src="/Forum/public/images/logo.png" alt="logo">
+			</div>
+			<nav>
+				<ul>
+					<li><a href="#">ACCUEIL</a></li>
+					<li><a href="#">FORUM</a></li>
+					<li><a href="#">SE CONNECTER</a></li>
+					<li><a href="#">S'INSCRIRE</a></li>
+					<li class="hamburger"><a href=""><i class="fas fa-bars fa-2x"></i></a></li>
+				</ul>
+			</nav>	
+		</header>
+
+		<div id="main-container">
+			<div id="contains">
 				<?= $content; ?>
 			</div>
 		</div>
+
+		<script src="/Forum/"></script>
+		<script src="/Forum/public/js/main.js"></script>
 	</body>
 </html>
