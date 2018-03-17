@@ -24,16 +24,17 @@ class UsersController extends Controller
 			$confirm_mail = htmlspecialchars($_POST['confirm_mail']);
 			$pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
 			$confirm_pass = $_POST['confirm_pass'];
-			$nameVerify = $this->usersModel->select([$username], 'pseudo');
-			$mailVerify = $this->usersModel->select([$mail], 'mail');
+			$nameVerify = $this->usersModel->count([$username], 'pseudo');
+			var_dump($nameVerify);
+			$mailVerify = $this->usersModel->count([$mail], 'mail');
 
 			if(!empty($username) && !empty($mail) && !empty($confirm_mail) && !empty($pass) && !empty($confirm_pass)) {
 				if(strlen($username) < 70){
 					if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
 						if($mail === $confirm_mail){
 							if(password_verify($confirm_pass, $pass)){
-								if(count($nameVerify) === 0){
-									if(count($mailVerify) === 0){
+								if($nameVerify == 0){
+									if($mailVerify == 0){
 										$this->usersModel->add([
 											':pseudo' => $username,
 											':mail' => $mail,

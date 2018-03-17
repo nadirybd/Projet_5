@@ -13,10 +13,10 @@ class UsersModel extends Model
 		$this->my_sql->prepare('INSERT INTO members(pseudo, mail, password, avatar) VALUES(:pseudo, :mail, :password, "default.png")', $attributes);
 	}
 
-	public function select($attributes, $type){
+	public function count($attributes, $type){
 
-		$select = $this->my_sql->prepare('SELECT * FROM members WHERE '.  $type .' = ?', $attributes, null, true);
+		$count = $this->my_sql->prepare('SELECT count(id) FROM members WHERE '.  $type .' = ?', $attributes, null, null, true);
 
-		return $select;
+		return $count;
 	}
 }
