@@ -11,22 +11,29 @@
 			</aside>
 			<div id="profile-info">
 				<fieldset>
-					<legend>Information de l'utilisateur</legend>
+					<legend>Information de l'utilisateur - <a href=""><i class="fas fa-edit"></i></a></legend>
 					<p>
 						Votre nom d'utilisateur : 
 						<?= $_SESSION['user']['name']; ?> 
-						<a href=""><i class="fas fa-edit"></i></a>
 					</p>
 					<p>
 						Votre adresse mail :
 						<?= $_SESSION['user']['mail']; ?> 
-						<a href=""><i class="fas fa-edit"></i></a>	
 					</p>
 					<p>
 						Date d'inscription :
 						<?= $_SESSION['user']['date']; ?> 
 					</p>
 				</fieldset>
+
+				<section>
+					<h3>Description <a href=""><i class="fas fa-edit"></i></a></h3>
+					<?php if(!empty($infoUser->description)): ?>
+						<p><?= $infoUser->description; ?></p>
+					<?php else: ?>
+						<p>Aucune description</p>
+					<?php endif; ?>
+				</section>
 			</div>
 		</div>
 	</div>

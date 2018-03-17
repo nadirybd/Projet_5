@@ -356,12 +356,26 @@ nav ul li a:hover
 #profile-content
 {
 	display: flex;
-	justify-content: space-around;
-	padding: 100px;
+	justify-content: space-between;
+	align-items: flex-start;
+	padding: 100px 50px;
 }
 
 #profile-content aside
 {
 	background-color: #f4f5f7;
 	padding: 10px;
+	margin-right: 100px;
+}
+
+#profile-info
+{
+	flex: 1;
+}
+
+#profile-info section p
+{
+	background-color: #f4f5f7;
+	padding: 10px;
+	height: 300px;
 }

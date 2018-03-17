@@ -33,6 +33,10 @@ switch ($page) {
 		BackUsersController::getInstance()->logout();
 		break;
 
+	case 'edit_profile':
+		BackUsersController::getInstance()->logout();
+		break;
+
 	default:
 		$page = '404';
 		break;

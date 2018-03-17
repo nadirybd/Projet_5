@@ -20,7 +20,8 @@ class UsersController extends Controller
 	*/
 	public function profile(){
 		if($this->logged()){
-			$this->render('profile');
+			$infoUser = $this->usersModel->selectInfo([$_SESSION['user']['id']]);
+			$this->render('profile', compact('infoUser'));
 		} else {
 			header('location: index.php?p=login');
 		}
@@ -34,7 +35,9 @@ class UsersController extends Controller
 			session_destroy();
 			$this->render('logout');
 			header('location: index.php');
-		} 
+		} else {
+			header('location: index.php?p=login');
+		}
 	}
 
 	/**

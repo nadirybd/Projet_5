@@ -35,4 +35,19 @@ class UsersModel extends Model
 
 		return $select;
 	}
+
+	/**
+	* Méthode count qui renvoi le nombre de column
+	* @param string -> PDO::Statement 
+	* @param string
+	*/
+	public function selectInfo($attributes){
+		$select = $this->my_sql->prepare('
+			SELECT members_info.id, members_info.description, members_info.user_id FROM members_info 
+			LEFT JOIN members 
+				ON members_info.user_id = members.id
+			WHERE members.id = ?', $attributes, true);
+
+		return $select;
+	}
 }
