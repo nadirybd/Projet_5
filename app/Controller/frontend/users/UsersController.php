@@ -16,6 +16,7 @@ class UsersController extends Controller
 
 	/**
 	* Méthode subscribe qui gère l'affichage de la page d'inscription
+	* Et vérifie les données envoyées par l'utilisateur
 	*/
 	public function subscribe(){
 		if(isset($_POST['subscribe'])){
@@ -40,6 +41,7 @@ class UsersController extends Controller
 											':mail' => $mail,
 											':password' => $pass
 										]);
+										header('location: index.php?p=login');
 									} else {
 										$error = 'L\'adresse mail existe déjà !';
 									}
@@ -65,6 +67,37 @@ class UsersController extends Controller
 		}
 
 		$this->render('subscribe', compact('error'));
+	}
+
+	/**
+	* Méthode qui gère la connexion d'un utilisateur
+	* @return 
+	*/
+	public function login(){
+		if(isset($_POST['login'])){
+			$log_user = htmlspecialchars($_POST['log_user']);
+			$log_pass = $_POST['log_pass'];
+			if(!empty($log_user) && !empty($log_pass)){
+				if(filter_var($log_user, FILTER_VALIDATE_EMAIL)){
+					$user = $this->usersModel->select([$log_user], 'mail');
+				} else {
+					$user = $this->usersModel->select([$log_user], 'pseudo'); 
+				}
+				if($user){
+					if(password_verify($log_pass, $user->password)){
+						die('OK');
+					} else {
+						$log_error = 'Mot de passe incorrect !';
+					}
+				} else {
+					$log_error = 'Identifiant incorrect !';
+				}
+			} else {
+				$log_error = 'Veuillez remplir tous les champs !';
+			}
+		}
+
+		$this->render('login', compact('log_error'));
 	}
 
 	/**

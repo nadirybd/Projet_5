@@ -88,9 +88,15 @@ input[type="submit"]:hover
 .form input[type='text'], .form input[type='email'], .form input[type='password']
 {
 	box-sizing: border-box;
-	border: none;
+
 	padding: 5px;
 	width: 100%;
+}
+
+.form label
+{
+	display: inline-block;
+	margin-bottom: 5px;
 }
 
 .error
@@ -248,7 +254,7 @@ nav ul li a:hover
 	flex-direction: column;
 	justify-content: center;
 	height: 100%;
-	background: url('/Forum/public/images/banner/banner.jpg');
+	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
 }
 
@@ -258,7 +264,7 @@ nav ul li a:hover
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.9);
+	background-color: rgba(0, 0, 0, 0.5);
 	padding: 100px 0;
 	color: white;
 }
@@ -275,4 +281,51 @@ nav ul li a:hover
 {
 	width: 400px;
 	padding: 10px;
+}
+
+/***************************
+		SUBCRIBE PAGE
+****************************/
+#login-page
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background: url('/Forum/public/images/bg.jpg');
+	background-size: cover;
+}
+	
+#login-content
+{
+	padding: 60px; 
+	height: 400px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+#login-content h2
+{
+	margin-bottom: 50px;
+	text-align: center!important;	
+}
+
+.log-form input[type='text'], .log-form input[type='email'], .log-form input[type='password']
+{
+	width: 90%;
+	background-color: rgba(255, 255, 255, 0.6);
+	border: none;
+	padding: 10px;
+}
+
+.log-form 
+{
+	text-align: center;
+	margin-bottom: 40px;
+}
+
+.log-form label
+{
+	margin-right: 10px;
 }

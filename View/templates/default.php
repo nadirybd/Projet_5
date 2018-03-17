@@ -18,7 +18,7 @@
 				<ul>
 					<li><a href="index.php">ACCUEIL</a></li>
 					<li><a href="#">FORUM</a></li>
-					<li><a href="#">SE CONNECTER</a></li>
+					<li><a href="index.php?p=login">SE CONNECTER</a></li>
 					<li><a href="index.php?p=subscribe">S'INSCRIRE</a></li>
 					<li class="hamburger"><a href=""><i class="fas fa-bars fa-2x"></i></a></li>
 				</ul>

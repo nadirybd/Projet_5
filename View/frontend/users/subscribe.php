@@ -14,6 +14,7 @@
 					<p>
 						<label for="username">*Nom d'utilisateur :</label><br />
 						<input type="text" name="username" id="username" required/>
+					</p>
 					<p>
 						<label for="mail">*Adresse mail :</label><br />
 						<input type="email" name="mail" id="mail" required/>
@@ -35,7 +36,7 @@
 					</p>
 				</form>
 				<p>* champs obligatoires</p>
-				<p><a href="">Vous avez déjà un compte ?</a></p>
+				<p><a href="index.php?p=login">Vous avez déjà un compte ?</a></p>
 			</fieldset>	
 		</div>
 	</div>

@@ -15,4 +15,6 @@ if($page === 'home'){
 	FrontController::getInstance()->homepage();
 } elseif ($page === 'subscribe') {
 	UsersController::getInstance()->subscribe();
+} elseif ($page === 'login') {
+	UsersController::getInstance()->login();
 }
