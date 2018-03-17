@@ -7,7 +7,10 @@
 
 			<fieldset>
 			<legend><h3>Créez un compte</h3></legend>
-				<form class="form sub-form">
+				<?php if(isset($error)): ?>
+					<p><span class="error"><?= $error; ?></span></p>
+				<?php endif; ?>
+				<form class="form sub-form" method="post">
 					<p>
 						<label for="username">*Nom d'utilisateur :</label><br />
 						<input type="text" name="username" id="username" required/>

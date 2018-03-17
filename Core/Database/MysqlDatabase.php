@@ -27,17 +27,17 @@ class MysqlDatabase extends Database
 	* @param $statement string
 	* @param $attributes array
 	* @param $one / $one = null
+	* @param $count / $count = null
 	* @return fetch / fetchAll
 	*/
 	public function prepare($statement, $attributes, $one = null, $all = null){
-		$query = $this->getDb()->prepare($statement);
-		$data = $query->execute($attributes);
-
-		if($one !== null){
-			return $data->fetch(PDO::FETCH_OBJ);
+		$req = $this->getDb()->prepare($statement);
+		$req->execute($attributes);
+		if($one === true){
+			return $req->fetch(PDO::FETCH_OBJ);
 		}
-		if($all !== null){
-			return $data->fetchAll(PDO::FETCH_OBJ);
-		}
+		if($all === true){
+			return $req->fetchAll(PDO::FETCH_OBJ);
+		}  
 	}
 }
