@@ -71,7 +71,7 @@ class UsersController extends Controller
 
 	/**
 	* Méthode qui gère la connexion d'un utilisateur
-	* @return 
+	* Et stocke les informations dans une session
 	*/
 	public function login(){
 		if(isset($_POST['login'])){
@@ -85,7 +85,12 @@ class UsersController extends Controller
 				}
 				if($user){
 					if(password_verify($log_pass, $user->password)){
-						die('OK');
+						$_SESSION['user'] = [
+							'id' => $user->id,
+							'name' => $user->pseudo,
+							'mail' => $user->mail
+						];
+						header('location: index.php?p=profile');
 					} else {
 						$log_error = 'Mot de passe incorrect !';
 					}
@@ -98,6 +103,15 @@ class UsersController extends Controller
 		}
 
 		$this->render('login', compact('log_error'));
+	}
+
+	/**
+	* @return bool
+	*/
+	public function logged(){
+		if(isset($_SESSION['user'])){
+			return true;
+		}
 	}
 
 	/**

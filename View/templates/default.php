@@ -18,8 +18,13 @@
 				<ul>
 					<li><a href="index.php">ACCUEIL</a></li>
 					<li><a href="#">FORUM</a></li>
-					<li><a href="index.php?p=login">SE CONNECTER</a></li>
-					<li><a href="index.php?p=subscribe">S'INSCRIRE</a></li>
+					<?php if(isset($_SESSION['user'])): ?>
+						<li><a href="index.php?p=profile">VOTRE PROFIL</a></li>
+						<li><a href="index.php?p=logout">SE DÉCONNECTER</a></li>
+					<?php else: ?>
+						<li><a href="index.php?p=login">SE CONNECTER</a></li>
+						<li><a href="index.php?p=subscribe">S'INSCRIRE</a></li>
+					<?php endif; ?>
 					<li class="hamburger"><a href=""><i class="fas fa-bars fa-2x"></i></a></li>
 				</ul>
 			</nav>	

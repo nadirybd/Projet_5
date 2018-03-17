@@ -44,4 +44,13 @@ class Controller
 		$content = ob_get_clean();
 		require('View/templates/'. $this->templates .'.php');
 	}
+
+	/**
+	* @return bool
+	*/
+	public function logged(){
+		if(isset($_SESSION['user'])){
+			return true;
+		}
+	}
 }

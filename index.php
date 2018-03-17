@@ -4,6 +4,7 @@ App::load();
 
 use App\Controller\Frontend\FrontController;
 use App\Controller\Frontend\Users\UsersController;
+use App\Controller\Backend\Users\UsersController as BackUsersController;
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
 	$page = $_GET['p'];
@@ -11,10 +12,28 @@ if(isset($_GET['p']) && !empty($_GET['p'])){
 	$page = 'home';
 }
 
-if($page === 'home'){
-	FrontController::getInstance()->homepage();
-} elseif ($page === 'subscribe') {
-	UsersController::getInstance()->subscribe();
-} elseif ($page === 'login') {
-	UsersController::getInstance()->login();
+switch ($page) {
+	case 'home':
+		FrontController::getInstance()->homepage();
+		break;
+	
+	case 'subscribe':
+		UsersController::getInstance()->subscribe();
+		break;
+	
+	case 'login':
+		UsersController::getInstance()->login();
+		break;
+	
+	case 'profile':
+		BackUsersController::getInstance()->profile();
+		break;
+
+	case 'logout':
+		BackUsersController::getInstance()->logout();
+		break;
+
+	default:
+		$page = '404';
+		break;
 }
