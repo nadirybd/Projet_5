@@ -14,8 +14,10 @@ class Controller
 
 	/**
 	* @var stocke l'instance de la classe TopicsModel
+	* @var stocke l'instance de la classe UsersModel
 	*/
 	protected $topicsModel;
+	protected $usersModel;
 
 	/**
 	* Méthode __construct
@@ -23,6 +25,9 @@ class Controller
 	public function __construct(){
 		if($this->topicsModel === null){
 			$this->topicsModel = new \App\Model\TopicsModel();
+		}
+		if($this->usersModel === null){
+			$this->usersModel = new \App\Model\UsersModel();
 		}
 	}
 

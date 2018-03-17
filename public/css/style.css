@@ -20,9 +20,21 @@ a
 	height: 100%;
 }
 
+.page
+{
+	height: 100%;
+	margin-top: 100px;
+}
+
+.page a 
+{
+	color: #0aa2cb;
+}
+
 /***************************
-	BOUTON CALL TO ACTION
+			BUTTON 
 ****************************/
+/*CALL TO ACTION*/
 .call-to-action
 {
 	margin-top: 40px;
@@ -50,6 +62,35 @@ a
 .call-to-action:hover
 {
 	box-shadow: 0 0 10px #0aa2cb;
+}
+
+/*BUTTON SUBMIT*/
+
+input[type="submit"]
+{
+	background-color: #0aa2cb;
+	border: 2px solid #0aa2cb;
+	border-radius: 8px;
+	color: white;
+	cursor: pointer;
+	padding: 5px 30px;
+}
+
+input[type="submit"]:hover
+{
+	background-color: transparent;
+	color: #0aa2cb;
+}
+
+/***************************
+			FORM
+****************************/
+.form input[type='text'], .form input[type='email'], .form input[type='password']
+{
+	box-sizing: border-box;
+	border: none;
+	padding: 5px;
+	width: 100%;
 }
 
 /***************************
@@ -81,7 +122,7 @@ a
 }
 
 /***************************
-		EN-TÊTE DU SITE
+		MAIN HEADER
 ****************************/
 header
 {
@@ -190,4 +231,42 @@ nav ul li a:hover
 	text-align: center;
 	font-size: 1.5em;
 	margin-bottom: 40px;
+}
+
+/***************************
+		SUBCRIBE PAGE
+****************************/
+
+#subscribe-page
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
+	background: url('/Forum/public/images/banner/banner.jpg');
+}
+
+#subscribe-form
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.9);
+	padding: 100px 0;
+	color: white;
+}
+
+#subscribe-form aside
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+#subscribe-form .sub-form
+{
+	width: 400px;
+	padding: 10px;
 }

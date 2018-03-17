@@ -1,7 +1,10 @@
 <div id="slider">
 	<div id="slider-content">
 		<h2>Partagez votre expérience, ou bien même trouvez des solutions et devenez expérimentés !</h2>
-		<button class="call-to-action"><a href="#">S'INSCRIRE</a></button>
+		<p>
+			<button class="call-to-action"><a href="#">SE CONNECTER</a></button>
+			<button class="call-to-action"><a href="index.php?p=subscribe">S'INSCRIRE</a></button>
+		</p>
 	</div>
 </div>
 

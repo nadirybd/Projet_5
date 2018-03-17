@@ -6,6 +6,9 @@ use Core\Model\Model;
 */
 class TopicsModel extends Model
 {
+	/**
+	* @return array[Obj stdclass] : résultat de la requête 
+	*/
 	public function lastTopic(){
 		$lastTopic = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") AS date_fr FROM f_topics ORDER BY creation_date DESC LIMIT 0, 1', true);
 		

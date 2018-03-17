@@ -12,14 +12,14 @@
 	<body>
 		<header>
 			<div id="logo">
-				<img src="/Forum/public/images/logo.png" alt="logo">
+				<img src="/Forum/public/images/logo-header.png" alt="logo">
 			</div>
 			<nav>
 				<ul>
-					<li><a href="#">ACCUEIL</a></li>
+					<li><a href="index.php">ACCUEIL</a></li>
 					<li><a href="#">FORUM</a></li>
 					<li><a href="#">SE CONNECTER</a></li>
-					<li><a href="#">S'INSCRIRE</a></li>
+					<li><a href="index.php?p=subscribe">S'INSCRIRE</a></li>
 					<li class="hamburger"><a href=""><i class="fas fa-bars fa-2x"></i></a></li>
 				</ul>
 			</nav>	

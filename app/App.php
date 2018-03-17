@@ -15,4 +15,8 @@ class App
 		require('Core/Autoloader.php');
 		Core\Autoloader::register();
 	}
+
+	static function url($url){
+		echo 'index.php?p='. $url;
+	}
 }

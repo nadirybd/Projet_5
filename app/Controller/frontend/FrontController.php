@@ -9,6 +9,7 @@ class FrontController extends Controller
 {
 	/**
 	* @var $viewPath retourne le nom du dossier frontend
+	* @var $_instance qui stocke l'instance de la classe
 	*/
 	protected $viewPath = 'frontend';
 	private static $_instance;
