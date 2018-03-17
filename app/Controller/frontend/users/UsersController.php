@@ -88,7 +88,9 @@ class UsersController extends Controller
 						$_SESSION['user'] = [
 							'id' => $user->id,
 							'name' => $user->pseudo,
-							'mail' => $user->mail
+							'mail' => $user->mail,
+							'avatar' => $user->avatar,
+							'date' => $user->sub_date_fr,
 						];
 						header('location: index.php?p=profile');
 					} else {
@@ -103,15 +105,6 @@ class UsersController extends Controller
 		}
 
 		$this->render('login', compact('log_error'));
-	}
-
-	/**
-	* @return bool
-	*/
-	public function logged(){
-		if(isset($_SESSION['user'])){
-			return true;
-		}
 	}
 
 	/**

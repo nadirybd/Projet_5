@@ -11,7 +11,7 @@ class UsersModel extends Model
 	* @param string -> PDO::Statement 
 	*/
 	public function add($attributes){
-		$this->my_sql->prepare('INSERT INTO members(pseudo, mail, password, avatar) VALUES(:pseudo, :mail, :password, "default.png")', $attributes);
+		$this->my_sql->prepare('INSERT INTO members(pseudo, mail, password, avatar, subscribe_date) VALUES(:pseudo, :mail, :password, "default.png", NOW())', $attributes);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class UsersModel extends Model
 	* @param string
 	*/
 	public function select($attributes, $type){
-		$select = $this->my_sql->prepare('SELECT id, pseudo, mail, password FROM members WHERE '. $type .' = ?', $attributes, true);
+		$select = $this->my_sql->prepare('SELECT id, pseudo, mail, password, avatar, DATE_FORMAT(subscribe_date, "%d/%m/%Y") AS sub_date_fr FROM members WHERE '. $type .' = ?', $attributes, true);
 
 		return $select;
 	}

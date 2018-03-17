@@ -284,7 +284,7 @@ nav ul li a:hover
 }
 
 /***************************
-		SUBCRIBE PAGE
+		LOGIN PAGE
 ****************************/
 #login-page
 {
@@ -328,4 +328,40 @@ nav ul li a:hover
 .log-form label
 {
 	margin-right: 10px;
+}
+
+/***************************
+			PROFILE
+****************************/
+.banner
+{
+	background-image: url('/Forum/public/images/bg.jpg');
+ 	background-size: cover;  
+ 	height: 150px;
+ 	padding: 20px 0;
+ 	color: white;
+ 	text-align: center;
+ 	display: block;
+}
+
+.banner h1
+{
+	display: block;
+	width: 300px;
+	background-color: rgba(0, 0, 0, 0.7);
+	margin: 20px auto;
+	padding: 10px;
+}
+
+#profile-content
+{
+	display: flex;
+	justify-content: space-around;
+	padding: 100px;
+}
+
+#profile-content aside
+{
+	background-color: #f4f5f7;
+	padding: 10px;
 }
