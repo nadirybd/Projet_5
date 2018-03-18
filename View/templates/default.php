@@ -41,7 +41,7 @@
 			<p>Copyright © 2018 Nadir Webmaster Tous droits réservés.</p>
 		</footer>
 
-		<script src="/Forum/"></script>
+		<script src="/Forum/public/js/form.js"></script>
 		<script src="/Forum/public/js/main.js"></script>
 	</body>
 </html>

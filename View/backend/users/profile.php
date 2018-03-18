@@ -18,14 +18,33 @@
 				</fieldset>
 
 				<section id="profile-description">
-					<h3>Description <a><i class="fas fa-edit"></i></a></h3>
-					<?php if(!empty($infoUser->description)): ?>
-						<p><?= $infoUser->description; ?></p>
+					<h3>Description <a><i class="fas fa-edit edit-button"></i></a></h3>
+					<?php if($infoUser->description): ?>
+						<div class="description-content"><?= htmlspecialchars($infoUser->description); ?></div>
 					<?php else: ?>
-						<p>Aucune description</p>
+						<div class="description-content">Aucune description</div>
 					<?php endif; ?>
+					<div id="description-container">
+						<form method="post">
+							<?php if(isset($description_error)): ?>
+								<div class="error">
+									<?= $description_error; ?>
+								</div>
+							<?php endif; ?>
+							<?php if(!empty($infoUser->description)): ?>
+							<textarea class="text-edit" name="edit_description"> <?= htmlspecialchars($infoUser->description);  ?></textarea>
+							<?php else: ?>
+							<textarea class="text-edit" name="edit_description"></textarea>
+							<?php endif; ?>
+							<p>
+								<input type="submit" name="sub_description" />
+								<button class="cancel" type="button">Annuler</button>
+							</p>
+						</form>
+					</div>
 				</section>
 			</div>
 		</div>
 	</div>
 </div>
+

@@ -15,6 +15,14 @@ class UsersModel extends Model
 	}
 
 	/**
+	* Méthode add qui ajoute un utilisateur correctement inscrit
+	* @param string -> PDO::Statement 
+	*/
+	public function addInfoUser($attributes){
+		$this->my_sql->prepare('INSERT INTO members_info(user_id) VALUES(?)', $attributes);
+	}
+
+	/**
 	* Méthode update qui met à jour les infos d'un utilisateur
 	* @param string -> PDO::Statement 
 	*/
@@ -39,7 +47,7 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Méthode count qui renvoi le nombre de column
+	* Méthode select qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
 	* @param string
 	*/
@@ -50,7 +58,7 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Méthode count qui renvoi le nombre de column
+	* Méthode selectInfo qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
 	* @param string
 	*/
@@ -62,5 +70,18 @@ class UsersModel extends Model
 			WHERE members.id = ?', $attributes, true);
 
 		return $select;
+	}
+
+	/**
+	* Méthode updateInfo qui met à jour les infos d'un utilisateur
+	* @param string -> PDO::Statement 
+	*/
+	public function updateInfo($attributes, $where = null){
+		if($where === null){
+			$update = $this->my_sql->prepare('UPDATE members_info SET description = :description WHERE user_id = :id', $attributes);
+		} else {
+			$update = $this->my_sql->prepare('UPDATE members_info SET '. $where .' = :'. $where .' WHERE user_id = :id', $attributes);
+		} 
+		return $update;
 	}
 }

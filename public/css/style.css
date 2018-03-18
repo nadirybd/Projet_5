@@ -63,6 +63,16 @@ a
 	box-shadow: 0 0 10px #0aa2cb;
 }
 
+.cancel
+{
+	background-color: red;
+	border: 2px solid red;
+	border-radius: 8px;
+	color: white;
+	cursor: pointer;
+	padding: 5px 30px;
+}
+
 /*BUTTON SUBMIT*/
 
 input[type="submit"]
@@ -408,11 +418,11 @@ footer
 	border: 5px solid rgb(76, 76, 76);
 }
 
-#profile-info section p
+#profile-description .description-content
 {
 	background-color: #f4f5f7;
 	padding: 10px;
-	height: 300px;
+	min-height: 300px;
 }
 
 #profile-description .fa-edit:hover
@@ -442,6 +452,17 @@ footer
 {
 	background-color: rgba(255, 255, 255, 0.8);
 	padding: 50px;
+}
+
+#description-container
+{
+	display: none;
+}
+
+.text-edit
+{
+	height: 300px;
+	width: 100%;
 }
 
 /***************************

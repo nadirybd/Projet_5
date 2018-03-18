@@ -49,7 +49,7 @@ class Controller
 	* @return bool
 	*/
 	public function logged(){
-		if(isset($_SESSION['user'])){
+		if(isset($_SESSION['user']) && isset($_SESSION['user']['id'])){
 			return true;
 		}
 	}
