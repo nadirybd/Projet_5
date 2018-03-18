@@ -6,28 +6,19 @@
 
 		<div id="profile-content">
 			<aside>
-				<p><img src="\Forum\View\backend\users\avatars\<?= $_SESSION['user']['avatar']; ?>" /></p>
+				<p><img src="\Forum\View\backend\users\avatars\<?= $user->avatar; ?>" /></p>
 				<p><a href="">Modifier</a></p>
 			</aside>
 			<div id="profile-info">
 				<fieldset>
-					<legend>Information de l'utilisateur - <a href=""><i class="fas fa-edit"></i></a></legend>
-					<p>
-						Votre nom d'utilisateur : 
-						<?= $_SESSION['user']['name']; ?> 
-					</p>
-					<p>
-						Votre adresse mail :
-						<?= $_SESSION['user']['mail']; ?> 
-					</p>
-					<p>
-						Date d'inscription :
-						<?= $_SESSION['user']['date']; ?> 
-					</p>
+					<legend>Information de l'utilisateur - <a href="index.php?p=edit_profile"><i class="fas fa-edit"></i></a></legend>
+					<p><i class="fas fa-user"></i> <?= $user->pseudo; ?></p>
+					<p><i class="fas fa-envelope"></i> <?= $user->mail; ?></p>
+					<p><i class="fas fa-calendar-alt"></i> Date d'inscription : <?= $_SESSION['user']['date']; ?></p>
 				</fieldset>
 
-				<section>
-					<h3>Description <a href=""><i class="fas fa-edit"></i></a></h3>
+				<section id="profile-description">
+					<h3>Description <a><i class="fas fa-edit"></i></a></h3>
 					<?php if(!empty($infoUser->description)): ?>
 						<p><?= $infoUser->description; ?></p>
 					<?php else: ?>

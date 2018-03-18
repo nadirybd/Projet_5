@@ -3,7 +3,6 @@
 ****************************/
 body, html
 {
-	height: 100%;
 	margin: 0;
 	font-family: 'Bitter', serif;
 }
@@ -15,15 +14,9 @@ a
 	border: none;
 }
 
-#main-container, #contains
-{
-	height: 100%;
-}
-
 .page
 {
 	margin-top: 100px;
-	height: 100%;
 }
 
 .page a 
@@ -88,7 +81,6 @@ input[type="submit"]:hover
 .form input[type='text'], .form input[type='email'], .form input[type='password']
 {
 	box-sizing: border-box;
-
 	padding: 5px;
 	width: 100%;
 }
@@ -102,6 +94,17 @@ input[type="submit"]:hover
 .error
 {
 	color: red;
+	border: 1px solid red;
+	padding: 5px;
+	background-color: rgba(255, 0, 0, 0.1);
+}
+
+.success
+{
+	color: green;
+	border: 1px solid green;
+	padding: 5px;
+	background-color: rgba(0, 255, 0, 0.1);
 }
 
 /***************************
@@ -190,6 +193,17 @@ nav ul li a:hover
 }
 
 /***************************
+		MAIN FOOTER
+****************************/
+footer 
+{
+	text-align: center;
+	background-color: rgb(76, 76, 76);
+	color: white;
+	padding: 30px;
+}
+
+/***************************
 		HOMEPAGE
 ****************************/
 
@@ -199,7 +213,7 @@ nav ul li a:hover
 	background-image: url('/Forum/public/images/slider3.jpg');
 	background-size: cover;
 	background-attachment: fixed;
-	height: 100%;
+	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -253,7 +267,7 @@ nav ul li a:hover
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	height: 100%;
+	height: 100vh;
 	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
 }
@@ -292,7 +306,7 @@ nav ul li a:hover
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
+	height: 100vh;
 	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
 }
@@ -337,20 +351,24 @@ nav ul li a:hover
 {
 	background-image: url('/Forum/public/images/bg.jpg');
  	background-size: cover;  
- 	height: 150px;
+ 	height: 200px;
  	padding: 20px 0;
  	color: white;
- 	text-align: center;
- 	display: block;
+ 	display: flex;
+ 	justify-content: center;
+ 	align-items: center;
 }
 
 .banner h1
 {
 	display: block;
-	width: 300px;
 	background-color: rgba(0, 0, 0, 0.7);
-	margin: 20px auto;
-	padding: 10px;
+	padding: 20px 50px;
+}
+
+#profile-page
+{
+	background-color: #eaeaea;
 }
 
 #profile-content
@@ -373,9 +391,43 @@ nav ul li a:hover
 	flex: 1;
 }
 
+#profile-info fieldset
+{
+	border: 5px solid rgb(76, 76, 76);
+}
+
 #profile-info section p
 {
 	background-color: #f4f5f7;
 	padding: 10px;
 	height: 300px;
+}
+
+#profile-description .fa-edit:hover
+{
+	cursor: pointer;
+}
+
+/***************************
+		EDIT PROFILE
+****************************/
+
+#edit-page
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-image: url('/Forum/public/images/bg.jpg');
+}
+
+#edit-form h2
+{
+	margin-bottom: 30px;
+}
+
+#edit-form
+{
+	background-color: rgba(255, 255, 255, 0.8);
+	padding: 50px;
 }

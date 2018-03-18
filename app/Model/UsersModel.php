@@ -15,6 +15,24 @@ class UsersModel extends Model
 	}
 
 	/**
+	* Méthode update qui met à jour les infos d'un utilisateur
+	* @param string -> PDO::Statement 
+	*/
+	public function update($attributes, $where = null){
+		if($where === null){
+			$this->my_sql->prepare('UPDATE members SET pseudo = :pseudo, mail = :mail, password = :password WHERE id = :id', $attributes);
+		} elseif ($where === 'pseudo') {
+			$this->my_sql->prepare('UPDATE members SET pseudo = :pseudo WHERE id = :id', $attributes);
+		} elseif ($where === 'mail') {
+			$this->my_sql->prepare('UPDATE members SET mail = :mail WHERE id = :id', $attributes);
+		} elseif ($where === 'password') {
+			$this->my_sql->prepare('UPDATE members SET password = :password WHERE id = :id', $attributes);
+		} elseif ($where === 'avatar') {
+			$this->my_sql->prepare('UPDATE members SET avatar = :avatar WHERE id = :id', $attributes);
+		}
+	}
+
+	/**
 	* Méthode count qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
 	* @param string

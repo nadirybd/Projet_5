@@ -34,7 +34,7 @@ switch ($page) {
 		break;
 
 	case 'edit_profile':
-		BackUsersController::getInstance()->logout();
+		BackUsersController::getInstance()->editProfile();
 		break;
 
 	default:

@@ -26,7 +26,6 @@ class UsersController extends Controller
 			$pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
 			$confirm_pass = $_POST['confirm_pass'];
 			$nameVerify = $this->usersModel->count([$username], 'pseudo');
-			var_dump($nameVerify);
 			$mailVerify = $this->usersModel->count([$mail], 'mail');
 
 			if(!empty($username) && !empty($mail) && !empty($confirm_mail) && !empty($pass) && !empty($confirm_pass)) {

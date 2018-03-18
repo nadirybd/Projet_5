@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<link href="https://fonts.googleapis.com/css?family=Bitter|Roboto+Slab" rel="stylesheet" />
@@ -35,6 +35,10 @@
 				<?= $content; ?>
 			</div>
 		</div>
+
+		<footer>
+			<p>Copyright © 2018 Nadir Webmaster Tous droits réservés.</p>
+		</footer>
 
 		<script src="/Forum/"></script>
 		<script src="/Forum/public/js/main.js"></script>
