@@ -5,9 +5,9 @@
 		</div>
 
 		<div id="profile-content">
-			<aside>
-				<p><img src="\Forum\View\backend\users\avatars\<?= $user->avatar; ?>" /></p>
-				<p><a href="">Modifier</a></p>
+			<aside class="avatar">
+				<p><img src="/Forum/View/backend/users/avatars/<?= $user->avatar; ?>" /></p>
+				<p><a href="index.php?p=edit_avatar">Modifier</a></p>
 			</aside>
 			<div id="profile-info">
 				<fieldset>

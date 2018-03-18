@@ -14,14 +14,20 @@ a
 	border: none;
 }
 
-.page
+#main-container
 {
+	min-height: 100vh;
 	margin-top: 100px;
 }
 
 .page a 
 {
 	color: #0aa2cb;
+}
+
+.avatar img
+{
+	width: 170px;
 }
 
 /***************************
@@ -119,7 +125,8 @@ input[type="submit"]:hover
 
 .widget
 {
-	padding: 100px 0;
+	padding: 100px;
+	display: block;
 	width: 100%;
 	text-align: center;
 }
@@ -134,6 +141,7 @@ input[type="submit"]:hover
 	border-bottom: 1px solid black;
 	padding-bottom: 15px;
 }
+
 
 /***************************
 		MAIN HEADER
@@ -206,6 +214,10 @@ footer
 /***************************
 		HOMEPAGE
 ****************************/
+#home-page
+{
+	height: 100%;
+}
 
 /*** SLIDER ***/
 #slider
@@ -213,10 +225,10 @@ footer
 	background-image: url('/Forum/public/images/slider3.jpg');
 	background-size: cover;
 	background-attachment: fixed;
-	height: 100vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: 100vh;
 }
 
 #slider-content
@@ -267,9 +279,9 @@ footer
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	height: 100vh;
 	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
+	min-height: 100vh;
 }
 
 #subscribe-form
@@ -306,9 +318,9 @@ footer
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	height: 100vh;
 	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
+	min-height: 100vh;
 }
 	
 #login-content
@@ -417,8 +429,8 @@ footer
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
 	background-image: url('/Forum/public/images/bg.jpg');
+	height: 100vh;
 }
 
 #edit-form h2
@@ -430,4 +442,31 @@ footer
 {
 	background-color: rgba(255, 255, 255, 0.8);
 	padding: 50px;
+}
+
+/***************************
+		EDIT AVATAR
+****************************/
+
+#edit-avatar-page
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('/Forum/public/images/bg.jpg');
+	height: 100vh;
+	color: white;
+}
+
+#edit-avatar-form
+{
+	border: 1px solid black;
+	padding: 50px;
+	background-color: rgba(0, 0, 0, 0.7);
+	text-align: center;
+}
+
+#edit-avatar-form h2, p
+{
+	margin-bottom: 30px;
 }

@@ -37,6 +37,10 @@ switch ($page) {
 		BackUsersController::getInstance()->editProfile();
 		break;
 
+	case 'edit_avatar':
+		BackUsersController::getInstance()->editAvatar();
+		break;
+
 	default:
 		$page = '404';
 		break;

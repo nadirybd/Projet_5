@@ -109,6 +109,55 @@ class UsersController extends Controller
 	}
 
 	/**
+	* Méthode qui gère la modification de l'avatar
+	*/
+	public function editAvatar(){
+		if($this->logged()){
+			if($_SESSION['user']['id']){
+				$user = $this->usersModel->select([$_SESSION['user']['id']], 'id');
+				if(isset($_POST['submit_avatar'])){
+					if(isset($_FILES['file_avatar']) && !empty($_FILES['file_avatar']['size'])){
+						$newAvatar = $_FILES['file_avatar'];
+						$ext = strtolower(substr($newAvatar['name'], -3));
+						$validate_ext = ['jpg', 'png', 'gif'];
+						if(in_array($ext, $validate_ext)){
+							$max_size = 2097152;
+							if($newAvatar['size'] <= $max_size){
+								
+								$rename = $_SESSION['user']['id']. '.'. $ext;	
+								$tmp_path = $newAvatar['tmp_name'];
+								$new_path = 'View/backend/users/avatars/'. $rename;
+								$move = move_uploaded_file($tmp_path, $new_path);
+
+								if($move){
+									$this->usersModel->update([
+										':avatar' => $rename,
+										':id' => $_SESSION['user']['id']
+									], 'avatar');
+
+									header('location: index.php?p=profile');
+								} else {
+									$avatarError = 'Une erreur s\'est produite durant le transfert, veuillez réessayer plus tard. Si le problème persiste, merci de bien vouloir nous contacter.';
+								}
+							} else {
+								$avatarError = 'La taille maximum est de 2Mo.';
+							}
+						} else {
+							$avatarError = 'Les extensions autorisées sont jpg | png | gif.';
+						}
+					} else {
+						$avatarError = 'Aucun fichier n\'a été sélectionné';
+					}
+				}
+			}
+
+			$this->render('edit_avatar', compact('user', 'avatarError', 'success'));
+		} else {
+			header('location: index.php?p=login');
+		}
+	}
+
+	/**
 	* Méthode qui gère la déconnexion 
 	*/
 	public function logout(){

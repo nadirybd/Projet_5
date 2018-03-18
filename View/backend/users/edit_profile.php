@@ -14,6 +14,7 @@
 				<p>
 					<label for="edit_name">Nom d'utilisateur :</label><br />
 					<input type="text" name="edit_name" id="edit_name" value="<?=$_SESSION['user']['name']; ?>"/>
+				</p>
 				<p>
 					<label for="edit_mail">Votre adresse mail :</label><br />
 					<input type="email" name="edit_mail" id="edit_mail" value="<?= $_SESSION['user']['mail']; ?>"/>
