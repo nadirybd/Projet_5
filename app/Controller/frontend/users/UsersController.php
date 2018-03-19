@@ -13,7 +13,6 @@ class UsersController extends Controller
 	*/
 	protected $viewPath = 'frontend/users';
 	private static $_instance;
-
 	/**
 	* Méthode subscribe qui gère l'affichage de la page d'inscription
 	* Et vérifie les données envoyées par l'utilisateur
@@ -40,7 +39,7 @@ class UsersController extends Controller
 											':mail' => $mail,
 											':password' => $pass
 										]);
-										header('location: index.php?p=login');
+										header('location: /Forum/login');
 									} else {
 										$error = 'L\'adresse mail existe déjà !';
 									}
@@ -91,7 +90,7 @@ class UsersController extends Controller
 							'avatar' => $user->avatar,
 							'date' => $user->sub_date_fr,
 						];
-						header('location: index.php?p=profile');
+						header('location: /Forum/profile');
 					} else {
 						$log_error = 'Mot de passe incorrect !';
 					}

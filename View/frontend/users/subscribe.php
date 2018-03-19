@@ -8,7 +8,7 @@
 			<fieldset>
 			<legend><h3>Créez un compte</h3></legend>
 				<?php if(isset($error)): ?>
-					<p><span class="error"><?= $error; ?></span></p>
+					<div class="error"><?= $error; ?></div>
 				<?php endif; ?>
 				<form class="form sub-form" method="post">
 					<p>
@@ -36,7 +36,7 @@
 					</p>
 				</form>
 				<p>* champs obligatoires</p>
-				<p><a href="index.php?p=login">Vous avez déjà un compte ?</a></p>
+				<p><a href="login">Vous avez déjà un compte ?</a></p>
 			</fieldset>	
 		</div>
 	</div>

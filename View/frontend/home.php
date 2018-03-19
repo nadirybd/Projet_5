@@ -4,10 +4,10 @@
 			<h2>Partagez votre expérience, ou bien même trouvez des solutions et devenez expérimentés !</h2>
 			<p>
 				<?php if(isset($_SESSION['user'])): ?>
-					<button class="call-to-action"><a href="index.php?p=profile">VOTRE PROFIL</a></button>
+					<button class="call-to-action"><a href="profile">VOTRE PROFIL</a></button>
 				<?php else : ?>
-					<button class="call-to-action"><a href="index.php?p=login">SE CONNECTER</a></button>
-					<button class="call-to-action"><a href="index.php?p=subscribe">S'INSCRIRE</a></button>
+					<button class="call-to-action"><a href="login">SE CONNECTER</a></button>
+					<button class="call-to-action"><a href="subscribe">S'INSCRIRE</a></button>
 				<?php endif; ?>
 			</p>
 		</div>

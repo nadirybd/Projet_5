@@ -30,12 +30,12 @@ class UsersController extends Controller
 						':description' => $edit_description,
 						':id' => $_SESSION['user']['id']
 					], 'description');
-					header('location: index.php?p=profile');
+					header('location: /Forum/profile');
 				} 
 			}
 			$this->render('profile', compact('infoUser', 'user'));
 		} else {
-			header('location: index.php?p=login');
+			header('location: /Forum/login');
 		}
 	}
 
@@ -58,7 +58,7 @@ class UsersController extends Controller
 						], 'pseudo');
 
 						$_SESSION['user']['name'] = $edit_name;
-						header('location: index.php?p=profile');
+						header('location: /Forum/profile');
 					} else {
 						$edit_error = 'Le nom d\'utilisateur existe déjà !';
 					}
@@ -81,7 +81,7 @@ class UsersController extends Controller
 						], 'mail');
 
 						$_SESSION['user']['mail'] = $edit_mail;
-						header('location: index.php?p=profile');
+						header('location: /Forum/profile');
 					} else {
 						$edit_error = 'L\'adresse mail existe déjà !';
 					}
@@ -114,7 +114,7 @@ class UsersController extends Controller
 			$this->render('edit_profile', compact('edit_error', 'success'));
 		
 		} else {
-			header('location: index.php?p=login');
+			header('location: /Forum/login');
 		}
 	}
 
@@ -144,7 +144,7 @@ class UsersController extends Controller
 									':id' => $_SESSION['user']['id']
 								], 'avatar');
 
-								header('location: index.php?p=profile');
+								header('location: /Forum/profile');
 							} else {
 								$avatarError = 'Une erreur s\'est produite durant le transfert, veuillez réessayer plus tard. Si le problème persiste, merci de bien vouloir nous contacter.';
 							}
@@ -161,7 +161,7 @@ class UsersController extends Controller
 	
 			$this->render('edit_avatar', compact('user', 'avatarError', 'success'));
 		} else {
-			header('location: index.php?p=login');
+			header('location: /Forum/login');
 		}
 	}
 
@@ -173,9 +173,9 @@ class UsersController extends Controller
 			$_SESSION = array();
 			session_destroy();
 			$this->render('logout');
-			header('location: index.php');
+			header('location: /Forum/home');
 		} else {
-			header('location: index.php?p=login');
+			header('location: /Forum/login');
 		}
 	}
 

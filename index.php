@@ -16,6 +16,10 @@ switch ($page) {
 	case 'home':
 		FrontController::getInstance()->homepage();
 		break;
+
+	case '404':
+		FrontController::getInstance()->notFound();
+		break;
 	
 	case 'subscribe':
 		UsersController::getInstance()->subscribe();

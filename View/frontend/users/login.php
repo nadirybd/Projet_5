@@ -5,7 +5,7 @@
 			
 			<form class="form log-form" method="post">
 				<?php if(isset($log_error)): ?>
-					<p><span class="error"><?= $log_error; ?></span></p>
+					<div class="error"><?= $log_error; ?></div>
 				<?php endif; ?>
 				<p>
 					<label for="log_user"><i class="fas fa-user"></i></label>
@@ -25,7 +25,7 @@
 			</form>
 
 			<p><a href="#">Mot de passe oublié ?</a></p>
-			<p>Vous n'avez toujours pas de compte ? <a href="index.php?p=subscribe">Inscrivez-vous !</a></p>
+			<p>Vous n'avez toujours pas de compte ? <a href="subscribe">Inscrivez-vous !</a></p>
 		</div>
 	</div>
 </div>

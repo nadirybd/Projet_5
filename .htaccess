@@ -1,0 +1,14 @@
+ErrorDocument 404 /Forum/NotFound
+
+RewriteEngine ON
+
+RewriteRule ^home$ index.php
+RewriteRule ^NotFound$ index.php?p=404
+
+RewriteRule ^subscribe$ index.php?p=subscribe
+RewriteRule ^login$ index.php?p=login
+RewriteRule ^logout$ index.php?p=logout
+
+RewriteRule ^profile$ index.php?p=profile
+RewriteRule ^edit-profile$ index.php?p=edit_profile
+RewriteRule ^edit-avatar$ index.php?p=edit_avatar

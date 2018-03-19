@@ -23,6 +23,14 @@ class FrontController extends Controller
 	}
 
 	/**
+	* Méthode home qui gère l'affichage de la homepage
+	*/
+	public function notFound(){
+		$this->viewPath = 'errors';
+		$this->render('404');
+	}
+
+	/**
 	* @return une instance de la classe
 	*/
 	public static function getInstance(){
