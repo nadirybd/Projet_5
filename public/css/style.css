@@ -440,6 +440,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	background-image: url('/Forum/public/images/bg.jpg');
+	background-size: cover;
 	height: 100vh;
 }
 
@@ -475,6 +476,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	background-image: url('/Forum/public/images/bg.jpg');
+	background-size: cover;
 	height: 100vh;
 	color: white;
 }
@@ -490,4 +492,49 @@ footer
 #edit-avatar-form h2, p
 {
 	margin-bottom: 30px;
+}
+
+/***************************
+	RECUP PASSWORD PAGE
+****************************/
+
+#recup-password-page
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: url('/Forum/public/images/bg.jpg');
+	background-size: cover;
+}
+
+.form-recup-pass
+{
+	background-color: rgba(0, 0, 0, 0.5);
+	padding: 80px;
+	color: white;
+	text-align: center;
+}
+
+.form-recup-pass h2
+{
+	margin-bottom: 40px;
+}
+
+.form-recup input[type="mail"]
+{
+	width: 80%;
+	background-color: rgba(255, 255, 255, 0.6);
+	border: none;
+	padding: 10px;
+}
+
+.form-recup
+{
+	margin-bottom: 40px;
+}
+
+.fa-at
+{
+	margin-right: 5px;
 }

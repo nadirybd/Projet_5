@@ -15,11 +15,19 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Méthode add qui ajoute un utilisateur correctement inscrit
+	* Méthode addInfoUser qui ajoute un utilisateur correctement inscrit
 	* @param string -> PDO::Statement 
 	*/
 	public function addInfoUser($attributes){
 		$this->my_sql->prepare('INSERT INTO members_info(user_id) VALUES(?)', $attributes);
+	}
+
+	/**
+	* Méthode addRecupPass qui ajoute un utilisateur correctement inscrit
+	* @param string -> PDO::Statement 
+	*/
+	public function addRecupPass($attributes){
+		$this->my_sql->prepare('INSERT INTO recup_password(recup_mail, recup_pass) VALUES(?, ?)', $attributes);
 	}
 
 	/**
@@ -36,14 +44,29 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Méthode count qui renvoi le nombre de column
+	* Méthode updateInfo qui met à jour les infos d'un utilisateur
 	* @param string -> PDO::Statement 
-	* @param string
 	*/
-	public function count($attributes, $type){
-		$count = $this->my_sql->prepare('SELECT count(id) FROM members WHERE '.  $type .' = ?', $attributes, null, null, true);
+	public function updateInfo($attributes, $where = null){
+		if($where === null){
+			$update = $this->my_sql->prepare('UPDATE members_info SET description = :description WHERE user_id = :id', $attributes);
+		} else {
+			$update = $this->my_sql->prepare('UPDATE members_info SET '. $where .' = :'. $where .' WHERE user_id = :id', $attributes);
+		} 
+		return $update;
+	}
 
-		return $count;
+	/**
+	* Méthode updateRecupPass qui met à jour les infos d'un utilisateur
+	* @param string -> PDO::Statement 
+	*/
+	public function updateRecupPass($attributes, $where = null){
+		if($where === null){
+			$update = $this->my_sql->prepare('UPDATE recup_password SET recup_pass = :recup_pass WHERE recup_mail = :recup_mail', $attributes);
+		} else {
+			$update = $this->my_sql->prepare('UPDATE recup_password SET '. $where .' = :'. $where .' WHERE recup_mail = :recup_mail', $attributes);
+		} 
+		return $update;
 	}
 
 	/**
@@ -73,15 +96,29 @@ class UsersModel extends Model
 	}
 
 	/**
-	* Méthode updateInfo qui met à jour les infos d'un utilisateur
+	* Méthode count qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
+	* @param string
 	*/
-	public function updateInfo($attributes, $where = null){
-		if($where === null){
-			$update = $this->my_sql->prepare('UPDATE members_info SET description = :description WHERE user_id = :id', $attributes);
+	public function count($attributes, $type, $table = null){
+		if($table === null) {
+			$count = $this->my_sql->prepare('SELECT count(id) FROM members WHERE '.  $type .' = ?', $attributes, null, null, true);
 		} else {
-			$update = $this->my_sql->prepare('UPDATE members_info SET '. $where .' = :'. $where .' WHERE user_id = :id', $attributes);
-		} 
-		return $update;
+			$count = $this->my_sql->prepare('SELECT count(id) FROM '. $table .' WHERE '.  $type .' = ?', $attributes, null, null, true);
+		}
+
+		return $count;
 	}
+
+	/**
+	* Méthode countByMail qui renvoi le nombre de column
+	* @param string -> PDO::Statement 
+	* @param string
+	*/
+	public function countRecupPass($attributes, $type){
+		$count = $this->my_sql->prepare('SELECT count(id) FROM recup_password WHERE '.  $type .' = ?', $attributes, null, null, true);
+
+		return $count;
+	}
+
 }

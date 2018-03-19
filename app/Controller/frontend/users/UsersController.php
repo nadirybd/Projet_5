@@ -105,6 +105,50 @@ class UsersController extends Controller
 		$this->render('login', compact('log_error'));
 	}
 
+	public function recuperation(){
+		if(isset($_POST['send_mail'])){
+			$mail = htmlspecialchars($_POST['to_mail']);
+			if(!empty($mail)){
+				if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
+					$verifyMail = $this->usersModel->count([$mail], 'mail');
+					if($verifyMail == 1){						
+						$generate_code = '';
+						for ($i=0; $i < 8; $i++) { 
+							$generate_code .= mt_rand(0,9);
+						}
+
+						$verifyRecup = $this->usersModel->countRecupPass([$mail], 'recup_mail', 'recup_password');
+						if($verifyRecup == 0){
+							$this->usersModel->addRecupPass([$mail, $generate_code]);	
+						} else {
+							$this->usersModel->updateRecupPass([
+								':recup_pass' => $generate_code,
+								':recup_mail' => $mail
+							], 'recup_pass');
+						}
+						$content = 'Voici votre code de récupération : ';
+						$content .= $generate_code;
+
+						$send = \App::sendmail($content, $mail);
+						
+						if($send){
+							$success = "Un code de récupération vous a été envoyé !";
+						} else {
+							$error = "Une erreur s'est produite lors de l'envoi du mail !";
+						}
+					} else {
+						$error = 'l\'adresse mail n\'existe pas !';
+					}
+				} else {
+					$error = 'L\'adresse mail n\'est pas au bon format !';
+				}
+			} else {
+				$error = 'Veuillez remplir tous les champs !';
+			}
+		}
+		$this->render('recuperation', compact('success', 'error'));
+	} 
+
 	/**
 	* @return une instance de la classe
 	*/

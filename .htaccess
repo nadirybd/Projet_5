@@ -12,3 +12,4 @@ RewriteRule ^logout$ index.php?p=logout
 RewriteRule ^profile$ index.php?p=profile
 RewriteRule ^edit-profile$ index.php?p=edit_profile
 RewriteRule ^edit-avatar$ index.php?p=edit_avatar
+RewriteRule ^recuperation-password$ index.php?p=recuperation_password

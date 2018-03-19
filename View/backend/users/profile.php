@@ -48,3 +48,4 @@
 	</div>
 </div>
 
+<script src="public/js/form.js"></script>

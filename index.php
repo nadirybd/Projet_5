@@ -28,6 +28,10 @@ switch ($page) {
 	case 'login':
 		UsersController::getInstance()->login();
 		break;
+
+	case 'recuperation_password':
+		UsersController::getInstance()->recuperation();
+		break;
 	
 	case 'profile':
 		BackUsersController::getInstance()->profile();
