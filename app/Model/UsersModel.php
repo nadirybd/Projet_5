@@ -33,13 +33,17 @@ class UsersModel extends Model
 	/**
 	* Méthode update qui met à jour les infos d'un utilisateur
 	* @param string -> PDO::Statement 
+	* @param string or null 
+	* @param string or null
 	*/
-	public function update($attributes, $where = null){
-		if($where === null){
-			$update = $this->my_sql->prepare('UPDATE members SET pseudo = :pseudo, mail = :mail, password = :password WHERE id = :id', $attributes);
-		} else {
+	public function update($attributes, $where = null, $where2 = null){
+		if(!is_null($where) && $where2 === null){
 			$update = $this->my_sql->prepare('UPDATE members SET '. $where .' = :'. $where .' WHERE id = :id', $attributes);
-		} 
+		} elseif(!is_null($where2)) {
+			$update = $this->my_sql->prepare('UPDATE members SET '. $where .' = :'. $where .' WHERE '. $where2 .' = :'. $where2, $attributes);
+		} else {
+			$update = $this->my_sql->prepare('UPDATE members SET pseudo = :pseudo, mail = :mail, password = :password WHERE id = :id', $attributes);
+		}
 		return $update;
 	}
 
@@ -99,12 +103,16 @@ class UsersModel extends Model
 	* Méthode count qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
 	* @param string
+	* @param string or null 
+	* @param string or null
 	*/
-	public function count($attributes, $type, $table = null){
+	public function count($attributes, $where, $where2 = null, $table = null){
 		if($table === null) {
-			$count = $this->my_sql->prepare('SELECT count(id) FROM members WHERE '.  $type .' = ?', $attributes, null, null, true);
+			$count = $this->my_sql->prepare('SELECT count(id) FROM members WHERE '.  $where .' = ?', $attributes, null, null, true);
+		} elseif($where2 === null) {
+			$count = $this->my_sql->prepare('SELECT count(id) FROM '. $table .' WHERE '.  $where .' = ?', $attributes, null, null, true);
 		} else {
-			$count = $this->my_sql->prepare('SELECT count(id) FROM '. $table .' WHERE '.  $type .' = ?', $attributes, null, null, true);
+			$count = $this->my_sql->prepare('SELECT count(id) FROM '. $table .' WHERE '.  $where .' = ? AND '. $where2 . '= ?', $attributes, null, null, true);
 		}
 
 		return $count;
@@ -115,10 +123,19 @@ class UsersModel extends Model
 	* @param string -> PDO::Statement 
 	* @param string
 	*/
-	public function countRecupPass($attributes, $type){
-		$count = $this->my_sql->prepare('SELECT count(id) FROM recup_password WHERE '.  $type .' = ?', $attributes, null, null, true);
+	public function countRecupPass($attributes, $where){
+		$count = $this->my_sql->prepare('SELECT count(id) FROM recup_password WHERE '.  $where .' = ?', $attributes, null, null, true);
 
 		return $count;
+	}
+
+	/**
+	* Méthode delete qui supprime une ligne dans la base de donnée
+	*/
+	public function delete($attributes, $where, $table){
+		$delete = $this->my_sql->prepare('DELETE FROM '. $table .' WHERE '. $where .' = ?', $attributes);
+
+		return $delete;
 	}
 
 }

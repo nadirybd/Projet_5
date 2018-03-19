@@ -29,8 +29,16 @@ switch ($page) {
 		UsersController::getInstance()->login();
 		break;
 
-	case 'recuperation_password':
+	case 'recuperation_mail':
 		UsersController::getInstance()->recuperation();
+		break;
+
+	case 'recuperation_code':
+		UsersController::getInstance()->nextRecuperation();
+		break;
+
+	case 'reset_password':
+		UsersController::getInstance()->resetPassword();
 		break;
 	
 	case 'profile':

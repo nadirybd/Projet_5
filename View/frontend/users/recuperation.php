@@ -1,5 +1,5 @@
 <div class="page">
-	<div id="recup-password-page">
+	<div class="recup-password-page">
 		<div class="form-recup-pass">
 			<h2>Récupération de votre mot de passe</h2>
 			<form class="form form-recup" method="post">
@@ -12,7 +12,11 @@
 					<label for="to_mail"><i class="fas fa-at"></i></label>
 					<input type="mail" name="to_mail" id="to_mail" placeholder="Entrez votre adresse mail" />
 				</p>
-				<p><a href="">Vous avez déjà un code ?</a></p>
+				<?php if(isset($success)) : ?>
+					<p><a href="recuperation-code">Cliquez ici pour continuer !</a></p>
+				<?php else : ?>
+					<p><a href="recuperation-code">Vous avez déjà un code ?</a></p>
+				<?php endif; ?>
 				<input type="submit" name="send_mail" value="Envoyer à cette adresse mail"/>
 			</form>
 		</div>

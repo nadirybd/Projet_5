@@ -21,15 +21,19 @@ class UsersController extends Controller
 	public function profile(){
 		if($this->logged()){
 			$infoUser = $this->usersModel->selectInfo([$_SESSION['user']['id']]);
-			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');
+			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');	
 			if(isset($_POST['sub_description'])){
 				$edit_description = htmlspecialchars($_POST['edit_description']);
 				if(isset($edit_description)){
-					$this->usersModel->addInfoUser([$_SESSION['user']['id']]);
+					$verifyUser = $this->usersModel->count([$_SESSION['user']['id']], 'user_id', null, 'members_info');
+					if($verifyUser == 0){
+						$this->usersModel->addInfoUser([$_SESSION['user']['id']]);
+					}
 					$this->usersModel->updateInfo([
 						':description' => $edit_description,
 						':id' => $_SESSION['user']['id']
 					], 'description');
+					
 					header('location: /Forum/profile');
 				} 
 			}

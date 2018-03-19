@@ -105,8 +105,12 @@ class UsersController extends Controller
 		$this->render('login', compact('log_error'));
 	}
 
+	/**
+	* Méthode recuperation qui gère l'affichage et le traitement des 
+	* données pour l'envoi du code de récupération par mail
+	*/
 	public function recuperation(){
-		if(isset($_POST['send_mail'])){
+		if(isset($_POST['send_mail'], $_POST['to_mail'])){
 			$mail = htmlspecialchars($_POST['to_mail']);
 			if(!empty($mail)){
 				if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
@@ -117,7 +121,7 @@ class UsersController extends Controller
 							$generate_code .= mt_rand(0,9);
 						}
 
-						$verifyRecup = $this->usersModel->countRecupPass([$mail], 'recup_mail', 'recup_password');
+						$verifyRecup = $this->usersModel->countRecupPass([$mail], 'recup_mail', null, 'recup_password');
 						if($verifyRecup == 0){
 							$this->usersModel->addRecupPass([$mail, $generate_code]);	
 						} else {
@@ -132,6 +136,7 @@ class UsersController extends Controller
 						$send = \App::sendmail($content, $mail);
 						
 						if($send){
+							$_SESSION['recup_mail'] = $mail;
 							$success = "Un code de récupération vous a été envoyé !";
 						} else {
 							$error = "Une erreur s'est produite lors de l'envoi du mail !";
@@ -148,6 +153,74 @@ class UsersController extends Controller
 		}
 		$this->render('recuperation', compact('success', 'error'));
 	} 
+
+	/**
+	* Méthode recuperation qui gère l'affichage et le traitement des 
+	* données pour l'envoi du code de récupération par mail
+	*/
+	public function nextRecuperation(){
+		if(isset($_POST['send_code'], $_POST['recup_code'])){
+			$recup_code = htmlspecialchars($_POST['recup_code']);
+			if(!empty($recup_code)){
+				if(isset($_SESSION['recup_mail'])){
+					$mail = $_SESSION['recup_mail'];
+					$verifyCode = $this->usersModel->count([$mail, $recup_code], 'recup_mail', 'recup_pass', 'recup_password');
+					if($verifyCode == 1){
+						$this->usersModel->updateRecupPass([
+							':validate' => true, 
+							':recup_mail' => $_SESSION['recup_mail']]
+							,'validate');
+
+						header('location: /Forum/reset-password');
+					} else {
+						$error = 'Le code est incorrect !';
+					}
+				} else {
+					$error = 'Votre code à expiré, merci de bien vouloir renvoyer une demande de récupération.';
+				}
+			} else {
+				$error = 'Veuillez remplir le champs.';
+			}
+		}
+		$this->render('recuperation-code', compact('error', 'success'));
+	}
+
+	/**
+	* Méthode recuperation qui gère l'affichage et le traitement des 
+	* données pour le changement de mot de passe
+	*/
+	public function resetPassword(){
+		$validateCode = $this->usersModel->count([$_SESSION['recup_mail'], '1'], 'recup_mail', 'validate', 'recup_password');
+		if($validateCode == 1){
+			if(isset($_POST['send_reset'])){	
+				$reset_pass = password_hash($_POST['reset_pass'], PASSWORD_BCRYPT);
+				$confirm_reset_pass = htmlspecialchars($_POST['confirm_reset_pass']);
+				if(isset($reset_pass, $confirm_reset_pass)){
+					if(!empty($reset_pass) && !empty($confirm_reset_pass)){
+						if(password_verify($confirm_reset_pass,$reset_pass)){
+							$this->usersModel->update([
+								':password' => $reset_pass,
+								':mail' => $_SESSION['recup_mail']
+							], 'password', 'mail');
+
+							$this->usersModel->delete([$_SESSION['recup_mail']], 'recup_mail', 'recup_password');
+
+							header('location: /Forum/login');
+						} else {
+							$error = "Les mots de passe ne correspondent pas";
+						}
+					} else {
+						$error = 'Veuillez remplir tous les champs';
+					}
+				} else {
+					$error = 'Une erreur de champs est survenue';
+				}
+			}
+			$this->render('reset-password', compact('error', 'success'));
+		} else {
+			header('location: /Forum/recuperation-code');
+		}
+	}
 
 	/**
 	* @return une instance de la classe

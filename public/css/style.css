@@ -498,7 +498,7 @@ footer
 	RECUP PASSWORD PAGE
 ****************************/
 
-#recup-password-page
+.recup-password-page
 {
 	display: flex;
 	justify-content: center;
@@ -521,7 +521,7 @@ footer
 	margin-bottom: 40px;
 }
 
-.form-recup input[type="mail"]
+.form-recup input[type="mail"], .form-recup input[type="text"], .form-recup input[type="password"]
 {
 	width: 80%;
 	background-color: rgba(255, 255, 255, 0.6);
@@ -534,7 +534,7 @@ footer
 	margin-bottom: 40px;
 }
 
-.fa-at
+.form-recup .fa-at, .form-recup .fa-key
 {
 	margin-right: 5px;
 }

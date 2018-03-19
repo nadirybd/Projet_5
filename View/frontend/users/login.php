@@ -24,7 +24,7 @@
 				</p>
 			</form>
 
-			<p><a href="recuperation-password">Mot de passe oublié ?</a></p>
+			<p><a href="recuperation-mail">Mot de passe oublié ?</a></p>
 			<p>Vous n'avez toujours pas de compte ? <a href="subscribe">Inscrivez-vous !</a></p>
 		</div>
 	</div>
