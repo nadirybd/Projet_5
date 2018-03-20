@@ -18,7 +18,7 @@ class UsersController extends Controller
 	* Et vérifie les données envoyées par l'utilisateur
 	*/
 	public function subscribe(){
-		if(isset($_POST['subscribe'])){
+		if(isset($_POST['subscribe'], $_POST['username'], $_POST['mail'], $_POST['confirm_mail'], $_POST['pass'], $_POST['confirm_pass'])){
 			$username = htmlspecialchars($_POST['username']);
 			$mail = htmlspecialchars($_POST['mail']);
 			$confirm_mail = htmlspecialchars($_POST['confirm_mail']);
@@ -61,7 +61,6 @@ class UsersController extends Controller
 			} else {
 				$error = 'Veuillez remplir tous les champs !';
 			}
-
 		}
 
 		$this->render('subscribe', compact('error'));
@@ -72,7 +71,7 @@ class UsersController extends Controller
 	* Et stocke les informations dans une session
 	*/
 	public function login(){
-		if(isset($_POST['login'])){
+		if(isset($_POST['login'], $_POST['log_user'], $_POST['log_pass'])){
 			$log_user = htmlspecialchars($_POST['log_user']);
 			$log_pass = $_POST['log_pass'];
 			if(!empty($log_user) && !empty($log_pass)){
@@ -84,12 +83,20 @@ class UsersController extends Controller
 				if($user){
 					if(password_verify($log_pass, $user->password)){
 						$_SESSION['user'] = [
-							'id' => $user->id,
-							'name' => $user->pseudo,
-							'mail' => $user->mail,
-							'avatar' => $user->avatar,
-							'date' => $user->sub_date_fr,
-						];
+								'id' => $user->id,
+								'name' => $user->pseudo,
+								'mail' => $user->mail,
+								'avatar' => $user->avatar,
+								'date' => $user->sub_date_fr,
+							];
+
+						if(isset($_POST['log_remember'])){
+							$cookie_content = $user->id . '-----';
+							$cookie_content .= password_hash($user->pseudo . $user->mail, PASSWORD_BCRYPT);
+
+							setcookie('user', $cookie_content, time()+60*60*24*30, null, null, false, true);
+						}	
+
 						header('location: /Forum/profile');
 					} else {
 						$log_error = 'Mot de passe incorrect !';
@@ -176,7 +183,7 @@ class UsersController extends Controller
 						$error = 'Le code est incorrect !';
 					}
 				} else {
-					$error = 'Votre code à expiré, merci de bien vouloir renvoyer une demande de récupération.';
+					$error = 'Votre code à expiré ou est incorrect, merci de bien vouloir renvoyer une demande de récupération.';
 				}
 			} else {
 				$error = 'Veuillez remplir le champs.';

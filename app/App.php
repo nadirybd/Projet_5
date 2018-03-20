@@ -1,4 +1,5 @@
 <?php
+use App\Controller\Backend\Users\UsersController as BackUsersController;
 /**
 * Classe App qui gère des fonctionnalités spécifiques à l'application 
 * Web 
@@ -9,11 +10,16 @@ class App
 	* Méthode load va créer une session et appeler les autoloaders
 	*/
 	static function load(){
-		session_start();
+		session_start();	
 		require('app/Autoloader.php');
 		App\Autoloader::register();
 		require('Core/Autoloader.php');
 		Core\Autoloader::register();
+		
+		if(isset($_COOKIE['user']) && !empty($_COOKIE['user']) && !isset($_SESSION['user'])){
+			BackUsersController::getInstance()->loginCookie();
+		}
+
 	}
 
 	/**

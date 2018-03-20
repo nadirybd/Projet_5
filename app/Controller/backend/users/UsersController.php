@@ -170,12 +170,34 @@ class UsersController extends Controller
 	}
 
 	/**
+	* Méthode de connexion persistante
+	*/
+	public function loginCookie(){
+		$cookie = explode('-----', $_COOKIE['user']);
+		$user = $this->usersModel->select([$cookie[0]], 'id');
+		$hashInfo = $user->pseudo . $user->mail;
+
+		if(password_verify($hashInfo, $cookie[1])){
+			$_SESSION['user'] = [
+				'id' => $user->id,
+				'name' => $user->pseudo,
+				'mail' => $user->mail,
+				'avatar' => $user->avatar,
+				'date' => $user->sub_date_fr,
+			];
+		} else {
+			setcookie('user', '', time()-3600);
+		}
+	}
+
+	/**
 	* Méthode qui gère la déconnexion 
 	*/
 	public function logout(){
 		if($this->logged()){
 			$_SESSION = array();
 			session_destroy();
+			setcookie('user', '', time()-3600);
 			$this->render('logout');
 			header('location: /Forum/home');
 		} else {
