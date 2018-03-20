@@ -78,8 +78,8 @@ class UsersModel extends Model
 	* @param string -> PDO::Statement 
 	* @param string
 	*/
-	public function select($attributes, $type){
-		$select = $this->my_sql->prepare('SELECT id, pseudo, mail, password, avatar, DATE_FORMAT(subscribe_date, "%d/%m/%Y") AS sub_date_fr FROM members WHERE '. $type .' = ?', $attributes, true);
+	public function select($attributes, $where){
+		$select = $this->my_sql->prepare('SELECT id, pseudo, mail, password, avatar, DATE_FORMAT(subscribe_date, "%d/%m/%Y") AS sub_date_fr FROM members WHERE '. $where .' = ?', $attributes, true);
 
 		return $select;
 	}

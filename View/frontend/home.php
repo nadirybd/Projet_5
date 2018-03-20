@@ -34,9 +34,9 @@
 	<section class="widget-container wd-container-2">
 		<div class="widget wd-4">
 			<div id="last-topic">
-			<h3>Le dernier topic posté</h3>
-				<h4><a href=""><?= $lastTopic->title; ?></a></h4>
-				<p><?= strip_tags(substr($lastTopic->content, 0,500)); ?> ...</p>
+				<h3>Le dernier topic posté</h3>
+				<h4><a href=""><?= htmlspecialchars($lastTopic->title); ?></a></h4>
+				<p><?= htmlspecialchars(strip_tags(substr($lastTopic->content, 0,500))); ?> ...</p>
 				<p><span class="date"><?= $lastTopic->date_fr; ?></span></p>
 			</div>
 		</div>

@@ -14,9 +14,8 @@ a
 	border: none;
 }
 
-#main-container
+.page
 {
-	min-height: 100vh;
 	margin-top: 100px;
 }
 
@@ -123,6 +122,34 @@ input[type="submit"]:hover
 	border: 1px solid green;
 	padding: 5px;
 	background-color: rgba(0, 255, 0, 0.1);
+}
+
+/***************************
+			TABLE
+****************************/
+.tb
+{
+	border: 2px solid #5e6063;
+	border-collapse: collapse;
+	margin-bottom: 50px;
+	box-shadow: 0 0 10px rgba(0, 0 , 0, 0.4);
+}
+
+.tb	th, .tb	td
+{
+	padding: 10px;
+	border: 2px solid #5e6063; 
+}
+
+.tb	th
+{
+	font-size: 1.1em;
+}
+
+.tb thead
+{
+	background-color: #0aa2cb;
+	color: white;
 }
 
 /***************************
@@ -234,7 +261,7 @@ footer
 /*** SLIDER ***/
 #slider
 {
-	background-image: url('/Forum/public/images/slider3.jpg');
+	background-image: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -247,7 +274,7 @@ footer
 {
 	padding: 50px;
 	text-align: center;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 	border-radius: 5px;
 }
@@ -258,27 +285,37 @@ footer
 	background-color: #e2e2e2;
 }
 
+.wd-2
+{
+	background-color: white;
+}
+
 .wd-4
 {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: url('/Forum/public/images/banner/banner.jpg');
+	background:#9fc4ce;
 }
 
 #last-topic
 {
-	padding: 50px 80px;
 	text-align: left;
-	background-color: rgba(0, 0, 0, 0.8);
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 40px;
 	color: white;
+}
+
+.wd-4 h4 a
+{
+	color: #0aa2cb;
 }
 
 .wd-4 h3
 {
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	margin-bottom: 40px;
 }
 
@@ -293,7 +330,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	background: url('/Forum/public/images/bg.jpg');
+	background: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 	min-height: 100vh;
 }
@@ -319,7 +356,7 @@ footer
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: url('/Forum/public/images/bg.jpg');
+	background: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 	min-height: 100vh;
 }
@@ -358,25 +395,6 @@ footer
 /***************************
 			PROFILE
 ****************************/
-.banner
-{
-	background-image: url('/Forum/public/images/bg.jpg');
- 	background-size: cover;  
- 	min-height: 200px;
- 	padding: 20px 0;
- 	color: white;
- 	display: flex;
- 	justify-content: center;
- 	align-items: center;
-}
-
-.banner h1
-{
-	display: block;
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 20px 50px;
-}
-
 #profile-page
 {
 	background-color: #eaeaea;
@@ -385,7 +403,6 @@ footer
 #profile-content
 {
 	display: flex;
-	justify-content: space-between;
 	align-items: flex-start;
 	padding: 100px 50px;
 }
@@ -429,7 +446,7 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-image: url('/Forum/public/images/bg.jpg');
+	background-image: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 	min-height: 100vh;
 	color: white;
@@ -471,7 +488,7 @@ footer
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url('/Forum/public/images/bg.jpg');
+	background-image: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 	height: 100vh;
 	color: white;
@@ -500,7 +517,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background: url('/Forum/public/images/bg.jpg');
+	background: url('/Forum/public/images/bg3.jpg');
 	background-size: cover;
 }
 
@@ -525,4 +542,47 @@ footer
 .form-recup .fa-at, .form-recup .fa-key
 {
 	margin-right: 5px;
+}
+
+/***************************
+		FORUM PAGE 
+****************************/
+#forum-page
+{
+	display: flex;
+	justify-content: space-around;
+	padding: 100px 0 0 0;
+}
+
+.row-category
+{
+	display: flex;
+	align-items: center;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.category, .row-category aside
+{
+	margin: 10px 20px;
+}
+
+#side-info
+{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	max-width: 500px;
+	width: 100%;
+}
+
+/***************************
+	TABLE FORUM ASIDE
+****************************/
+
+.tb-last-topics, .tb-last-posts
+{
+	max-width: 350px;
+	width: 100%;
 }
