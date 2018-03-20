@@ -10,7 +10,7 @@
 				<?php endif; ?>
 				<p>
 					<label for="to_mail"><i class="fas fa-at"></i></label>
-					<input type="mail" name="to_mail" id="to_mail" placeholder="Entrez votre adresse mail" />
+					<input type="email" name="to_mail" id="to_mail" placeholder="Entrez votre adresse mail" />
 				</p>
 				<?php if(isset($success)) : ?>
 					<p><a href="recuperation-code">Cliquez ici pour continuer !</a></p>

@@ -4,6 +4,8 @@ App::load();
 
 use App\Controller\Frontend\FrontController;
 use App\Controller\Frontend\Users\UsersController;
+use App\Controller\Frontend\CategoriesController;
+
 use App\Controller\Backend\Users\UsersController as BackUsersController;
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
@@ -55,6 +57,10 @@ switch ($page) {
 
 	case 'edit_avatar':
 		BackUsersController::getInstance()->editAvatar();
+		break;
+
+	case 'forum':
+		CategoriesController::getInstance()->forum();
 		break;
 
 	default:

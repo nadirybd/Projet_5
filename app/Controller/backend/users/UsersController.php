@@ -53,7 +53,7 @@ class UsersController extends Controller
 
 			if(!empty($_POST['edit_name']) && isset($_POST['edit_name']) && $_POST['edit_name'] !== $user->pseudo){
 				$edit_name = htmlspecialchars($_POST['edit_name']);
-				if(strlen($username) < 70){
+				if(strlen($edit_name) < 70){
 					$nameVerify = $this->usersModel->count([$edit_name], 'pseudo');
 					if($nameVerify == 0){
 						$this->usersModel->update([
@@ -175,7 +175,7 @@ class UsersController extends Controller
 	public function loginCookie(){
 		$cookie = explode('-----', $_COOKIE['user']);
 		$user = $this->usersModel->select([$cookie[0]], 'id');
-		$hashInfo = $user->pseudo . $user->mail;
+		$hashInfo = $user->pseudo . $user->mail . $_SERVER['REMOTE_ADDR'];
 
 		if(password_verify($hashInfo, $cookie[1])){
 			$_SESSION['user'] = [

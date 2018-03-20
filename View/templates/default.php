@@ -19,7 +19,7 @@
 			<nav>
 				<ul>
 					<li><a href="home">ACCUEIL</a></li>
-					<li><a href="#">FORUM</a></li>
+					<li><a href="webmaster-forum">FORUM</a></li>
 					<?php if(isset($_SESSION['user'])): ?>
 						<li><a href="profile">VOTRE PROFIL</a></li>
 						<li><a href="logout">SE DÉCONNECTER</a></li>
@@ -41,7 +41,8 @@
 		<footer>
 			<p>Copyright © 2018 Nadir Webmaster Tous droits réservés.</p>
 		</footer>
-		
+
+		<script src="public/js/form/validate-form.js"></script>
 		<script src="public/js/main.js"></script>
 	</body>
 </html>

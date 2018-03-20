@@ -16,3 +16,5 @@ RewriteRule ^edit-avatar$ index.php?p=edit_avatar
 RewriteRule ^recuperation-mail$ index.php?p=recuperation_mail
 RewriteRule ^recuperation-code$ index.php?p=recuperation_code
 RewriteRule ^reset-password$ index.php?p=reset_password
+
+RewriteRule ^webmaster-forum$ index.php?p=forum

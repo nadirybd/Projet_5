@@ -97,8 +97,10 @@ input[type="submit"]:hover
 .form input[type='text'], .form input[type='email'], .form input[type='password']
 {
 	box-sizing: border-box;
-	padding: 5px;
-	width: 100%;
+	width: 80%;
+	background-color: rgba(255, 255, 255, 0.6);
+	border: 2px solid transparent;
+	padding: 10px;
 }
 
 .form label
@@ -289,6 +291,8 @@ footer
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
+	text-align: center;
 	background: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
 	min-height: 100vh;
@@ -296,27 +300,14 @@ footer
 
 #subscribe-form
 {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	align-items: center;
 	background-color: rgba(0, 0, 0, 0.5);
-	padding: 100px 0;
 	color: white;
+	max-width: 550px;
 }
 
-#subscribe-form aside
+#subscribe-form aside h3
 {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-}
-
-#subscribe-form .sub-form
-{
-	width: 400px;
-	padding: 10px;
+	margin: 50px 0;
 }
 
 /***************************
@@ -350,8 +341,6 @@ footer
 .log-form input[type='text'], .log-form input[type='email'], .log-form input[type='password']
 {
 	width: 90%;
-	background-color: rgba(255, 255, 255, 0.6);
-	border: none;
 	padding: 10px;
 }
 
@@ -437,11 +426,13 @@ footer
 #edit-page
 {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	background-image: url('/Forum/public/images/bg.jpg');
 	background-size: cover;
-	height: 100vh;
+	min-height: 100vh;
+	color: white;
 }
 
 #edit-form h2
@@ -451,9 +442,14 @@ footer
 
 #edit-form
 {
-	background-color: rgba(255, 255, 255, 0.8);
+	background-color: rgba(0, 0, 0, 0.7);
 	padding: 50px;
+	max-width: 500px;
+	width: 100%; 
+	text-align: center;
 }
+
+/*** description ***/
 
 #description-container
 {
@@ -519,14 +515,6 @@ footer
 .form-recup-pass h2
 {
 	margin-bottom: 40px;
-}
-
-.form-recup input[type="mail"], .form-recup input[type="text"], .form-recup input[type="password"]
-{
-	width: 80%;
-	background-color: rgba(255, 255, 255, 0.6);
-	border: none;
-	padding: 10px;
 }
 
 .form-recup

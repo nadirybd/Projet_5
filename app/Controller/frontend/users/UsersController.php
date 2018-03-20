@@ -92,7 +92,7 @@ class UsersController extends Controller
 
 						if(isset($_POST['log_remember'])){
 							$cookie_content = $user->id . '-----';
-							$cookie_content .= password_hash($user->pseudo . $user->mail, PASSWORD_BCRYPT);
+							$cookie_content .= password_hash($user->pseudo . $user->mail . $_SERVER['REMOTE_ADDR'], PASSWORD_BCRYPT);
 
 							setcookie('user', $cookie_content, time()+60*60*24*30, null, null, false, true);
 						}	

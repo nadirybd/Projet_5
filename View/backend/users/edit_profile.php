@@ -1,5 +1,5 @@
 <div class="page">
-	<div id="edit-page" class="page-vh">
+	<div id="edit-page" >
 		<div id="edit-form">
 			
 			<h2>Modifiez vos informations</h2>

@@ -22,7 +22,7 @@
 		<div class="widget wd-2">
 			<div class="icon-widget"><i class="fas fa-globe fa-3x"></i></div>
 			<p>Besoin d'aide ? Allez-y voir le forum !</p>
-			<button class="call-to-action"><a href="#">FORUM</a></button>
+			<button class="call-to-action"><a href="webmaster-forum">FORUM</a></button>
 		</div>
 		<div class="widget wd-3">
 			<div class="icon-widget"><i class="fas fa-phone fa-3x"></i></div>

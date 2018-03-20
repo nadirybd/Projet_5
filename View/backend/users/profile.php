@@ -48,4 +48,4 @@
 	</div>
 </div>
 
-<script src="public/js/form.js"></script>
+<script src="public/js/form/description-form.js"></script>
