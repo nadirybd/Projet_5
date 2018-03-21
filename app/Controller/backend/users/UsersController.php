@@ -28,16 +28,17 @@ class UsersController extends Controller
 					$verifyUser = $this->usersModel->count([$_SESSION['user']['id']], 'user_id', null, 'members_info');
 					if($verifyUser == 0){
 						$this->usersModel->addInfoUser([$_SESSION['user']['id']]);
+					} else {	
+						$this->usersModel->updateInfo([
+							':description' => $edit_description,
+							':id' => $_SESSION['user']['id']
+						], 'description');
 					}
-					$this->usersModel->updateInfo([
-						':description' => $edit_description,
-						':id' => $_SESSION['user']['id']
-					], 'description');
 					
 					header('location: /Forum/profile');
 				} 
 			}
-			$this->render('profile', compact('infoUser', 'user'));
+			$this->render('profile', compact('infoUser', 'user'), true);
 		} else {
 			header('location: /Forum/login');
 		}

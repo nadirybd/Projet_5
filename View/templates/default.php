@@ -32,6 +32,8 @@
 			</nav>	
 		</header>
 
+		<?= $menuBis; ?>
+		
 		<div id="main-container">
 			<div id="contains">
 				<?= $content; ?>

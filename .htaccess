@@ -18,3 +18,4 @@ RewriteRule ^recuperation-code$ index.php?p=recuperation_code
 RewriteRule ^reset-password$ index.php?p=reset_password
 
 RewriteRule ^webmaster-forum$ index.php?p=forum
+RewriteRule ^topics$ index.php?p=topics

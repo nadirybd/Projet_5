@@ -13,11 +13,11 @@ class CategoriesModel extends Model
 	*/
 	public function select($attributes = null, $where = null){
 		if($where === null){
-			$categories = $this->my_sql->query('SELECT id, name FROM f_category');
+			$categories = $this->my_sql->query('SELECT id, name, logo FROM f_category');
 		} else {
 			$categories = $this->my_sql->prepare('SELECT id, name FROM f_category WHERE ' . $where . '= :'. $where, $attributes, true);
 		}
-
+		
 		return $categories;
 	}
 	

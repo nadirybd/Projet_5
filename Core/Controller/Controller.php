@@ -1,5 +1,6 @@
 <?php
 namespace Core\Controller;
+use App\Controller\Frontend\CategoriesController;
 /**
 * Classe Parent des différents controllers
 */
@@ -42,18 +43,21 @@ class Controller
 	* @param array()
 	* @param null or not
 	*/
-	public function render($page, $array = null, $template = null){
+	public function render($page, $array = null, $menuBis = null){
 		ob_start();
 		if(!is_null($array)){
 			extract($array);
 		}
 		require('View/'. $this->viewPath .'/'. $page .'.php');
-
-		if(!is_null($template)){
-
-		}
 		
 		$content = ob_get_clean();
+
+		if(!is_null($menuBis)){
+			ob_start();
+			CategoriesController::getInstance()->menu();
+			$menuBis = ob_get_clean();
+		}
+		
 		require('View/templates/'. $this->templates .'.php');
 	}
 

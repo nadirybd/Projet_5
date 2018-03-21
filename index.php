@@ -5,6 +5,7 @@ App::load();
 use App\Controller\Frontend\FrontController;
 use App\Controller\Frontend\Users\UsersController;
 use App\Controller\Frontend\CategoriesController;
+use App\Controller\Frontend\TopicsController;
 
 use App\Controller\Backend\Users\UsersController as BackUsersController;
 
@@ -63,7 +64,11 @@ switch ($page) {
 		CategoriesController::getInstance()->forum();
 		break;
 
+	case 'topics':
+		TopicsController::getInstance()->topics();
+		break;
+
 	default:
-		$page = '404';
+		
 		break;
 }

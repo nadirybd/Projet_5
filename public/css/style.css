@@ -3,8 +3,11 @@
 ****************************/
 body, html
 {
-	margin: 0;
+	height: 100%;
 	font-family: 'Bitter', serif;
+	word-wrap: break-word;
+	margin: 0;
+	padding: 0;
 }
 
 a
@@ -14,9 +17,20 @@ a
 	border: none;
 }
 
+#main-container, #contains
+{
+	height: auto;
+	padding: 0; 
+}
+
 .page
 {
-	margin-top: 100px;
+	padding-top: 100px;
+}
+
+.frontpage 
+{
+	margin-top: 159px;
 }
 
 .page a 
@@ -127,18 +141,38 @@ input[type="submit"]:hover
 /***************************
 			TABLE
 ****************************/
+
 .tb
 {
-	border: 2px solid #5e6063;
-	border-collapse: collapse;
 	margin-bottom: 50px;
-	box-shadow: 0 0 10px rgba(0, 0 , 0, 0.4);
+	border-collapse: collapse;
+	background-color: #FFFFFF;
+}
+
+.tb tbody
+{
+	display: block;
+	overflow-y: scroll;
+	height: 450px;
+}
+
+.tb tbody::-webkit-scrollbar
+{
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	width: 3px;
+}
+
+.tb tbody::-webkit-scrollbar-thumb
+{
+	background-color: #0aa2cb;
+	border-radius: 5px;
 }
 
 .tb	th, .tb	td
 {
-	padding: 10px;
-	border: 2px solid #5e6063; 
+	padding: 15px;
+	border: 1px solid rgba(0, 0 , 0, 0.2);
 }
 
 .tb	th
@@ -146,9 +180,15 @@ input[type="submit"]:hover
 	font-size: 1.1em;
 }
 
-.tb thead
+.tb thead, .tb tfoot
 {
 	background-color: #0aa2cb;
+	color: white;
+	text-align: center;
+}
+
+.tb tfoot a
+{
 	color: white;
 }
 
@@ -198,6 +238,7 @@ header
 	height: 100px;
 	box-shadow: 0 0 10px black;
 	background-color: rgb(76, 76, 76);
+	z-index: 998;
 }
 
 #logo img
@@ -208,7 +249,7 @@ header
 /***************************
 			MENU
 ****************************/
-nav, nav ul, nav li, nav li a
+header nav, header nav ul, header nav li, header nav li a
 {
 	display: flex;
 	justify-content: center;
@@ -217,18 +258,18 @@ nav, nav ul, nav li, nav li a
 	padding: 0;
 }
 
-nav ul li 
+header nav ul li 
 {
 	margin: 5px;
 	min-width: 150px;
 }
 
-nav ul li a 
+header nav ul li a 
 {
 	width: 100%;
 }
 
-nav ul li a:hover
+header nav ul li a:hover
 {
 	border-bottom: 5px solid #0aa2cb;
 	background-color: #7a7a7a;
@@ -237,6 +278,71 @@ nav ul li a:hover
 .hamburger
 {
 	display: none;
+}
+
+/***************************
+			MENUBIS
+****************************/
+#menuBis
+{
+	position: fixed;
+	top: 100px;
+	right: 0;
+	left: 0;
+	background-color: #0aa2cb;
+	display: flex;
+	z-index: 999;
+}
+
+#menuBis > ul
+{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	position: relative;
+}
+
+#menuBis > ul > li > a
+{
+	padding: 20px 30px;
+}
+
+#menuBis a 
+{
+	display: inline-block;
+}
+
+.submenu
+{
+	display: none;
+	position: absolute;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	background-color: #0aa2cb;
+	width: 280px;
+}
+
+#menuBis > ul > li:hover .submenu
+{
+	display: block;
+}
+
+.submenu > li > a
+{
+	padding: 20px 30px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.submenu > li > a:hover
+{
+	background-color: #5e6063;
+}
+
+.submenu li
+{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 /***************************
@@ -296,7 +402,7 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background:#9fc4ce;
+	background: #b5b5b5;
 }
 
 #last-topic
@@ -397,7 +503,7 @@ footer
 ****************************/
 #profile-page
 {
-	background-color: #eaeaea;
+	background-color: #f4f4f4;
 }
 
 #profile-content
@@ -409,7 +515,7 @@ footer
 
 #profile-content aside
 {
-	background-color: #f4f5f7;
+	background-color: #FFFFFF;
 	padding: 10px;
 	margin-right: 100px;
 }
@@ -426,7 +532,7 @@ footer
 
 #profile-description .description-content
 {
-	background-color: #f4f5f7;
+	background-color: #FFFFFF;
 	padding: 10px;
 	min-height: 300px;
 }
@@ -551,16 +657,29 @@ footer
 {
 	display: flex;
 	justify-content: space-around;
-	padding: 100px 0 0 0;
+	align-items: flex-start;
+	padding: 100px 0;
+	background-color: #f4f4f4;
 }
 
 .row-category
 {
 	display: flex;
 	align-items: center;
-	border: 2px solid black;
-	border-radius: 10px;
 	margin-bottom: 10px;
+	max-width: 800px;
+}
+
+#forum-page section
+{
+	padding: 50px;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+	background-color: #FFFFFF;
+}
+
+#forum-page section hr:last-child
+{
+	display: none;
 }
 
 .category, .row-category aside
@@ -577,12 +696,26 @@ footer
 	width: 100%;
 }
 
+#forum-page hr
+{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
 /***************************
 	TABLE FORUM ASIDE
 ****************************/
-
 .tb-last-topics, .tb-last-posts
 {
 	max-width: 350px;
 	width: 100%;
+	box-sizing: border-box;
+}
+
+/***************************
+		TOPICS PAGE
+****************************/
+#topics-page
+{
+	margin-top: 100px;
+	background-color: #f4f4f4;
 }

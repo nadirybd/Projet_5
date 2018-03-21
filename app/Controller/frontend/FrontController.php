@@ -18,7 +18,7 @@ class FrontController extends Controller
 	* Méthode home qui gère l'affichage de la homepage
 	*/
 	public function homepage(){
-		$lastTopic = $this->topicsModel->lastTopic();
+		$lastTopic = $this->topicsModel->lastTopics(1, true);
 		$this->render('home', compact('lastTopic'));
 	}
 

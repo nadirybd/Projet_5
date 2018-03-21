@@ -19,9 +19,16 @@ class CategoriesController extends Controller
 	*/
 	public function forum(){
 		$categories = $this->categoriesModel->select();
+		$lastTopics = $this->topicsModel->lastTopics(5);
 		
+		$nbTopics = function($attributes){
+			$number_of_topics = $this->topicsModel->countByCategory([$attributes]);
+			
+			return $number_of_topics;
+		};
+
 		$subcat = function($attributes, $category_id){
-			$subcategories = $this->categoriesModel->selectSubCategories($attributes, 'category_id');
+			$subcategories = $this->categoriesModel->selectSubCategories([$attributes], 'category_id');
 				$sub = "";
 			foreach ($subcategories as $subcategory) {
 				$sub .= '| <a href="'. $subcategory->id .'">'; 
@@ -31,7 +38,7 @@ class CategoriesController extends Controller
 			return $sub;
 		};
 
-		$this->render('forum', compact('categories', 'subcat'));
+		$this->render('forum', compact('categories', 'subcat', 'lastTopics', 'nbTopics'), true);
 	}
 
 	/**
@@ -39,19 +46,12 @@ class CategoriesController extends Controller
 	*/
 	public function menu(){
 		$categories = $this->categoriesModel->select();
-		
-		$subcat = function($attributes, $category_id){
+		$subcat = function($attributes){
 			$subcategories = $this->categoriesModel->selectSubCategories($attributes, 'category_id');
-				$sub = "";
-			foreach ($subcategories as $subcategory) {
-				$sub .= '| <a href="'. $subcategory->id .'">'; 
-				$sub .= $subcategory->name .'</a> '; 
-			}
-			$sub = substr($sub, 2, strlen($sub));
-			return $sub;
+			return $subcategories;
 		};
 
-		$this->render('forum', compact('categories', 'subcat'));
+		$this->templates('menu', compact('categories', 'subcat'));
 	}
 
 	/**
