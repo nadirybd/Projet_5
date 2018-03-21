@@ -653,7 +653,7 @@ footer
 /***************************
 		FORUM PAGE 
 ****************************/
-#forum-page
+#forum-page, #topics-page
 {
 	display: flex;
 	justify-content: space-around;
@@ -662,7 +662,7 @@ footer
 	background-color: #f4f4f4;
 }
 
-.row-category
+.row-category, .row-topics
 {
 	display: flex;
 	align-items: center;
@@ -670,19 +670,19 @@ footer
 	max-width: 800px;
 }
 
-#forum-page section
+#forum-page section, #topics-page section
 {
 	padding: 50px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 	background-color: #FFFFFF;
 }
 
-#forum-page section hr:last-child
+#forum-page section hr:last-child, #topics-page section hr:last-child
 {
 	display: none;
 }
 
-.category, .row-category aside
+.category, .row-category aside, .topics, .row-topics aside
 {
 	margin: 10px 20px;
 }

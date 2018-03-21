@@ -57,7 +57,7 @@ class Controller
 			CategoriesController::getInstance()->menu();
 			$menuBis = ob_get_clean();
 		}
-		
+
 		require('View/templates/'. $this->templates .'.php');
 	}
 
@@ -80,5 +80,12 @@ class Controller
 		if(isset($_SESSION['user']) && isset($_SESSION['user']['id'])){
 			return true;
 		}
+	}
+
+	/**
+	* Méthode UrlCustom retourne l'url sans caractère spéciaux
+	*/
+	protected function urlCustom($url){
+		return \App::encodedUrlCustom($url);
 	}
 }

@@ -23,8 +23,29 @@ class TopicsModel extends Model
 	/**
 	* @return array(Obj stdclass)
 	*/
-	public function select(){
-		$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics');
+	public function select($limit1 = null, $limit2 = null){
+		if($limit1 !== null && $limit2 !== null){
+			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC LIMIT '.$limit1.', '.$limit2);
+		} else {
+			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC');
+		}
+
+		return $topics;
+	}
+
+	/**
+	* @return array(Obj stdclass)
+	*/
+	public function selectByCategory($attributes, $limit1 = null, $limit2 = null){
+		if($limit1 !== null && $limit2 !== null){
+			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC LIMIT '.$limit1.', '.$limit2);
+		} else {
+			$topics = $this->my_sql->prepare('
+				SELECT f_topics.id, f_topics.user_id, f_topics.title, f_topics.content, DATE_FORMAT(f_topics.creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, f_topics.resolved FROM f_topics 
+				LEFT JOIN f_category_topics 
+					ON f_topics.id = f_category_topics.topic_id
+				WHERE  f_category_topics.category_id = ? ORDER BY creation_date DESC', $attributes, null, true);
+		}
 
 		return $topics;
 	}
@@ -32,8 +53,11 @@ class TopicsModel extends Model
 	/**
 	*
 	*/
-	public function countByCategory($attributes){
-		$count = $this->my_sql->prepare('SELECT count(topic_id) FROM f_category_topics WHERE category_id = ?', $attributes, null, null, true);
+	public function count($attributes, $where = null){
+		if($where !== null){
+			$count = $this->my_sql->prepare('SELECT count(topic_id) FROM f_category_topics WHERE '.$where.' = ?', $attributes, null, null, true);
+		}
+
 		return $count;
 	}
 }

@@ -22,7 +22,7 @@ class CategoriesController extends Controller
 		$lastTopics = $this->topicsModel->lastTopics(5);
 		
 		$nbTopics = function($attributes){
-			$number_of_topics = $this->topicsModel->countByCategory([$attributes]);
+			$number_of_topics = $this->topicsModel->count([$attributes], 'category_id');
 			
 			return $number_of_topics;
 		};
@@ -38,7 +38,12 @@ class CategoriesController extends Controller
 			return $sub;
 		};
 
-		$this->render('forum', compact('categories', 'subcat', 'lastTopics', 'nbTopics'), true);
+		$url = function($url1, $url2){
+			$urlCustom = $this->urlCustom('topics-by-category/'.$url1.'/'.$url2);
+			return $urlCustom;
+		};
+
+		$this->render('forum', compact('categories', 'subcat', 'lastTopics', 'nbTopics', 'url'), true);
 	}
 
 	/**
@@ -51,7 +56,11 @@ class CategoriesController extends Controller
 			return $subcategories;
 		};
 
-		$this->templates('menu', compact('categories', 'subcat'));
+		$url = function($url1, $url2){
+			$urlCustom = $this->urlCustom('topics-by-category/'.$url1.'/'.$url2);
+			return $urlCustom;
+		};
+		$this->templates('menu', compact('categories', 'subcat', 'url'));
 	}
 
 	/**

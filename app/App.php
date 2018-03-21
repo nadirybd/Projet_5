@@ -53,7 +53,25 @@ class App
 	}
 
 	/**
-	*
+	* Méthode URL ENCODED Customize
+	* @param string
+	* @return string
 	*/
-	
+	static function encodedUrlCustom($str){
+		$url = htmlspecialchars($str);
+		$url = preg_replace('#è|é|ê|ë|È|É|Ê|Ë#', 'e', $url);
+		$url = preg_replace('#@|À|Á|Â|Ã|Ä|Å|à|á|â|ã|ä|å#', 'a', $url);
+		$url = preg_replace('#Ò|Ó|Ô|Õ|Ö|Ø|ò|ó|ô|õ|ö|ø#', 'o', $url);
+		$url = preg_replace('#Ì|Í|Î|Ï|ì|í|î|ï#', 'i', $url);
+		$url = preg_replace('#Ù|Ú|Û|Ü|ù|ú|û|ü#', 'u', $url);
+		$url = preg_replace('#Ç|ç#', 'c', $url);
+		$url = preg_replace('#Ñ|ñ#', 'n', $url);
+		$url = preg_replace('#Œ|œ#', 'oe', $url);
+		$url = preg_replace('#Æ|æ#', 'ae', $url);
+		$url = preg_replace('#Ý|Ÿ|ý|ÿ#', 'y', $url);
+		$url = preg_replace('#\s#', '-', $url);
+
+		return $url;
+	}
+
 }

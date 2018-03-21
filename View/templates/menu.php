@@ -1,7 +1,7 @@
 <nav id="menuBis">
 	<?php foreach($categories as $category): ;?>
 		<ul>
-			<li><a href="#"><?= $category->name; ?></a>
+			<li><a href="<?= $url($category->name, $category->id); ?>"><?= $category->name; ?></a>
 				<?php $subcategories = $subcat([$category->id]); ?>
 				<ul class="submenu">
 				<?php foreach($subcategories as $sub): ?>

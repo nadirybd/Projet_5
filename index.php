@@ -68,6 +68,10 @@ switch ($page) {
 		TopicsController::getInstance()->topics();
 		break;
 
+	case 'topics-by-category':
+		TopicsController::getInstance()->topicsByCat();
+		break;
+
 	default:
 		
 		break;

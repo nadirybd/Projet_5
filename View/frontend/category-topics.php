@@ -14,6 +14,6 @@
 			</div>
 			<hr/>
 		<?php endforeach; ?>
-		<p><?= $pagination; ?> </p>
+		<!-- <p><?= $pagination; ?> </p> --> 
 	</section>
 </div>

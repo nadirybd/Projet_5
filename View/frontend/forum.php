@@ -6,7 +6,8 @@
 					<p><img src="public/images/icons/categories/<?= $category->logo; ?>" alt="png programmation" width="150" /></p>
 				</aside>
 				<div class="category">
-					<h2><a href=""><?= $category->name; ?></a></h2>
+
+					<h2><a href="<?= $url($category->name, $category->id); ?>"><?= $category->name; ?></a></h2>
 					<p><?= $subcat($category->id, $category->id); ?></p>
 					<p> Le nombre de topics de cette catégorie : <?= $nbTopics($category->id); ?></p>
 					<p>Le dernier topic de cette catégorie</p>
@@ -35,7 +36,7 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td><a href="topics">Voir tous les topics</a></td>
+					<td><a href="topics/1">Voir tous les topics</a></td>
 				</tr>
 			</tfoot>
 		</table>
