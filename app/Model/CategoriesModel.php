@@ -17,7 +17,7 @@ class CategoriesModel extends Model
 		} else {
 			$categories = $this->my_sql->prepare('SELECT id, name FROM f_category WHERE ' . $where . '= :'. $where, $attributes, true);
 		}
-		
+
 		return $categories;
 	}
 	
@@ -26,15 +26,25 @@ class CategoriesModel extends Model
 	* @param string
 	* @return array[Obj stdclass] : résultat de la requête 
 	*/
-	public function selectSubCategories($attributes = null, $where = null){
-		if($where === null){
+	public function selectSubCategories($attributes = null, $where = null, $where2 = null){
+		if($where === null && $where2 === null){
 			$subcategories = $this->my_sql->query('SELECT id, category_id, name FROM f_subcategory');
-		} else {
-			$subcategories = $this->my_sql->prepare('SELECT id, name FROM f_subcategory WHERE ' . $where . '= ?', $attributes, null, true);
+		} elseif($where !== null && $where2 === null) {
+			$subcategories = $this->my_sql->prepare('SELECT id,  category_id, name FROM f_subcategory WHERE ' . $where . '= ?', $attributes, null, true);
+		} elseif($where !== null && $where2 !== null) {
+			$subcategories = $this->my_sql->prepare('SELECT id, category_id, name FROM f_subcategory WHERE ' . $where . '= ? AND '.$where2.'= ?', $attributes, null, true);
 		}
 
 		return $subcategories;
 	}
 
+	/**
+	*
+	*/
+	public function insertTopicId($attributes){
+		$insert = $this->my_sql->prepare('INSERT INTO f_category_topics(topic_id, category_id, subcategory_id) VALUES(:topic_id, :category_id, :subcategory_id)', $attributes);
+		
+		return $insert;
+	}
 
 }

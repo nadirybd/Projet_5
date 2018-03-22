@@ -8,13 +8,13 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
-
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
 	<body>
 		<header>
 			<div id="logo">
-				<img src="public/images/logo-header.png" alt="logo">
+				<a href="home"><img src="public/images/logo-header.png" alt="logo"></a>
 			</div>
 			<nav>
 				<ul>

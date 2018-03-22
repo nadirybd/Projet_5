@@ -1,5 +1,6 @@
 <div id="forum-page" class="page frontpage">
 	<section>
+		<p><a href="add-topic">Ajouter un topics</a></p>
 		<?php foreach($categories as $category): ?>
 			<div class="row-category">
 				<aside>
@@ -8,7 +9,7 @@
 				<div class="category">
 
 					<h2><a href="<?= $url($category->name, $category->id); ?>"><?= $category->name; ?></a></h2>
-					<p><?= $subcat($category->id, $category->id); ?></p>
+					<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
 					<p> Le nombre de topics de cette catégorie : <?= $nbTopics($category->id); ?></p>
 					<p>Le dernier topic de cette catégorie</p>
 				</div>

@@ -367,7 +367,7 @@ footer
 /*** SLIDER ***/
 #slider
 {
-	background-image: url('/Forum/public/images/bg3.jpg');
+	background-image: url('/Forum/public/images/bg4.jpg');
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
@@ -436,7 +436,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	background: url('/Forum/public/images/bg3.jpg');
+	background: url('/Forum/public/images/bg5.jpg');
 	background-size: cover;
 	min-height: 100vh;
 }
@@ -462,7 +462,7 @@ footer
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background: url('/Forum/public/images/bg3.jpg');
+	background: url('/Forum/public/images/bg5.jpg');
 	background-size: cover;
 	min-height: 100vh;
 }
@@ -552,7 +552,7 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-image: url('/Forum/public/images/bg3.jpg');
+	background-image: url('/Forum/public/images/bg5.jpg');
 	background-size: cover;
 	min-height: 100vh;
 	color: white;
@@ -594,7 +594,7 @@ footer
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-image: url('/Forum/public/images/bg3.jpg');
+	background-image: url('/Forum/public/images/bg5.jpg');
 	background-size: cover;
 	height: 100vh;
 	color: white;
@@ -623,7 +623,7 @@ footer
 	justify-content: center;
 	align-items: center;
 	min-height: 100vh;
-	background: url('/Forum/public/images/bg3.jpg');
+	background: url('/Forum/public/images/bg5.jpg');
 	background-size: cover;
 }
 
@@ -701,6 +701,10 @@ footer
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+#forum-page p:first-child
+{
+	text-align: right;
+}
 /***************************
 	TABLE FORUM ASIDE
 ****************************/
@@ -718,4 +722,20 @@ footer
 {
 	margin-top: 100px;
 	background-color: #f4f4f4;
+}
+
+#add-topic-page
+{
+	background-color: #e0e0e0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+.form-topic
+{
+	max-width: 500px;
+	width: 100%;
+	text-align: center;
 }

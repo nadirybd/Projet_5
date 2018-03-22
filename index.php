@@ -7,7 +7,9 @@ use App\Controller\Frontend\Users\UsersController;
 use App\Controller\Frontend\CategoriesController;
 use App\Controller\Frontend\TopicsController;
 
+
 use App\Controller\Backend\Users\UsersController as BackUsersController;
+use App\Controller\Backend\TopicsController as BackTopicsController;
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
 	$page = $_GET['p'];
@@ -70,6 +72,14 @@ switch ($page) {
 
 	case 'topics-by-category':
 		TopicsController::getInstance()->topicsByCat();
+		break;
+
+	case 'topics-by-subcategory':
+		TopicsController::getInstance()->topicsBySubcat();
+		break;
+
+	case 'add-topic':
+		BackTopicsController::getInstance()->addTopic();
 		break;
 
 	default:

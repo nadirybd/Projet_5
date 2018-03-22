@@ -44,10 +44,26 @@ class TopicsController extends Controller
 	*/
 	public function topicsByCat(){
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id'])){
-			$topics = $this->topicsModel->selectByCategory([$_GET['id']]);
+			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
 			$verifytopic = count($topics);
 			if($verifytopic <= 0) {
-				header('location: /Forum/topics/1');
+				header('location: /Forum/webmaster-forum');
+			}
+		}
+
+		$this->render('category-topics', compact('topics'), true);
+	}
+
+	/**
+	* Méthode topicsBySubcat qui gère l'affichage des topics par 
+	* sous-catégorie
+	*/
+	public function topicsBySubcat(){
+		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id'])){
+			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id');
+			$verifytopic = count($topics);
+			if($verifytopic <= 0) {
+				header('location: /Forum/webmaster-forum');
 			}
 		}
 

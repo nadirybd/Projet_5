@@ -62,6 +62,23 @@ class Controller
 	}
 
 	/**
+	* Méthode render qui affiche la vue en reliant le fichier vue et le 
+	* templates
+	* @param 'string'
+	* @param array()
+	* @param null or not
+	*/
+	public function ajaxRender($page, $array = null){
+		ob_start();
+		if(!is_null($array)){
+			extract($array);
+		}
+		require('View/'. $this->viewPath .'/ajax/'. $page .'.php');
+		$ajaxContent = ob_get_clean();
+		require('View/'. $this->viewPath .'/ajax/ajax.php');
+	}
+
+	/**
 	* Transfert de variable vers un template
 	* @param 'string'
 	* @param array()

@@ -30,8 +30,9 @@ class MysqlDatabase extends Database
 	* @param $count / $count = null
 	* @return fetch / fetchAll
 	*/
-	public function prepare($statement, $attributes, $one = null, $all = null, $count = null){
-		$req = $this->getDb()->prepare($statement);
+	public function prepare($statement, $attributes, $one = null, $all = null, $count = null, $last = null){
+		$db = $this->getDb();
+		$req = $db->prepare($statement);
 		$req->execute($attributes);
 		if($one === true){
 			return $req->fetch(PDO::FETCH_OBJ);
@@ -41,6 +42,9 @@ class MysqlDatabase extends Database
 		}  
 		if($count === true){
 			return $req->fetchColumn();
+		} 
+		if($last === true){
+			return $db->lastInsertId();
 		}  
 	}
 }

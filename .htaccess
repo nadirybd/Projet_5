@@ -18,5 +18,11 @@ RewriteRule ^recuperation-code$ index.php?p=recuperation_code
 RewriteRule ^reset-password$ index.php?p=reset_password
 
 RewriteRule ^webmaster-forum$ index.php?p=forum
+
 RewriteRule ^topics/([0-9]+)$ index.php?p=topics&page=$1
+
 RewriteRule ^topics-by-category/([a-zA-Z\-]+)/([0-9]+)$ index.php?p=topics-by-category&categorie=$1&id=$2
+
+RewriteRule ^topics-by-subcategory/([a-zA-Z\-]+)/([a-zA-Z\-]+)/([0-9]+)$ index.php?p=topics-by-subcategory&categorie=$1&subcategorie=$2&id=$3
+
+RewriteRule ^add-topic$ index.php?p=add-topic
