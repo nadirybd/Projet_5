@@ -8,7 +8,7 @@ class TopicsModel extends Model
 {
 	/**
 	* @param array(statement)
-	* @return array(Obj stdclass)
+	* @return lastInsertId
 	*/
 	public function add($attributes){
 		$add = $this->my_sql->prepare('INSERT INTO f_topics(user_id, title, content, creation_date, user_notif) VALUES(:user_id, :title, :content, NOW(), :user_notif)', $attributes, null, null, null, true);

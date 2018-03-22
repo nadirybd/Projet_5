@@ -50,6 +50,10 @@ switch ($page) {
 		BackUsersController::getInstance()->profile();
 		break;
 
+	case 'public-profile':
+		UsersController::getInstance()->publicProfile();
+		break;
+
 	case 'logout':
 		BackUsersController::getInstance()->logout();
 		break;

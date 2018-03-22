@@ -20,6 +20,7 @@ class Controller
 	protected $topicsModel;
 	protected $usersModel;
 	protected $categoriesModel;
+	protected $messagesModel;
 
 	/**
 	* Méthode __construct
@@ -33,6 +34,9 @@ class Controller
 		}
 		if($this->categoriesModel === null){
 			$this->categoriesModel = new \App\Model\CategoriesModel();
+		}
+		if($this->messagesModel === null){
+			$this->messagesModel = new \App\Model\MessagesModel();
 		}
 	}
 
@@ -73,7 +77,7 @@ class Controller
 		if(!is_null($array)){
 			extract($array);
 		}
-		require('View//ajax/'. $page .'.php');
+		require('View/ajax/'. $page .'.php');
 		$ajaxContent = ob_get_clean();
 		require('View/ajax/ajax.php');
 	}

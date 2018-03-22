@@ -10,6 +10,8 @@ RewriteRule ^login$ index.php?p=login
 RewriteRule ^logout$ index.php?p=logout
 
 RewriteRule ^profile$ index.php?p=profile
+RewriteRule ^public-profile/([a-zA-Z0-9]+)$ index.php?p=public-profile&pseudo=$1
+
 RewriteRule ^edit-profile$ index.php?p=edit_profile
 RewriteRule ^edit-avatar$ index.php?p=edit_avatar
 

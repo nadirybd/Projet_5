@@ -235,6 +235,30 @@ class UsersController extends Controller
 	}
 
 	/**
+	* Méthode publicProfile qui gère l'affichage du profile public 
+	*/
+	public function publicProfile(){
+		if(isset($_GET['pseudo']) && !empty($_GET['pseudo'])){
+			$user =	$this->usersModel->select([$_GET['pseudo']], 'pseudo');
+
+			if(is_object($user)){
+				if(isset($_SESSION['user']['id'])){
+					if($user->id == $_SESSION['user']['id']){
+						header('location: /Forum/profile');
+					}
+				}
+				$infoUser = $this->usersModel->selectInfo([$user->id]);
+			} else {
+				header('location: /Forum/webmaster-forum');
+			}	
+		} else {
+			header('location: /Forum/webmaster-forum');
+		}
+
+		$this->render('public-profile', compact('user', 'userInfo'));
+	}
+
+	/**
 	* @return une instance de la classe
 	*/
 	public static function getInstance(){

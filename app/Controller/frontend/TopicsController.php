@@ -74,6 +74,8 @@ class TopicsController extends Controller
 			if($verifytopic <= 0) {
 				header('location: /Forum/webmaster-forum');
 			}
+		} else {
+			header('location: /Forum/webmaster-forum');
 		}
 
 		$this->render('category-topics', compact('topics', 'user'), true);
@@ -101,6 +103,8 @@ class TopicsController extends Controller
 				return $username;
 			};
 
+		} else {
+			header('location: /Forum/webmaster-forum');
 		}
 
 		$this->render('category-topics', compact('topics', 'user'), true);
@@ -114,13 +118,47 @@ class TopicsController extends Controller
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
 			$topic_id = $_GET['id'];
 			$topic = $this->topicsModel->select([$topic_id], 'id');
+			$user = $this->usersModel->select([$topic->user_id], 'id');
+			$messages = $this->messagesModel->select();
 
-			$verifyTopic = count($topic);
-			if($verifyTopic <= 0){
-				header('location: /Forum/webmaster-forum');
+			$url = function($pseudo){
+				$urlcustom = 'public-profile/'. $this->urlCustom($pseudo);
+				return $urlcustom;
+			};
+			if(!is_object($user)){
+				$user = (object) [
+					'pseudo' => 'Anonyme',
+					'avatar' => 'default.png'
+				];
+				$url = function($pseudo){
+					$urlcustom = 'topic/'.$topic_id;
+					return $urlcustom;
+				};
 			}
+			if(!is_object($topic)){
+				header('location: /Forum/webmaster-forum');
+			} else {
+				if($this->logged()){
+					if(isset($_POST['submit-comment'], $_POST['comment-topic'])){
+						$messages = $_POST['comment-topic'];
+						if(!empty($messages)){
+							$this->messagesModel->add([
+								':topic_id' => $topic->id,
+								':user_id' => $_SESSION['user']['id'],
+								':content' => $messages
+							]);
+						} else {
+							$error_comment = 'Veuillez remplir tous les champs';
+						}
+					}
+				}
+			}
+
+		} else {
+			header('location: /Forum/webmaster-forum');
 		}
-		$this->render('show-topic', compact('topic'), true);
+
+		$this->render('show-topic', compact('topic', 'user', 'url'), true);
 	}
 
 	/**
