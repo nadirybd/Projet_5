@@ -18,7 +18,8 @@
 		</p>
 		<div id="sub-option"></div>
 		<p>
-			<textarea cols="40" rows="15" name="addtopic_content"></textarea>
+			Contenu du topic : <br/><br/>
+			<textarea name="addtopic_content"></textarea>
 		</p>
 		<p>
 			<label for="notif">Activer les notifications</label>

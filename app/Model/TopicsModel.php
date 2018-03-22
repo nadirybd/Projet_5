@@ -12,7 +12,7 @@ class TopicsModel extends Model
 	*/
 	public function add($attributes){
 		$add = $this->my_sql->prepare('INSERT INTO f_topics(user_id, title, content, creation_date, user_notif) VALUES(:user_id, :title, :content, NOW(), :user_notif)', $attributes, null, null, null, true);
-		
+
 		return $add;
 	}
 
@@ -56,7 +56,9 @@ class TopicsModel extends Model
 	}
 
 	/**
-	*
+	* @param array(statement)
+	* @param null or string
+	* @return int
 	*/
 	public function count($attributes, $where = null){
 		if($where !== null){

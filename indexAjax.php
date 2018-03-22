@@ -1,6 +1,6 @@
 <?php
 require('app/App.php');
-App::load();
+App::loadAjax();
 
 use App\Controller\Ajax\AjaxController;
 

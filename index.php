@@ -82,6 +82,10 @@ switch ($page) {
 		BackTopicsController::getInstance()->addTopic();
 		break;
 
+	case 'topic':
+		BackTopicsController::getInstance()->showTopic();
+		break;
+
 	default:
 		
 		break;

@@ -31,9 +31,8 @@ class CategoriesController extends Controller
 			$subcategories = $this->categoriesModel->selectSubCategories([$attributes], 'category_id');
 				$sub = "";
 			foreach ($subcategories as $subcategory) {
-				$subUrl ='topics-by-subcategory/'. $category_name .'/';
-				$subUrl .= $subcategory->name.'/'.$subcategory->id;
-				$subUrl = $this->urlCustom($subUrl);
+				$subUrl ='topics-by-subcategory/'. $this->urlCustom($category_name).'/';
+				$subUrl .= $this->urlCustom($subcategory->name).'/'.$subcategory->id;
 
 				$sub .= '| <a href="'. $subUrl .'">'; 
 				$sub .= $subcategory->name .'</a> '; 
@@ -41,9 +40,9 @@ class CategoriesController extends Controller
 			$sub = substr($sub, 2, strlen($sub));
 			return $sub;
 		};
-
+		
 		$url = function($url1, $url2){
-			$urlCustom = $this->urlCustom('topics-by-category/'.$url1.'/'.$url2);
+			$urlCustom = 'topics-by-category/'.$this->urlCustom($url1).'/'.$this->urlCustom($url2);
 			return $urlCustom;
 		};
 
@@ -60,9 +59,8 @@ class CategoriesController extends Controller
 			$subcategories = $this->categoriesModel->selectSubCategories([$attributes], 'category_id');
 				$sub = "";
 			foreach ($subcategories as $subcategory) {
-				$subUrl ='topics-by-subcategory/'. $category_name .'/';
-				$subUrl .= $subcategory->name.'/'.$subcategory->id;
-				$subUrl = $this->urlCustom($subUrl);
+				$subUrl ='topics-by-subcategory/'. $this->urlCustom($category_name).'/';
+				$subUrl .= $this->urlCustom($subcategory->name).'/'.$subcategory->id;
 
 				$sub .= '<li><a href="'. $subUrl .'">'; 
 				$sub .= $subcategory->name .'</a></li>'; 
@@ -71,7 +69,7 @@ class CategoriesController extends Controller
 		};
 
 		$url = function($url1, $url2){
-			$urlCustom = $this->urlCustom('topics-by-category/'.$url1.'/'.$url2);
+			$urlCustom = 'topics-by-category/'.$this->urlCustom($url1).'/'.$this->urlCustom($url2);
 			return $urlCustom;
 		};
 		$this->templates('menu', compact('categories', 'subcat', 'url'));

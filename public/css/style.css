@@ -107,7 +107,8 @@ input[type="submit"]:hover
 /***************************
 			FORM
 ****************************/
-.form input[type='text'], .form input[type='email'], .form input[type='password']
+.form input[type='text'], .form input[type='email'],
+.form input[type='password'], .form select
 {
 	box-sizing: border-box;
 	width: 80%;
@@ -724,18 +725,46 @@ footer
 	background-color: #f4f4f4;
 }
 
+
 #add-topic-page
 {
-	background-color: #e0e0e0;
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	background: url('/Forum/public/images/bg5.jpg');
+	background-size: cover;
 	min-height: 100vh;
+}
+	
+.form-topic
+{
+	padding: 60px; 
+	max-width: 600px;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.form-topic textarea
+{
+	width: 100%;
+	height: 300px;
+}
+
+.form-topic input[type='text'], .log-form input[type='email'], .log-form input[type='password']
+{
+	width: 90%;
+	padding: 10px;
 }
 
 .form-topic
 {
-	max-width: 500px;
-	width: 100%;
 	text-align: center;
+	margin-bottom: 40px;
+}
+
+.form-topic label
+{
+	margin-right: 10px;
 }

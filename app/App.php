@@ -19,7 +19,16 @@ class App
 		if(isset($_COOKIE['user']) && !empty($_COOKIE['user']) && !isset($_SESSION['user'])){
 			BackUsersController::getInstance()->loginCookie();
 		}
+	}
 
+	/**
+	* Méthode loadAjax va charger les autoloaders dans le router Ajax
+	*/
+	static function loadAjax(){
+		require('app/Autoloader.php');
+		App\Autoloader::register();
+		require('Core/Autoloader.php');
+		Core\Autoloader::register();
 	}
 
 	/**
@@ -69,7 +78,7 @@ class App
 		$url = preg_replace('#Œ|œ#', 'oe', $url);
 		$url = preg_replace('#Æ|æ#', 'ae', $url);
 		$url = preg_replace('#Ý|Ÿ|ý|ÿ#', 'y', $url);
-		$url = preg_replace('#\s#', '-', $url);
+		$url = preg_replace('#\s|\'|/|\[|\]|{|}#', '-', $url);
 
 		return $url;
 	}

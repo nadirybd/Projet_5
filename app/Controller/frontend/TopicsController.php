@@ -14,6 +14,10 @@ class TopicsController extends Controller
 	protected $viewPath = 'frontend';
 	private static $_instance;
 
+	/**
+	* Méthode topics gère l'affichage de tous les topics dans la vue 
+	* topics
+	*/
 	public function topics(){
 		$allTopics = $this->topicsModel->select();
 		$number_of_topics = count($allTopics);
@@ -36,7 +40,17 @@ class TopicsController extends Controller
 
 		$pagination = substr($pagination, 2, strlen($pagination));
 
-		$this->render('topics', compact('topics', 'pagination'), true);
+		$user = function($user_id){
+			$username = $this->usersModel->select([$user_id], 'id');
+			if($username){
+				$username = $username->pseudo;
+			} else {
+				$username = "Anonyme";
+			}
+			return $username;
+		};
+
+		$this->render('topics', compact('topics', 'pagination', 'user'), true);
 	}
 
 	/**
@@ -45,13 +59,24 @@ class TopicsController extends Controller
 	public function topicsByCat(){
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id'])){
 			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
+			
+			$user = function($user_id){
+				$username = $this->usersModel->select([$user_id], 'id');
+				if($username){
+					$username = $username->pseudo;
+				} else {
+					$username = "Anonyme";
+				}
+				return $username;
+			};
+
 			$verifytopic = count($topics);
 			if($verifytopic <= 0) {
 				header('location: /Forum/webmaster-forum');
 			}
 		}
 
-		$this->render('category-topics', compact('topics'), true);
+		$this->render('category-topics', compact('topics', 'user'), true);
 	}
 
 	/**
@@ -65,10 +90,25 @@ class TopicsController extends Controller
 			if($verifytopic <= 0) {
 				header('location: /Forum/webmaster-forum');
 			}
+
+			$user = function($user_id){
+				$username = $this->usersModel->select([$user_id], 'id');
+				if($username){
+					$username = $username->pseudo;
+				} else {
+					$username = "Anonyme";
+				}
+				return $username;
+			};
 		}
 
-		$this->render('category-topics', compact('topics'), true);
+		$this->render('category-topics', compact('topics', 'user'), true);
 	}
+
+	/**
+	* 
+	*/
+	
 
 	/**
 	* @return une instance de la classe

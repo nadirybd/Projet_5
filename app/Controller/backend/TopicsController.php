@@ -8,14 +8,15 @@ use Core\Controller\Controller;
 class TopicsController extends Controller
 {
 	/**
-	* @var $viewPath retourne le nom du dossier frontend
+	* @var $viewPath retourne le nom du dossier backend
 	* @var $_instance qui stocke l'instance de la classe
 	*/
 	protected $viewPath = 'backend';
 	private static $_instance;
 
 	/**
-	*
+	* Méthode addTopic qui va gèrer les données entrer par l'utilisateur 
+	* en les vérifiant puis enverra les données au model
 	*/
 	public function addTopic(){
 		if($this->logged()){

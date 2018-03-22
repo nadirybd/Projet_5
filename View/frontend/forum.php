@@ -8,10 +8,9 @@
 				</aside>
 				<div class="category">
 
-					<h2><a href="<?= $url($category->name, $category->id); ?>"><?= $category->name; ?></a></h2>
+					<h2><a href="<?= $url($category->name, $category->id); ?>"><?= htmlspecialchars($category->name); ?></a></h2>
 					<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
-					<p> Le nombre de topics de cette catégorie : <?= $nbTopics($category->id); ?></p>
-					<p>Le dernier topic de cette catégorie</p>
+					<p> Nombre de topics posté : <?= $nbTopics($category->id); ?></p>
 				</div>
 			</div>
 			<hr/>

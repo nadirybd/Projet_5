@@ -73,9 +73,9 @@ class Controller
 		if(!is_null($array)){
 			extract($array);
 		}
-		require('View/'. $this->viewPath .'/ajax/'. $page .'.php');
+		require('View//ajax/'. $page .'.php');
 		$ajaxContent = ob_get_clean();
-		require('View/'. $this->viewPath .'/ajax/ajax.php');
+		require('View/ajax/ajax.php');
 	}
 
 	/**
