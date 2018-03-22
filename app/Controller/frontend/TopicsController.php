@@ -36,7 +36,7 @@ class TopicsController extends Controller
 			$from = $number_per_page * ($_GET['page'] - 1); 
 		}
 
-		$topics = $this->topicsModel->select($from, $number_per_page);
+		$topics = $this->topicsModel->selectBylimit($from, $number_per_page);
 
 		$pagination = substr($pagination, 2, strlen($pagination));
 
@@ -100,15 +100,28 @@ class TopicsController extends Controller
 				}
 				return $username;
 			};
+
 		}
 
 		$this->render('category-topics', compact('topics', 'user'), true);
 	}
 
 	/**
-	* 
+	* Méthode showTopic qui gère l'affichage d'un topic en liant la vue
+	* show-topic et le model
 	*/
-	
+	public function showTopic(){
+		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+			$topic_id = $_GET['id'];
+			$topic = $this->topicsModel->select([$topic_id], 'id');
+
+			$verifyTopic = count($topic);
+			if($verifyTopic <= 0){
+				header('location: /Forum/webmaster-forum');
+			}
+		}
+		$this->render('show-topic', compact('topic'), true);
+	}
 
 	/**
 	* @return une instance de la classe

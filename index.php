@@ -83,7 +83,7 @@ switch ($page) {
 		break;
 
 	case 'topic':
-		BackTopicsController::getInstance()->showTopic();
+		TopicsController::getInstance()->showTopic();
 		break;
 
 	default:

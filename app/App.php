@@ -78,7 +78,8 @@ class App
 		$url = preg_replace('#Œ|œ#', 'oe', $url);
 		$url = preg_replace('#Æ|æ#', 'ae', $url);
 		$url = preg_replace('#Ý|Ÿ|ý|ÿ#', 'y', $url);
-		$url = preg_replace('#\s|\'|/|\[|\]|{|}#', '-', $url);
+		$url = preg_replace('#\s|\'|/|\[|\]|{|}|&#', '-', $url);
+		$url = preg_replace('#;|\.|,|\?|!#', '', $url);
 
 		return $url;
 	}

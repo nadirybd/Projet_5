@@ -447,6 +447,7 @@ footer
 	background-color: rgba(0, 0, 0, 0.5);
 	color: white;
 	max-width: 550px;
+	padding: 0 50px;
 }
 
 #subscribe-form aside h3
@@ -768,3 +769,44 @@ footer
 {
 	margin-right: 10px;
 }
+
+/***************************
+		 ONE TOPIC PAGE
+****************************/
+
+#one-topic-page
+{
+	max-width: 1024px;
+	margin: 100px auto;
+}
+
+#one-topic-page h1
+{
+	border: 2px solid black;
+	text-align: center;
+	margin: 0;
+	padding: 15px 0;
+	background-color: #0aa2cb;
+	color: white;
+}
+
+#one-topic-page section
+{
+	display: flex;
+	background-color: #dedee0;
+	min-height: 300px; 
+	position: relative;
+}
+
+#one-topic-page aside, .topic-content 
+{
+	padding: 50px;
+	border: 2px solid black;
+}
+
+.topic-content 
+{
+	flex: 1;
+}
+
+

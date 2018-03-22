@@ -19,9 +19,9 @@ class UsersController extends Controller
 	*/
 	public function subscribe(){
 		if(isset($_POST['subscribe'], $_POST['username'], $_POST['mail'], $_POST['confirm_mail'], $_POST['pass'], $_POST['confirm_pass'])){
-			$username = htmlspecialchars($_POST['username']);
-			$mail = htmlspecialchars($_POST['mail']);
-			$confirm_mail = htmlspecialchars($_POST['confirm_mail']);
+			$username = $_POST['username'];
+			$mail = $_POST['mail'];
+			$confirm_mail = $_POST['confirm_mail'];
 			$pass = password_hash($_POST['pass'], PASSWORD_BCRYPT);
 			$confirm_pass = $_POST['confirm_pass'];
 			$nameVerify = $this->usersModel->count([$username], 'pseudo');
@@ -33,15 +33,20 @@ class UsersController extends Controller
 						if($mail === $confirm_mail){
 							if(password_verify($confirm_pass, $pass)){
 								if($nameVerify == 0){
-									if($mailVerify == 0){
-										$this->usersModel->add([
-											':pseudo' => $username,
-											':mail' => $mail,
-											':password' => $pass
-										]);
-										header('location: /Forum/login');
+									$regexname = preg_match('#^[a-zA-Z0-9]+$#', $username);
+									if($regexname == 1){
+										if($mailVerify == 0){
+											$this->usersModel->add([
+												':pseudo' => $username,
+												':mail' => $mail,
+												':password' => $pass
+											]);
+											header('location: /Forum/login');
+										} else {
+											$error = 'L\'adresse mail existe déjà !';
+										}
 									} else {
-										$error = 'L\'adresse mail existe déjà !';
+										$error = 'Le nom d\'utilisateur ne peut comporter que des caractères alphanumériques !';
 									}
 								} else {
 									$error = 'Le nom d\'utilisateur existe déjà !';
@@ -72,7 +77,7 @@ class UsersController extends Controller
 	*/
 	public function login(){
 		if(isset($_POST['login'], $_POST['log_user'], $_POST['log_pass'])){
-			$log_user = htmlspecialchars($_POST['log_user']);
+			$log_user = $_POST['log_user'];
 			$log_pass = $_POST['log_pass'];
 			if(!empty($log_user) && !empty($log_pass)){
 				if(filter_var($log_user, FILTER_VALIDATE_EMAIL)){
@@ -118,7 +123,7 @@ class UsersController extends Controller
 	*/
 	public function recuperation(){
 		if(isset($_POST['send_mail'], $_POST['to_mail'])){
-			$mail = htmlspecialchars($_POST['to_mail']);
+			$mail = $_POST['to_mail'];
 			if(!empty($mail)){
 				if(filter_var($mail, FILTER_VALIDATE_EMAIL)){
 					$verifyMail = $this->usersModel->count([$mail], 'mail');
@@ -167,7 +172,7 @@ class UsersController extends Controller
 	*/
 	public function nextRecuperation(){
 		if(isset($_POST['send_code'], $_POST['recup_code'])){
-			$recup_code = htmlspecialchars($_POST['recup_code']);
+			$recup_code = $_POST['recup_code'];
 			if(!empty($recup_code)){
 				if(isset($_SESSION['recup_mail'])){
 					$mail = $_SESSION['recup_mail'];
@@ -201,7 +206,7 @@ class UsersController extends Controller
 		if($validateCode == 1){
 			if(isset($_POST['send_reset'])){	
 				$reset_pass = password_hash($_POST['reset_pass'], PASSWORD_BCRYPT);
-				$confirm_reset_pass = htmlspecialchars($_POST['confirm_reset_pass']);
+				$confirm_reset_pass = $_POST['confirm_reset_pass'];
 				if(isset($reset_pass, $confirm_reset_pass)){
 					if(!empty($reset_pass) && !empty($confirm_reset_pass)){
 						if(password_verify($confirm_reset_pass,$reset_pass)){

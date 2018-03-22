@@ -23,7 +23,7 @@ class UsersController extends Controller
 			$infoUser = $this->usersModel->selectInfo([$_SESSION['user']['id']]);
 			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');	
 			if(isset($_POST['sub_description'])){
-				$edit_description = htmlspecialchars($_POST['edit_description']);
+				$edit_description = $_POST['edit_description'];
 				if(isset($edit_description)){
 					$verifyUser = $this->usersModel->count([$_SESSION['user']['id']], 'user_id', null, 'members_info');
 					if($verifyUser == 0){
@@ -53,7 +53,7 @@ class UsersController extends Controller
 			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');
 
 			if(!empty($_POST['edit_name']) && isset($_POST['edit_name']) && $_POST['edit_name'] !== $user->pseudo){
-				$edit_name = htmlspecialchars($_POST['edit_name']);
+				$edit_name = $_POST['edit_name'];
 				if(strlen($edit_name) < 70){
 					$nameVerify = $this->usersModel->count([$edit_name], 'pseudo');
 					if($nameVerify == 0){
@@ -73,7 +73,7 @@ class UsersController extends Controller
 			}
 
 			if(!empty($_POST['edit_mail']) && isset($_POST['edit_mail']) && $_POST['edit_mail'] !== $user->mail){
-				$edit_mail = htmlspecialchars($_POST['edit_mail']);
+				$edit_mail = $_POST['edit_mail'];
 				
 				if(filter_var($edit_mail, FILTER_VALIDATE_EMAIL)){
 					

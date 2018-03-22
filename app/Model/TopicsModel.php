@@ -21,9 +21,24 @@ class TopicsModel extends Model
 	* @param null or int
 	* @return array(Obj stdclass)
 	*/
-	public function select($limit1 = null, $limit2 = null){
+	public function selectBylimit($limit1 = null, $limit2 = null){
 		if($limit1 !== null && $limit2 !== null){
 			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC LIMIT '.$limit1.', '.$limit2);
+		} elseif($limit1 !== null && $limit2 === null) {
+			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC LIMIT '.$limit1);
+		}
+		return $topics;
+	}
+
+	/**
+	* @param null or array(statement)
+	* @param null or string
+	* @return array(Obj stdclass)
+	* @return Obj stdclass
+	*/
+	public function select($attributes = null, $where = null){
+		if($where !== null){
+			$topics = $this->my_sql->prepare('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics WHERE ' . $where .'= ?', $attributes, true);
 		} else {
 			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC');
 		}
