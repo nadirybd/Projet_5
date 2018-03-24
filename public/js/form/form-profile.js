@@ -16,4 +16,21 @@ function editDescription(){
 	}
 };
 
+
+function resolvedForm(){
+	$('.resolved-button').on('click', function(e){
+		$('#resolved-form').fadeIn(700);
+		$('.overlay').fadeIn(700);
+	});
+	$('.close').on('click', function(e){
+		$('#resolved-form').hide();
+		$('.overlay').hide();
+	});
+	$('.overlay').on('click', function(e){
+		$('#resolved-form').hide();
+		$('.overlay').hide();
+	});
+};
+
 editDescription();
+resolvedForm();

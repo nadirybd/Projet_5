@@ -1,10 +1,11 @@
 <div class="page">
 	<div id="profile-page">
 		<div id="profile-content">
-			<aside class="avatar">
-				<p><img src="View/backend/users/avatars/<?= $user->avatar; ?>" /></p>
-				<p><a href="edit-avatar">Modifier</a></p>
-
+			<div id="bar-info">
+				<aside class="avatar">
+					<p><img src="View/backend/users/avatars/<?= $user->avatar; ?>" /></p>
+					<p><a href="edit-avatar">Modifier</a></p>
+				</aside>
 				<table class="tb" id="tb-profile">
 					<thead>
 						<tr>
@@ -34,8 +35,13 @@
 						<?php endforeach ?>
 						<?php endif; ?>
 					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="3"><button class="resolved-button">Mettre comme résolu un topic</button></td>
+						</tr>
+					</tfoot>
 				</table>
-			</aside>
+			</div>
 
 			<div id="profile-info">
 				<fieldset>
@@ -73,6 +79,7 @@
 
 					<?php if(!empty($topics)): ?>
 						<div id="resolved-form">
+							<span class="close"><i class="fas fa-times"></i></span>
 							<p>Un topic est résolu ?</p>
 							<?php if(isset($resolved_errors)): ?>
 								<div class="error"><?=$resolved_errors; ?></div><br />

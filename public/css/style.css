@@ -1,13 +1,19 @@
 /***************************
 		CORPS DU SITE
 ****************************/
+
 body, html
+{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body
 {
 	height: 100%;
 	font-family: 'Nanum Gothic', sans-serif;
 	word-wrap: break-word;
-	margin: 0;
-	padding: 0;
 }
 
 a
@@ -50,9 +56,18 @@ a
 
 .resolved
 {
-	color: green;
+	color: #56c95c;
 }
 
+.overlay
+{
+	display: none;
+	background-color: rgba(0, 0, 0, 0.6);
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	z-index: 99; 
+}
 /***************************
 			BUTTON 
 ****************************/
@@ -520,6 +535,7 @@ footer
 
 #profile-info
 {
+	margin: 50px;
 	flex: 1;
 }
 
@@ -541,11 +557,42 @@ footer
 	cursor: pointer;
 }
 
+/******************
+	TOPICS TABLE
+*******************/
+#tb-profile
+{
+	display: block;
+	max-width: 500px;
+}
+
+/******************
+	RESOLVED FORM
+*******************/
 #resolved-form 
 {
+	display: none;
+	position: fixed;
+	width: 500px;
+	height: 200px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -250px;
+	color: white;
 	text-align: center;
 	padding: 20px;
-	background-color: #d8d8d8;
+	background-color: rgba(0, 0, 0, 0.9);
+	z-index: 100;
+}
+
+.close
+{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: red;
+	cursor: pointer;
 }
 
 #resolved-form p:first-child
@@ -867,6 +914,7 @@ footer
 {
 	flex: 1;
 	box-sizing: border-box;
+	position: relative;
 }
 
 .topic-content p
@@ -882,4 +930,31 @@ footer
 	margin-top: 10px;
 }
 
+/************
+ BEST ANSWER
+*************/
+.best_answer
+{
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	border: 2px solid #5edb64;
+	border-radius: 5px;
+	padding: 5px;
+}
 
+.best-answer-form
+{
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+/************
+ 	EDIT
+*************/
+.edit
+{
+	position: absolute;
+	bottom: 10px;
+	left: 10px;
+}

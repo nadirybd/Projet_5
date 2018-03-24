@@ -33,6 +33,8 @@
 		</header>
 
 		<?= $menuBis; ?>
+
+		<div class="overlay"></div>
 		
 		<div id="main-container">
 			<div id="contains">

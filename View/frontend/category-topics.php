@@ -6,7 +6,7 @@
 					<td>Sujet</td>
 					<td>Auteur</td>
 					<td>Date de création</td>
-					<td>Résolu</td>
+					<td>Status</td>
 				</tr>
 			</thead>
 			<tbody>

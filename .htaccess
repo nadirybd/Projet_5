@@ -30,3 +30,5 @@ RewriteRule ^topics-by-subcategory/([a-zA-Z\-]+)/([a-zA-Z\-\+]+)/([0-9]+)-([0-9]
 RewriteRule ^add-topic$ index.php?p=add-topic
 
 RewriteRule ^topic/([a-zA-Z]+)-([0-9]+)-([0-9]+)$ index.php?p=topic&id=$2&page=$3
+
+RewriteRule ^edit-message-([0-9]+)$ index.php?p=edit-message&id=$1

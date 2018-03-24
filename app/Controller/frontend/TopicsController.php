@@ -26,7 +26,11 @@ class TopicsController extends Controller
 		
 		$pagination = '';
 		for ($page=1; $page <= $number_of_page ; $page++){
-			$pagination .='| <a href="topics/'.$page.'">'.$page.'</a> ';
+			if($page == $_GET['page']){
+				$pagination .= ' | <span>' . $page .'</span> ';
+			} else {
+				$pagination .='| <a href="topics/'.$page.'">'.$page.'</a> ';
+			}
 		}
 
 		if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
@@ -66,7 +70,11 @@ class TopicsController extends Controller
 		
 			$pagination = '';
 			for ($page=1; $page <= $number_of_page ; $page++){
-				$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+				if($page == $_GET['page']){
+					$pagination .= ' | <span>' . $page .'</span> ';
+				} else {
+					$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+				}
 			};
 
 			if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
@@ -115,8 +123,12 @@ class TopicsController extends Controller
 		
 			$pagination = '';
 			for ($page=1; $page <= $number_of_page ; $page++){
-				$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['subcategory'] .'/';
-				$pagination .= $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+				if($page == $_GET['page']){
+					$pagination .= ' | <span>' . $page .'</span> ';
+				} else {
+					$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['subcategory'] .'/';
+					$pagination .= $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+				}
 			};
 
 			if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
@@ -238,6 +250,18 @@ class TopicsController extends Controller
 						} else {
 							$error_comment = 'Veuillez remplir tous les champs';
 						}
+					}
+				}
+				if(isset($_POST['sub_bestAnswer'], $_POST['best_answer'])){
+					if(!empty($_POST['best_answer']) && intval($_POST['best_answer'])){
+						$verifyMessage = $this->messagesModel->count([$_POST['best_answer'], $topic->id], 'id', 'topic_id');
+						if($verifyMessage == 1){
+							$this->messagesModel->updateBestAnswer([$_POST['best_answer']]);
+						} else {
+							die('pb verify');
+						}
+					}else {
+						die('pb empty');
 					}
 				}
 			}

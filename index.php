@@ -10,6 +10,7 @@ use App\Controller\Frontend\TopicsController;
 
 use App\Controller\Backend\Users\UsersController as BackUsersController;
 use App\Controller\Backend\TopicsController as BackTopicsController;
+use App\Controller\Backend\MessagesController;
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
 	$page = $_GET['p'];
@@ -88,6 +89,10 @@ switch ($page) {
 
 	case 'topic':
 		TopicsController::getInstance()->topic();
+		break;
+
+	case 'edit-message':
+		MessagesController::getInstance()->editMessage();
 		break;
 
 	default:
