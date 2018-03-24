@@ -21,13 +21,13 @@ class UsersController extends Controller
 	public function profile(){
 		if($this->logged()){
 			$infoUser = $this->usersModel->selectInfo([$_SESSION['user']['id']]);
-			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');	
+			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');
 			if(isset($_POST['sub_description'])){
 				$edit_description = $_POST['edit_description'];
 				if(isset($edit_description)){
 					$verifyUser = $this->usersModel->count([$_SESSION['user']['id']], 'user_id', null, 'members_info');
 					if($verifyUser == 0){
-						$this->usersModel->addInfoUser([$_SESSION['user']['id']]);
+						$this->usersModel->addInfoUser([$_SESSION['user']['id'], $edit_description]);
 					} else {	
 						$this->usersModel->updateInfo([
 							':description' => $edit_description,
@@ -38,7 +38,25 @@ class UsersController extends Controller
 					header('location: /Forum/profile');
 				} 
 			}
-			$this->render('profile', compact('infoUser', 'user'), true);
+
+			if(isset($_POST['sub-resolved'], $_POST['resolved'])){
+				if(!empty($_POST['resolved'])){
+					$resolved_topic = intval($_POST['resolved']);
+					$verifyUser_topic = $this->topicsModel->count([$resolved_topic, $_SESSION['user']['id']], 'id', 'user_id', 'f_topics');
+					if($verifyUser_topic == 1){
+						$this->topicsModel->resolved([$resolved_topic]);
+						header('location: profile');
+					} else {
+						$resolved_errors = "Le topic n'existe pas ou plus";
+					}
+				} else {
+					$resolved_errors = "Veuillez sélectionné un topic";
+				}
+			}
+
+			$topics = $this->topicsModel->select([$_SESSION['user']['id']], 'user_id', true);
+
+			$this->render('profile', compact('infoUser', 'user', 'topics', 'resolved_errors'), true);
 		} else {
 			header('location: /Forum/login');
 		}

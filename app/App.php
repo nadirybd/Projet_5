@@ -48,7 +48,7 @@ class App
 				<body>
 					<div>
 						<p><img src="http://nadirybd13.000webhostapp.com/images/logo-mail.png" alt="logo"/></p>
-						<p>	'. $content .' </p>
+						<div>	'. $content .' </div>
 						<p>À bientôt sur, <a href="http://localhost/Forum/home" style="color: #0aa2cb;">WebmasterForum</a></p>
 						<p>Ceci est un email automatique, veuillez ne pas y répondre</p>
 					</div>

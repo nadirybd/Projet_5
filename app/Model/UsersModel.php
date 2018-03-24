@@ -19,7 +19,7 @@ class UsersModel extends Model
 	* @param string -> PDO::Statement 
 	*/
 	public function addInfoUser($attributes){
-		$this->my_sql->prepare('INSERT INTO members_info(user_id) VALUES(?)', $attributes);
+		$this->my_sql->prepare('INSERT INTO members_info(user_id, description) VALUES(?, ?)', $attributes);
 	}
 
 	/**

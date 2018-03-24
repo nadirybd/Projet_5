@@ -18,17 +18,17 @@
 	</section>
 
 	<aside id="side-tb">
-		<table class="tb tb-last-topics">
+		<table class="tb" id="tb-last-topics">
 			<thead>
 				<tr>
-					<th>DERNIERS TOPICS</th>
+					<th>LES 5 DERNIERS TOPICS</th>
 				</tr>
 			</thead>
 			<tbody>
 				<?php foreach($lastTopics as $lastTopic): ?>
 				<tr>
 					<td>
-						<h3><a href=""><?= htmlspecialchars($lastTopic->title); ?></a></h3>
+						<h3><a href="topic/webmastertopic-<?= $lastTopic->id; ?>-1"><?= htmlspecialchars($lastTopic->title); ?></a></h3>
 						<p><?= htmlspecialchars(substr($lastTopic->content, 0, 150)); ?> ...</p>
 					</td>
 				</tr>
@@ -41,8 +41,7 @@
 			</tfoot>
 		</table>
 
-		<vr/>
-		<table class="tb tb-last-posts">
+		<table class="tb" id="tb-last-posts"> 
 			<thead>
 				<tr>
 					<th>DERNIERS POSTS</th>

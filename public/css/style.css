@@ -48,6 +48,11 @@ a
 	width: 100px;
 }
 
+.resolved
+{
+	color: green;
+}
+
 /***************************
 			BUTTON 
 ****************************/
@@ -160,26 +165,6 @@ input[type="submit"]:hover
 	margin-bottom: 50px;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
-}
-
-.tb tbody
-{
-	display: block;
-	overflow-y: scroll;
-	height: 450px;
-}
-
-.tb tbody::-webkit-scrollbar
-{
-	background-color: white;
-	border: 1px solid rgba(0, 0, 0, 0.4);
-	width: 3px;
-}
-
-.tb tbody::-webkit-scrollbar-thumb
-{
-	background-color: #0aa2cb;
-	border-radius: 5px;
 }
 
 .tb	th, .tb	td
@@ -529,7 +514,6 @@ footer
 
 #profile-content aside
 {
-	background-color: #FFFFFF;
 	padding: 10px;
 	margin-right: 100px;
 }
@@ -549,11 +533,24 @@ footer
 	background-color: #FFFFFF;
 	padding: 10px;
 	min-height: 300px;
+	margin-bottom: 20px;
 }
 
 #profile-description .fa-edit:hover
 {
 	cursor: pointer;
+}
+
+#resolved-form 
+{
+	text-align: center;
+	padding: 20px;
+	background-color: #d8d8d8;
+}
+
+#resolved-form p:first-child
+{
+	font-weight: bold;
 }
 
 /***************************
@@ -722,12 +719,35 @@ footer
 /***************************
 	TABLE FORUM ASIDE
 ****************************/
-.tb-last-topics, .tb-last-posts
+#tb-last-topics, #tb-last-posts
 {
 	max-width: 350px;
 	width: 100%;
 	box-sizing: border-box;
 }
+
+#tb-last-topics tbody, #tb-last-posts tbody
+{
+	display: block;
+	overflow-y: scroll;
+	height: 450px;
+}
+
+#tb-last-topics tbody::-webkit-scrollbar,
+#tb-last-posts tbody::-webkit-scrollbar
+{
+	background-color: white;
+	border: 1px solid rgba(0, 0, 0, 0.4);
+	width: 3px;
+}
+
+#tb-last-topics tbody::-webkit-scrollbar-thumb, 
+#tb-last-posts tbody::-webkit-scrollbar-thumb
+{
+	background-color: #0aa2cb;
+	border-radius: 5px;
+}
+
 
 /***************************
 		TOPICS PAGE
@@ -792,6 +812,8 @@ footer
 	margin: 100px auto;
 }
 
+
+
 #one-topic-page h1
 {
 	border: 1px solid black;
@@ -840,12 +862,14 @@ footer
 .topic-content p
 {
 	font-weight: bold;
+	margin-bottom: 0;
 }
 
 .topic-text
 {
 	padding: 5px;
 	box-sizing: content-box;
+	margin-top: 10px;
 }
 
 

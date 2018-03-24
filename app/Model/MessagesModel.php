@@ -22,8 +22,12 @@ class MessagesModel extends Model
 	* @param array(statement)
 	* @return array(Obj stdclass)
 	*/
-	public function select($where){
-		$messages = $this->my_sql->prepare('SELECT topic_id, user_id, creation_date, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ?', $attributes, null, true);
+	public function select($attributes, $where, $limit = null, $limit2 = null){
+		if($limit !== null && $limit2 !== null){
+			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ? LIMIT ' .$limit.','.$limit2, $attributes, null, true);
+		} else {
+			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ?', $attributes, null, true);
+		}
 		return $messages;
 	}
 }

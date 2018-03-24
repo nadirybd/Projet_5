@@ -18,7 +18,7 @@ class TopicsController extends Controller
 	* Méthode topics gère l'affichage de tous les topics dans la vue 
 	* topics
 	*/
-	public function topics(){
+	public function Alltopics(){
 		$allTopics = $this->topicsModel->select();
 		$number_of_topics = count($allTopics);
 		$number_per_page = 5;
@@ -111,20 +111,19 @@ class TopicsController extends Controller
 	}
 
 	/**
-	* Méthode showTopic qui gère l'affichage d'un topic en liant la vue
-	* show-topic et le model
+	* Méthode showTopic qui gère l'affichage d'un topic et des commentaires associés en liant la vue show-topic et le model 
 	*/
-	public function showTopic(){
+	public function topic(){
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+
 			$topic_id = $_GET['id'];
 			$topic = $this->topicsModel->select([$topic_id], 'id');
 			$user = $this->usersModel->select([$topic->user_id], 'id');
-			$messages = $this->messagesModel->select();
-
 			$url = function($pseudo){
 				$urlcustom = 'public-profile/'. $this->urlCustom($pseudo);
 				return $urlcustom;
 			};
+
 			if(!is_object($user)){
 				$user = (object) [
 					'pseudo' => 'Anonyme',
@@ -135,6 +134,44 @@ class TopicsController extends Controller
 					return $urlcustom;
 				};
 			}
+
+			$comment_per_page = 3;
+			$all_comment = $this->messagesModel->select([$topic->id], 'topic_id');
+			$all_comment = count($all_comment);
+			$number_of_page = ceil($all_comment / $comment_per_page);
+
+			$pagination = '';
+			for ($page=1; $page <= $number_of_page ; $page++){
+				$pagination .='| <a href="topic/webmastertopic-'. $topic->id.'-'.$page.'">'.$page.'</a> ';
+			}
+			$pagination = substr($pagination, 2, strlen($pagination));
+
+			if(isset($_GET['page']) && intval($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
+
+				$from = $comment_per_page * ($_GET['page'] - 1);
+				$comment = $this->messagesModel->select([$topic->id], 'topic_id', $from, $comment_per_page);
+			} else {
+
+				$_GET['page'] = 1;
+				$from = $comment_per_page * ($_GET['page'] - 1);
+				$comment = $this->messagesModel->select([$topic->id], 'topic_id', $from, $comment_per_page);
+			}
+			if(count($comment) > 0){
+				$urlComment = function($pseudo){
+					$urlCustom_Comment = 'public-profile/'. $pseudo;
+					return $urlCustom_Comment;
+				};
+			} else {
+				$urlComment = function($pseudo){
+					$urlCustom_Comment = 'topic/'.$topic_id;
+					return $urlCustom_Comment;
+				};
+			}
+			$userComment = function($user_id) {
+				$userMessages = $this->usersModel->select([$user_id], 'id');
+				return $userMessages;
+			};
+
 			if(!is_object($topic)){
 				header('location: /Forum/webmaster-forum');
 			} else {
@@ -142,11 +179,21 @@ class TopicsController extends Controller
 					if(isset($_POST['submit-comment'], $_POST['comment-topic'])){
 						$messages = $_POST['comment-topic'];
 						if(!empty($messages)){
-							$this->messagesModel->add([
+							$addMessage = $this->messagesModel->add([
 								':topic_id' => $topic->id,
 								':user_id' => $_SESSION['user']['id'],
 								':content' => $messages
 							]);
+
+							$sender = $userComment($_SESSION['user']['id']);
+							$content = '<p>Vous avez reçu une réponse de : '. $sender->pseudo .' </p>'.
+							$content .= '<p>'. substr($messages, 0, 200) . '</p>';
+
+							if($topic->user_notif == 1){
+								\App::sendmail($content, $user->mail);
+							}
+
+							header('location: webmastertopic-'. $topic->id.'-1');
 						} else {
 							$error_comment = 'Veuillez remplir tous les champs';
 						}
@@ -158,7 +205,7 @@ class TopicsController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('show-topic', compact('topic', 'user', 'url'), true);
+		$this->render('show-topic', compact('topic', 'user', 'url', 'comment', 'userComment', 'urlComment', 'pagination'), true);
 	}
 
 	/**

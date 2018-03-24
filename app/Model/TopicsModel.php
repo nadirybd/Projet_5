@@ -36,9 +36,11 @@ class TopicsModel extends Model
 	* @return array(Obj stdclass)
 	* @return Obj stdclass
 	*/
-	public function select($attributes = null, $where = null){
-		if($where !== null){
-			$topics = $this->my_sql->prepare('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics WHERE ' . $where .'= ?', $attributes, true);
+	public function select($attributes = null, $where = null, $all = null){
+		if($where !== null && $all === null){
+			$topics = $this->my_sql->prepare('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved, user_notif FROM f_topics WHERE ' . $where .'= ?', $attributes, true);
+		} elseif($where !== null && $all !== null){
+			$topics = $this->my_sql->prepare('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved, user_notif FROM f_topics WHERE ' . $where .'= ?', $attributes, null, true);
 		} else {
 			$topics = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, resolved FROM f_topics ORDER BY creation_date DESC');
 		}
@@ -75,9 +77,11 @@ class TopicsModel extends Model
 	* @param null or string
 	* @return int
 	*/
-	public function count($attributes, $where = null){
-		if($where !== null){
+	public function count($attributes, $where = null, $where2 = null, $table = null){
+		if($where !== null && $where2 === null){
 			$count = $this->my_sql->prepare('SELECT count(topic_id) FROM f_category_topics WHERE '.$where.' = ?', $attributes, null, null, true);
+		} elseif($where !== null && $where2 !== null && $table !== null) {
+			$count = $this->my_sql->prepare('SELECT count(id) FROM '.$table.' WHERE '.$where.' = ? AND '.$where2.'= ?' , $attributes, null, null, true);
 		}
 
 		return $count;
@@ -95,5 +99,14 @@ class TopicsModel extends Model
 			$lastTopic = $this->my_sql->query('SELECT id, user_id, title, content, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") AS date_fr FROM f_topics ORDER BY creation_date DESC LIMIT 0, '. $limit, true);
 		}
 		return $lastTopic;
+	}
+
+	/**
+	* @param array(statement)
+	* @return true or false
+	*/
+	public function resolved($attributes){
+		$resolved = $this->my_sql->prepare('UPDATE f_topics SET resolved = 1 WHERE id = ?', $attributes);
+		return $resolved;
 	}
 }

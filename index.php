@@ -71,7 +71,7 @@ switch ($page) {
 		break;
 
 	case 'topics':
-		TopicsController::getInstance()->topics();
+		TopicsController::getInstance()->Alltopics();
 		break;
 
 	case 'topics-by-category':
@@ -87,7 +87,7 @@ switch ($page) {
 		break;
 
 	case 'topic':
-		TopicsController::getInstance()->showTopic();
+		TopicsController::getInstance()->topic();
 		break;
 
 	default:

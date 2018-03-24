@@ -255,7 +255,7 @@ class UsersController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('public-profile', compact('user', 'userInfo'));
+		$this->render('public-profile', compact('user', 'infoUser'));
 	}
 
 	/**
