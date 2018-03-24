@@ -58,8 +58,28 @@ class TopicsController extends Controller
 	*/
 	public function topicsByCat(){
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id'])){
-			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
-			
+			$allTopics = $topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
+
+			$number_of_topics = count($allTopics);
+			$number_per_page = 5;
+			$number_of_page = ceil($number_of_topics / $number_per_page);
+		
+			$pagination = '';
+			for ($page=1; $page <= $number_of_page ; $page++){
+				$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+			};
+
+			if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
+				$from = $number_per_page * ($_GET['page'] - 1);  
+			} else {
+				$_GET['page'] = 1;
+				$from = $number_per_page * ($_GET['page'] - 1); 
+			}
+
+			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id', $from, $number_per_page);
+
+			$pagination = substr($pagination, 2, strlen($pagination));
+				
 			$user = function($user_id){
 				$username = $this->usersModel->select([$user_id], 'id');
 				if($username){
@@ -78,7 +98,7 @@ class TopicsController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('category-topics', compact('topics', 'user'), true);
+		$this->render('category-topics', compact('topics', 'user', 'pagination'), true);
 	}
 
 	/**
@@ -87,7 +107,28 @@ class TopicsController extends Controller
 	*/
 	public function topicsBySubcat(){
 		if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id'])){
-			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id');
+			$allTopics = $topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id');
+
+			$number_of_topics = count($allTopics);
+			$number_per_page = 5;
+			$number_of_page = ceil($number_of_topics / $number_per_page);
+		
+			$pagination = '';
+			for ($page=1; $page <= $number_of_page ; $page++){
+				$pagination .='| <a href="topics-by-category/'. $_GET['category'] .'/'. $_GET['subcategory'] .'/';
+				$pagination .= $_GET['id'] .'-'.$page.'">'.$page.'</a> ';
+			};
+
+			if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
+				$from = $number_per_page * ($_GET['page'] - 1);  
+			} else {
+				$_GET['page'] = 1;
+				$from = $number_per_page * ($_GET['page'] - 1); 
+			}
+
+			$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id', $from, $number_per_page);
+
+			$pagination = substr($pagination, 2, strlen($pagination));
 			$verifytopic = count($topics);
 			if($verifytopic <= 0) {
 				header('location: /Forum/webmaster-forum');
@@ -107,7 +148,7 @@ class TopicsController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('category-topics', compact('topics', 'user'), true);
+		$this->render('category-topics', compact('topics', 'user', 'pagination'), true);
 	}
 
 	/**

@@ -8,7 +8,7 @@
 				</aside>
 				<div class="category">
 
-					<h2><a href="<?= $url($category->name, $category->id); ?>"><?= htmlspecialchars($category->name); ?></a></h2>
+					<h2><a href="<?= $url($category->name, $category->id); ?>-1"><?= htmlspecialchars($category->name); ?></a></h2>
 					<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
 					<p> Nombre de topics posté : <?= $nbTopics($category->id); ?></p>
 				</div>

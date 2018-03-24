@@ -34,7 +34,7 @@ class CategoriesController extends Controller
 				$subUrl ='topics-by-subcategory/'. $this->urlCustom($category_name).'/';
 				$subUrl .= $this->urlCustom($subcategory->name).'/'.$subcategory->id;
 
-				$sub .= '| <a href="'. $subUrl .'">'; 
+				$sub .= '| <a href="'. $subUrl .'-1">'; 
 				$sub .= $subcategory->name .'</a> '; 
 			}
 			$sub = substr($sub, 2, strlen($sub));
@@ -62,7 +62,7 @@ class CategoriesController extends Controller
 				$subUrl ='topics-by-subcategory/'. $this->urlCustom($category_name).'/';
 				$subUrl .= $this->urlCustom($subcategory->name).'/'.$subcategory->id;
 
-				$sub .= '<li><a href="'. $subUrl .'">'; 
+				$sub .= '<li><a href="'. $subUrl .'-1">'; 
 				$sub .= $subcategory->name .'</a></li>'; 
 			}
 			return $sub;

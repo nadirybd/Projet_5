@@ -681,7 +681,7 @@ footer
 	max-width: 800px;
 }
 
-#forum-page section, #topics-page section
+#forum-page section
 {
 	padding: 50px;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
@@ -716,6 +716,8 @@ footer
 {
 	text-align: right;
 }
+
+
 /***************************
 	TABLE FORUM ASIDE
 ****************************/
@@ -747,7 +749,13 @@ footer
 	background-color: #0aa2cb;
 	border-radius: 5px;
 }
-
+/***************************
+	TOPIC BY CATEGORIES
+****************************/
+#topics-page
+{
+	padding: 150px;
+}
 
 /***************************
 		TOPICS PAGE
@@ -758,6 +766,10 @@ footer
 	background-color: #f4f4f4;
 }
 
+.tb-topics-cat tbody td:last-child
+{
+	text-align: center;
+}
 
 #add-topic-page
 {
@@ -811,8 +823,6 @@ footer
 	max-width: 1024px;
 	margin: 100px auto;
 }
-
-
 
 #one-topic-page h1
 {

@@ -60,7 +60,7 @@ class TopicsModel extends Model
 				SELECT f_topics.id, f_topics.user_id, f_topics.title, f_topics.content, DATE_FORMAT(f_topics.creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, f_topics.resolved FROM f_topics 
 				LEFT JOIN f_category_topics 
 					ON f_topics.id = f_category_topics.topic_id
-				WHERE  f_category_topics.'. $where .' = ? ORDER BY creation_date DESC LIMIT '.$limit1.', '.$limit2);
+				WHERE  f_category_topics.'. $where .' = ? ORDER BY creation_date DESC LIMIT '.$limit1.', '.$limit2, $attributes, null, true);
 		} else {
 			$topics = $this->my_sql->prepare('
 				SELECT f_topics.id, f_topics.user_id, f_topics.title, f_topics.content, DATE_FORMAT(f_topics.creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, f_topics.resolved FROM f_topics 
