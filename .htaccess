@@ -22,11 +22,11 @@ RewriteRule ^reset-password$ index.php?p=reset_password
 
 RewriteRule ^webmaster-forum$ index.php?p=forum
 
-RewriteRule ^topics/([0-9]+)$ index.php?p=topics&page=$1
+RewriteRule ^topics/([a-zA-Z\-]+)/([a-zA-Z\-\+]+)/([0-9]+)-([0-9a-zA-Z]+)$ index.php?p=topics&category=$1&subcategory=$2&id=$3&page=$3
 
-RewriteRule ^topics-by-category/([a-zA-Z\-]+)/([0-9]+)-([0-9]+)$ index.php?p=topics-by-category&category=$1&id=$2&page=$3
+RewriteRule ^topics/([a-zA-Z\-]+)/([0-9]+)-([0-9a-zA-Z]+)$ index.php?p=topics&category=$1&id=$2&page=$3
 
-RewriteRule ^topics-by-subcategory/([a-zA-Z\-]+)/([a-zA-Z\-\+]+)/([0-9]+)-([0-9]+)$ index.php?p=topics-by-subcategory&category=$1&subcategory=$2&id=$3&page=$3
+RewriteRule ^topics/([0-9a-zA-Z]+)$ index.php?p=topics&page=$1
 
 RewriteRule ^add-topic$ index.php?p=add-topic
 

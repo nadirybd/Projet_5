@@ -49,6 +49,7 @@ class TopicsModel extends Model
 	}
 
 	/**
+	* Méthode selectByCategory qui sélectionne par catégorie ou sous-catégorie
 	* @param string -> statement
 	* @param null or int
 	* @param null or int
@@ -82,6 +83,21 @@ class TopicsModel extends Model
 			$count = $this->my_sql->prepare('SELECT count(topic_id) FROM f_category_topics WHERE '.$where.' = ?', $attributes, null, null, true);
 		} elseif($where !== null && $where2 !== null && $table !== null) {
 			$count = $this->my_sql->prepare('SELECT count(id) FROM '.$table.' WHERE '.$where.' = ? AND '.$where2.'= ?' , $attributes, null, null, true);
+		}
+
+		return $count;
+	}
+
+	/**
+	* @param array(statement)
+	* @param null or string
+	* @return int
+	*/
+	public function countTopic($attributes, $where, $where2 = null){
+		if($where2 !== null){
+			$count = $this->my_sql->prepare('SELECT count(id) FROM f_topics WHERE '.$where.' = ? AND '.$where2.'= ?', $attributes, null, null, true);
+		} else {
+			$count = $this->my_sql->prepare('SELECT count(id) FROM f_topics WHERE '.$where.' = ?', $attributes, null, null, true);
 		}
 
 		return $count;

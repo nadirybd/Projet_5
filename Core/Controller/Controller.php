@@ -16,11 +16,15 @@ class Controller
 	/**
 	* @var stocke l'instance de la classe TopicsModel
 	* @var stocke l'instance de la classe UsersModel
+	* @var stocke l'instance de la classe categoriesModel
+	* @var stocke l'instance de la classe messagesModel
+	* @var stocke l'instance de la classe followModel
 	*/
 	protected $topicsModel;
 	protected $usersModel;
 	protected $categoriesModel;
 	protected $messagesModel;
+	protected $followModel;
 
 	/**
 	* Méthode __construct
@@ -37,6 +41,9 @@ class Controller
 		}
 		if($this->messagesModel === null){
 			$this->messagesModel = new \App\Model\MessagesModel();
+		}
+		if($this->followModel === null){
+			$this->followModel = new \App\Model\FollowModel();
 		}
 	}
 
@@ -108,5 +115,22 @@ class Controller
 	*/
 	protected function urlCustom($url){
 		return \App::encodedUrlCustom($url);
+	}
+
+	/**
+	* Méthode pagination qui va créer un pagination
+	* @return string
+	*/
+	protected function pagination($number_of_page, $href){
+		$pagination = '';
+		for ($page=1; $page <= $number_of_page ; $page++){
+			if($page == $_GET['page']){
+				$pagination .= ' | <span>' . $page .'</span> ';
+			} else {
+				$pagination .='| <a href="'.$href.$page.'">'.$page.'</a> ';
+			}
+		}
+		$pagination = substr($pagination, 2, strlen($pagination));
+		return $pagination;
 	}
 }

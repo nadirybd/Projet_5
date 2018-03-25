@@ -125,20 +125,21 @@ a
 	color: red;
 }
 
-.cancel, .validate
+.btn-cancel, .btn-validate
 {
 	border-radius: 8px;
 	color: white;
 	cursor: pointer;
 	padding: 5px 30px;
 }
-.cancel
+
+.btn-cancel
 {
 	background-color: red;
 	border: 2px solid red;
 }
 
-.validate
+.btn-validate
 {
 	background-color: #56c95c;
 	border: 2px solid #56c95c;
@@ -266,7 +267,6 @@ input[type="submit"]:hover
 	border-bottom: 1px solid black;
 	padding-bottom: 15px;
 }
-
 
 /***************************
 		MAIN HEADER

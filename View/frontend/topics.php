@@ -7,7 +7,9 @@
 					<td>Auteur</td>
 					<td>Date de création</td>
 					<td>Status</td>
-					<td>Suivre un topic</td>
+					<?php if(isset($_SESSION['user'])): ?>
+						<td>Suivre un topic</td>
+					<?php endif; ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,9 +32,23 @@
 							Non résolu
 						<?php endif; ?>
 					</td>
-					<td>
-						<button class="validate">Suivre</button>
-					</td>
+					<?php if(isset($_SESSION['user'])): ?>
+						<?php if($followed($topic->id) == 1): ?>
+						<td>
+							<form method="post">
+								<input type="hidden" name="unfollow" value="<?= $topic->id; ?>" />
+								<button class="btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
+							</form>
+						</td>
+						<?php else: ?>
+						<td>
+							<form method="post">
+								<input type="hidden" name="follow" value="<?= $topic->id; ?>" />
+								<button class="btn-validate" type="submit" name="sub-follow">Suivre</button>
+							</form>
+						</td>
+						<?php endif; ?>
+					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>

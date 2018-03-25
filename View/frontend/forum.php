@@ -7,7 +7,6 @@
 					<p><img src="public/images/icons/categories/<?= $category->logo; ?>" alt="png programmation" width="150" /></p>
 				</aside>
 				<div class="category">
-
 					<h2><a href="<?= $url($category->name, $category->id); ?>-1"><?= htmlspecialchars($category->name); ?></a></h2>
 					<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
 					<p> Nombre de topics posté : <?= $nbTopics($category->id); ?></p>

@@ -76,15 +76,7 @@ switch ($page) {
 		break;
 
 	case 'topics':
-		TopicsController::getInstance()->Alltopics();
-		break;
-
-	case 'topics-by-category':
-		TopicsController::getInstance()->topicsByCat();
-		break;
-
-	case 'topics-by-subcategory':
-		TopicsController::getInstance()->topicsBySubcat();
+		TopicsController::getInstance()->topics();
 		break;
 
 	case 'add-topic':
