@@ -593,16 +593,12 @@ footer
 /******************
 	TOPICS TABLE
 *******************/
-#all-created-topics
+#all-profile-topics
 {
-	text-align: center;
+	display: flex;
+	justify-content: space-between;
 }
 
-#tb-profile
-{
-	display: block;
-	max-width: 500px;
-}
 /******************
 	RESOLVED FORM
 *******************/

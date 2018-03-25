@@ -75,6 +75,20 @@ class TopicsModel extends Model
 
 	/**
 	* @param array(statement)
+	* @return array(Obj stdClass)
+	*/
+	public function selectByFollow($attributes){
+		$selectByFollow = $this->my_sql->prepare('
+			SELECT f_topics.id, f_topics.user_id, f_topics.title, f_topics.content, DATE_FORMAT(f_topics.creation_date, "%d/%m/%Y à %Hh%imin%ss") as date_topic, f_topics.resolved FROM f_topics 
+			LEFT JOIN f_follow
+				ON f_follow.topic_id = f_topics.id
+			WHERE f_follow.user_id = ?', $attributes, null, true);
+
+		return $selectByFollow; 
+	}
+
+	/**
+	* @param array(statement)
 	* @param null or string
 	* @return int
 	*/

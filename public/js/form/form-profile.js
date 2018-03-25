@@ -1,5 +1,5 @@
 var edit_button = $('.edit-button');
-var cancel_button = $('.cancel');
+var cancel_button = $('.btn-cancel');
 var description = $('.description-content');
 var form = $('#description-container');
 
@@ -9,7 +9,7 @@ function editDescription(){
 			$('.description-content').hide();
 			$('#description-container').show(800);
 		});
-		$('.cancel').on('click', function(e){
+		$('.btn-cancel').on('click', function(e){
 			$('.description-content').show(800);
 			$('#description-container').hide(0);
 		});
