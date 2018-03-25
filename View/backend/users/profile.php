@@ -6,41 +6,44 @@
 					<p><img src="View/backend/users/avatars/<?= $user->avatar; ?>" /></p>
 					<p><a href="edit-avatar">Modifier</a></p>
 				</aside>
-				<table class="tb" id="tb-profile">
-					<thead>
-						<tr>
-							<td>Vos topics créés</td>
-							<td>Nombre de réponse</td>
-							<td>Résolu</td>
-						</tr>
-					</thead>
-					<tbody>
-						<?php if(empty($topics)): ?>
+				
+				<div id="all-created-topics">
+					<table class="tb" id="tb-profile">
+						<thead>
 							<tr>
-								<td colspan="3">Vous n'avez créé aucun topic</td>
+								<td>Vos topics créés</td>
+								<td>Nombre de réponse</td>
+								<td>Résolu</td>
 							</tr>
-						<?php else: ?>
-						<?php foreach ($topics as $topic): ?>
+						</thead>
+						<tbody>
+							<?php if(empty($topics)): ?>
+								<tr>
+									<td colspan="3">Vous n'avez créé aucun topic</td>
+								</tr>
+							<?php else: ?>
+							<?php foreach ($topics as $topic): ?>
+								<tr>
+									<td><a href="topic/webmastertopic-<?= $topic->id; ?>-1"><?= $topic->title; ?></a></td>
+									<td><?= $messages($topic->id); ?></td>
+									<td>
+										<?php if($topic->resolved == 1): ?>
+											<span class="resolved">Résolu <i class="fas fa-check"></i></span>
+										<?php else: ?>
+											<span class="no-resolved">Non résolu</span>
+										<?php endif; ?>
+									</td>
+								</tr>	
+							<?php endforeach ?>
+							<?php endif; ?>
+						</tbody>
+						<tfoot>
 							<tr>
-								<td><a href="topic/webmastertopic-<?= $topic->id; ?>-1"><?= $topic->title; ?></a></td>
-								<td>55 réponses</td>
-								<td>
-									<?php if($topic->resolved == 1): ?>
-										<span class="resolved">Résolu <i class="fas fa-check"></i></span>
-									<?php else: ?>
-										<span class="no-resolved">Non résolu</span>
-									<?php endif; ?>
-								</td>
-							</tr>	
-						<?php endforeach ?>
-						<?php endif; ?>
-					</tbody>
-					<tfoot>
-						<tr>
-							<td colspan="3"><button class="resolved-button">Mettre comme résolu un topic</button></td>
-						</tr>
-					</tfoot>
-				</table>
+								<td colspan="3"><button class="resolved-button validate">Marquer comme résolu un topic</button></td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 			</div>
 
 			<div id="profile-info">

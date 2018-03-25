@@ -26,6 +26,10 @@ switch ($page) {
 	case '404':
 		FrontController::getInstance()->notFound();
 		break;
+
+	case 'forbidden':
+		FrontController::getInstance()->forbidden();
+		break;
 	
 	case 'subscribe':
 		UsersController::getInstance()->subscribe();

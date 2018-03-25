@@ -28,9 +28,15 @@
 				</aside>
 
 				<div class="topic-content">
-					<p>
-						Posté par <?= htmlspecialchars($userMessages->pseudo); ?> le <?= $comment->messageDate; ?> :
-					</p>
+					<?php if($comment->edit_dateFr !== "00/00/0000 à 00h00min00s"): ?>
+						<p>
+							Posté par <?= htmlspecialchars($userMessages->pseudo); ?> le <?= $comment->messageDate; ?> ( Édité le : <?= $comment->edit_dateFr; ?> ) : 
+						</p>
+					<?php else: ?>
+						<p>
+							Posté par <?= htmlspecialchars($userMessages->pseudo); ?> le <?= $comment->messageDate; ?> :
+						</p>
+					<?php endif; ?>
 					<hr/>
 
 					<div class="topic-text"><?= htmlspecialchars($comment->content); ?></div>
@@ -61,7 +67,7 @@
 	<?php endif; ?>
 
 	<p><?= $pagination; ?></p>
-	
+
 	<div id="comment-form-topic">
 		<?php if(isset($_SESSION['user']['id'])): ?>
 			<form class="form comment-fom" method="post">

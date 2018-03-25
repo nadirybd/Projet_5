@@ -22,6 +22,12 @@ class UsersController extends Controller
 		if($this->logged()){
 			$infoUser = $this->usersModel->selectInfo([$_SESSION['user']['id']]);
 			$user =	$this->usersModel->select([$_SESSION['user']['id']], 'id');
+			$messages = function($topic_id){
+				$all_messages =$this->messagesModel->select([$topic_id], 'topic_id');
+				$countMessages = count($all_messages);
+				return $countMessages;
+			};
+
 			if(isset($_POST['sub_description'])){
 				$edit_description = $_POST['edit_description'];
 				if(isset($edit_description)){
@@ -56,7 +62,7 @@ class UsersController extends Controller
 
 			$topics = $this->topicsModel->select([$_SESSION['user']['id']], 'user_id', true);
 
-			$this->render('profile', compact('infoUser', 'user', 'topics', 'resolved_errors'), true);
+			$this->render('profile', compact('infoUser', 'user', 'topics', 'resolved_errors', 'messages'), true);
 		} else {
 			header('location: /Forum/login');
 		}

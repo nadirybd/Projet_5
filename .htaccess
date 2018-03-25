@@ -4,6 +4,7 @@ RewriteEngine ON
 
 RewriteRule ^home$ index.php
 RewriteRule ^NotFound$ index.php?p=404
+RewriteRule ^forbidden$ index.php?p=forbidden
 
 RewriteRule ^subscribe$ index.php?p=subscribe
 RewriteRule ^login$ index.php?p=login

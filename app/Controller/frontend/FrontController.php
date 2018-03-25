@@ -23,11 +23,19 @@ class FrontController extends Controller
 	}
 
 	/**
-	* Méthode home qui gère l'affichage de la homepage
+	* Méthode home qui gère l'affichage de la page 404
 	*/
 	public function notFound(){
 		$this->viewPath = 'errors';
 		$this->render('404');
+	}
+
+	/**
+	* Méthode home qui gère l'affichage de la forbidden
+	*/
+	public function forbidden(){
+		$this->viewPath = 'errors';
+		$this->render('forbidden');
 	}
 
 	/**

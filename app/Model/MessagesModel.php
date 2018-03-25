@@ -17,6 +17,16 @@ class MessagesModel extends Model
 	}
 
 	/**
+	* Méthode update qui met à jour une entrée dans la table f_message
+	* @param $attributes
+	* @return true / false
+	*/
+	public function update($attributes){
+		$update = $this->my_sql->prepare('UPDATE f_messages SET edit_date = NOW(), content = ? WHERE id = ?', $attributes);
+		return $update;
+	}
+
+	/**
 	* Méthode select qui sélectionne une ou plusieurs entrées dans la 
 	* table f_messages
 	* @param array(statement)
@@ -24,11 +34,23 @@ class MessagesModel extends Model
 	*/
 	public function select($attributes, $where, $limit = null, $limit2 = null){
 		if($limit !== null && $limit2 !== null){
-			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ? ORDER BY best_answer DESC, creation_date LIMIT ' .$limit.','.$limit2, $attributes, null, true);
+			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, DATE_FORMAT(edit_date, "%d/%m/%Y à %Hh%imin%ss") as edit_dateFr, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ? ORDER BY best_answer DESC, creation_date LIMIT ' .$limit.','.$limit2, $attributes, null, true);
 		} else {
-			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ?', $attributes, null, true);
+			$messages = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, DATE_FORMAT(edit_date, "%d/%m/%Y à %Hh%imin%ss") as edit_dateFr, best_answer, content FROM f_messages WHERE '. $where .'= ?', $attributes, null, true);
 		}
 		return $messages;
+	}
+
+	/**
+	* Méthode select qui sélectionne une ou plusieurs entrées dans la 
+	* table f_messages
+	* @param array(statement)
+	* @return Obj stdclass
+	*/
+	public function selectOne($attributes, $where){
+		$message = $this->my_sql->prepare('SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, edit_date, best_answer, content FROM f_messages WHERE '. $where .'= ?', $attributes, true);
+		
+		return $message;
 	}
 
 	/**

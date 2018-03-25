@@ -239,7 +239,7 @@ class TopicsController extends Controller
 							]);
 
 							$sender = $userComment($_SESSION['user']['id']);
-							$content = '<p>Vous avez reçu une réponse de : '. $sender->pseudo .' </p>'.
+							$content = '<p>Vous avez reçu une réponse de : '. $sender->pseudo .'  de votre topic : '. $topic->title .'</p>'.
 							$content .= '<p>'. substr($messages, 0, 200) . '</p>';
 
 							if($topic->user_notif == 1){
@@ -258,10 +258,10 @@ class TopicsController extends Controller
 						if($verifyMessage == 1){
 							$this->messagesModel->updateBestAnswer([$_POST['best_answer']]);
 						} else {
-							die('pb verify');
+							header('location: forum');
 						}
 					}else {
-						die('pb empty');
+						header('location: forum');
 					}
 				}
 			}

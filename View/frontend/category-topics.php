@@ -7,6 +7,7 @@
 					<td>Auteur</td>
 					<td>Date de création</td>
 					<td>Status</td>
+					<td>Suivre un topic</td>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +29,9 @@
 						<?php else: ?>
 							Non résolu
 						<?php endif; ?>
+					</td>
+					<td>
+						<button class="validate">Suivre</button>
 					</td>
 				</tr>
 			<?php endforeach; ?>
