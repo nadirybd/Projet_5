@@ -16,7 +16,7 @@ class TopicsController extends Controller
 
 	/**
 	* Méthode topics gère l'affichage de tous les topics dans la vue 
-	* topics
+	* topics ou bine des topics par catégorie ou sous-catégorie
 	*/
 	public function topics(){
 		if(isset($_GET['id'], $_GET['category']) && !empty($_GET['id']) && !empty($_GET['category']) && intval($_GET['id'])){
@@ -99,11 +99,20 @@ class TopicsController extends Controller
 
 		if($this->logged()){
 			if(isset($_POST['sub-follow'], $_POST['follow'])){
-				$topicId = $_POST['follow'];
-				if(!empty($topicId) && intval($topicId)){
-					$verifyTopic = $this->topicsModel->countTopic([$topicId], 'id');
-					if($verifytopic == 1){
-						$this->followModel->add([$_SESSION['user']['id'], $topicId]);
+				$followTopic = $_POST['follow'];
+				if(!empty($followTopic) && intval($followTopic)){
+					$verifyTopic = $this->topicsModel->countTopic([$followTopic], 'id');
+					if($verifyTopic == 1){
+						$this->followModel->add([$_SESSION['user']['id'], $followTopic]);
+					}
+				}
+			} 
+			if(isset($_POST['sub-unfollow'], $_POST['unfollow'])){
+				$unfollowTopic = $_POST['unfollow'];
+				if(!empty($unfollowTopic) && intval($unfollowTopic)){
+					$verifyUnfollow = $this->followModel->count([$unfollowTopic, $_SESSION['user']['id']], 'topic_id', 'user_id');
+					if($verifyUnfollow == 1){
+						$this->followModel->delete([$unfollowTopic]);
 					}
 				}
 			}
@@ -117,7 +126,7 @@ class TopicsController extends Controller
 		$this->render('topics', compact('topics', 'pagination', 'user', 'followed'), true);
 	}
 
-	/**
+	/** 
 	* Méthode showTopic qui gère l'affichage d'un topic et des commentaires associés en liant la vue show-topic et le model 
 	*/
 	public function topic(){
