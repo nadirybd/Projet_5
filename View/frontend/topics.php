@@ -8,7 +8,7 @@
 					<td>Date de création</td>
 					<td>Status</td>
 					<?php if(isset($_SESSION['user'])): ?>
-						<td>Suivre un topic</td>
+						<td>Option</td>
 					<?php endif; ?>
 				</tr>
 			</thead>

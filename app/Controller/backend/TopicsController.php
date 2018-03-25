@@ -74,6 +74,13 @@ class TopicsController extends Controller
 	}
 
 	/**
+	* Méthode editTopic qui gère l'édition d'un topic en faisant le lien entre "model" et "view" mais aussi en vérifiant les données entrées par l'utilisateur
+	*/
+	public function editTopic(){
+		
+	}
+
+	/**
 	* @return une instance de la classe
 	*/
 	public static function getInstance(){

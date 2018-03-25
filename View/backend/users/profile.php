@@ -37,7 +37,7 @@
 							<?php endif; ?>
 							<p>
 								<input type="submit" name="sub_description" />
-								<button class="btn-cancel" type="button">Annuler</button>
+								<button class="btn-cancel cancel-description" type="button">Annuler</button>
 							</p>
 						</form>
 					</div>
@@ -71,7 +71,8 @@
 								<tr>
 									<td>Vos topics créés</td>
 									<td>Nombre de réponse</td>
-									<td>Résolu</td>
+									<td>Status</td>
+									<td>Option</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -91,13 +92,16 @@
 												<span class="no-resolved">Non résolu</span>
 											<?php endif; ?>
 										</td>
+										<td>
+											<a href="">Editer</a>
+										</td>
 									</tr>	
 								<?php endforeach ?>
 								<?php endif; ?>
 							</tbody>
 							<tfoot>
 								<tr>
-									<td colspan="3"><button class="resolved-button btn-validate">Marquer comme résolu un topic</button></td>
+									<td colspan="4"><button class="resolved-button btn-validate">Marquer comme résolu un topic</button></td>
 								</tr>
 							</tfoot>
 						</table>
@@ -106,7 +110,8 @@
 							<thead>
 								<tr>
 									<td>Les topics suivis</td>
-									<td>Résolu</td>
+									<td>Status</td>
+									<td>Option</td>
 								</tr>
 							</thead>
 							<tbody>
@@ -126,6 +131,12 @@
 											<?php else: ?>
 												<span class="no-resolved">Non résolu</span>
 											<?php endif; ?>
+										</td>
+										<td>
+											<form method="post">
+												<input type="hidden" name="unfollow" value="<?= $topicF->id; ?>" />
+												<button class="btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
+											</form>
 										</td>
 									</tr>	
 								<?php endforeach ?>

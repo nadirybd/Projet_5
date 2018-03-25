@@ -62,6 +62,18 @@ class UsersController extends Controller
 				}
 			}
 
+			if(isset($_POST['sub-unfollow'], $_POST['unfollow'])){
+				$unfollowTopic = $_POST['unfollow'];
+				if(!empty($unfollowTopic) && intval($unfollowTopic)){
+					$verifyUnfollow = $this->followModel->count([$unfollowTopic, $_SESSION['user']['id']], 'topic_id', 'user_id');
+					var_dump($verifyUnfollow);
+					if($verifyUnfollow == 1){
+						$this->followModel->delete([$unfollowTopic]);
+						header('location: profile');
+					}
+				}
+			}
+
 			$this->render('profile', compact('infoUser', 'user', 'topics', 'resolved_errors', 'messages', 'topicsFollowed'), true);
 		} else {
 			header('location: /Forum/login');
