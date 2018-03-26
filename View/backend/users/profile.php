@@ -93,7 +93,9 @@
 											<?php endif; ?>
 										</td>
 										<td>
-											<a href="">Editer</a>
+											<a href="edit-topic-<?= $topic->id; ?>">Editer</a><a href="delete-topic-<?= $topic->id; ?>">
+												<span class="delete">Supprimer</span>
+											</a>
 										</td>
 									</tr>	
 								<?php endforeach ?>
@@ -115,9 +117,9 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php if(empty($topics)): ?>
+								<?php if(empty($topicsFollowed)): ?>
 									<tr>
-										<td colspan="3">Vous n'avez créé aucun topic</td>
+										<td colspan="3">Vous ne suivez aucun topic pour le moment</td>
 									</tr>
 								<?php else: ?>
 								<?php foreach ($topicsFollowed as $topicF): ?>

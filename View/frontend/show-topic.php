@@ -11,7 +11,11 @@
 					<p><a href="<?= $url($user->pseudo); ?>"><?= htmlspecialchars($user->pseudo); ?></a></p>
 			</aside>
 			<div class="topic-content">
-				<p>Posté par <?= htmlspecialchars($user->pseudo); ?> le <?= $topic->date_topic; ?> :</p>
+				<?php if($topic->t_edit_date !== "00/00/0000 à 00h00min00s"): ?>
+					<p>Posté par <?= htmlspecialchars($user->pseudo); ?> le <?= $topic->date_topic; ?> ( Édité le <?= $topic->t_edit_date; ?> ) :</p>
+				<?php else: ?>
+					<p>Posté par <?= htmlspecialchars($user->pseudo); ?> le <?= $topic->date_topic; ?> :</p>
+				<?php endif; ?>
 				<hr/>
 				<div class="topic-text"><?= htmlspecialchars($topic->content); ?></div>	
 			</div>
@@ -51,7 +55,7 @@
 						<?php elseif($topic->user_id == $_SESSION['user']['id'] && $comment->best_answer == 0 && $comment->user_id !== $_SESSION['user']['id']): ?>
 							<form class="form best-answer-form" method="post">
 								<input type="hidden" name="best_answer" value="<?= $comment->id; ?>" />
-								<input type="submit" name="sub_bestAnswer" value="J'aime la réponse" /> 
+								<button type="submit" class="btn-validate" name="sub_bestAnswer"><i class="fas fa-heart"></i></button> 
 							</form>
 						<?php endif; ?>
 					<?php endif; ?>

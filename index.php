@@ -83,6 +83,10 @@ switch ($page) {
 		BackTopicsController::getInstance()->addTopic();
 		break;
 
+	case 'edit-topic':
+		BackTopicsController::getInstance()->editTopic();
+		break;
+
 	case 'topic':
 		TopicsController::getInstance()->topic();
 		break;

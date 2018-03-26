@@ -77,7 +77,42 @@ class TopicsController extends Controller
 	* Méthode editTopic qui gère l'édition d'un topic en faisant le lien entre "model" et "view" mais aussi en vérifiant les données entrées par l'utilisateur
 	*/
 	public function editTopic(){
-		
+		if($this->logged()){
+			if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+				$topic_id = $_GET['id'];
+				$verify_user_topic = $this->topicsModel->count([$topic_id, $_SESSION['user']['id']], 'id', 'user_id', 'f_topics');
+				if($verify_user_topic == 1){
+					$topic = $this->topicsModel->select([$topic_id], 'id');
+					if(isset($_POST['sub-edit-topic'])){
+						if(isset($_POST['edit_title']) && !empty($_POST['edit_title']) && $_POST['edit_title'] !== $topic->title){
+							$this->topicsModel->update([
+								':title' => $_POST['edit_title'],
+								':id' => $topic->id
+							], 'title');
+							header('location: profile');
+						} else {
+							$error_edit = 'Les champs sont vides ou bien identiques !';
+						}
+
+						if(isset($_POST['edit_content']) && !empty($_POST['edit_content']) && $_POST['edit_content'] !== $topic->content){
+							$this->topicsModel->update([
+								':content' => $_POST['edit_content'],
+								':id' => $topic->id
+							], 'content');
+							header('location: profile');
+						} else {
+							$error_edit = 'Les champs sont vides ou bien identiques !';
+						}
+					}
+				} else {
+					header('location: forbidden');
+				}
+
+				$this->render('edit-topic', compact('topic', 'error_edit'));
+			}
+		} else {
+			header('location: forbidden');
+		}
 	}
 
 	/**
