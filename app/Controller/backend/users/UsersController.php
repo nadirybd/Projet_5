@@ -222,6 +222,17 @@ class UsersController extends Controller
 				'avatar' => $user->avatar,
 				'date' => $user->sub_date_fr,
 			];
+
+			$verifyAdmin = $this->adminModel->count([$user->id], 'user_id');
+						
+			if($verifyAdmin == 1){
+				$admin_user = $this->adminModel->select([$user->id], 'user_id');
+				if($admin_user->level == 'admin'){
+					$_SESSION['admin'] = 'admin';
+				} else {
+					$_SESSION['contrib'] = 'contrib';
+				}
+			}
 		} else {
 			setcookie('user', '', time()-3600);
 		}

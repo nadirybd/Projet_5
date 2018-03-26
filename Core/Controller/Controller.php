@@ -19,12 +19,14 @@ class Controller
 	* @var stocke l'instance de la classe categoriesModel
 	* @var stocke l'instance de la classe messagesModel
 	* @var stocke l'instance de la classe followModel
+	* @var stocke l'instance de la classe adminModel
 	*/
 	protected $topicsModel;
 	protected $usersModel;
 	protected $categoriesModel;
 	protected $messagesModel;
 	protected $followModel;
+	protected $adminModel;
 
 	/**
 	* Méthode __construct
@@ -44,6 +46,9 @@ class Controller
 		}
 		if($this->followModel === null){
 			$this->followModel = new \App\Model\FollowModel();
+		}
+		if($this->adminModel === null){
+			$this->adminModel = new \App\Model\AdminModel();
 		}
 	}
 

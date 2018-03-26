@@ -35,3 +35,7 @@ RewriteRule ^topic/([a-zA-Z]+)-([0-9]+)-([0-9]+)$ index.php?p=topic&id=$2&page=$
 RewriteRule ^edit-message-([0-9]+)$ index.php?p=edit-message&id=$1
 RewriteRule ^edit-topic-([0-9]+)$ index.php?p=edit-topic&id=$1
 RewriteRule ^delete-topic-([0-9]+)$ index.php?p=delete-topic&id=$1
+
+RewriteRule ^admin$ index.php?p=admin
+
+RewriteRule ^admin/delete-topic-([0-9]+)$ index.php?p=admin-delete-topic&id=$1

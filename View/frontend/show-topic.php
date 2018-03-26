@@ -8,7 +8,11 @@
 		<section>
 			<aside class="avatar-topic">
 					<p><a href="<?= $url($user->pseudo); ?>"><img src="View/backend/users/avatars/<?= $user->avatar; ?>" /></a></p>
+					<?php if($admin($user->id)): ?>
+						<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
+					<?php endif; ?>
 					<p><a href="<?= $url($user->pseudo); ?>"><?= htmlspecialchars($user->pseudo); ?></a></p>
+
 			</aside>
 			<div class="topic-content">
 				<?php if($topic->t_edit_date !== "00/00/0000 à 00h00min00s"): ?>
@@ -28,6 +32,9 @@
 				<?php $userMessages = $userComment($comment->user_id); ?>
 				<aside class="avatar-topic">
 						<p><a href="<?= $urlComment($userMessages->pseudo); ?>"><img src="View/backend/users/avatars/<?= $userMessages->avatar; ?>" /></a></p>
+						<?php if($admin($userMessages->id)): ?>
+							<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
+						<?php endif; ?>
 						<p><a href="<?= $url($userMessages->pseudo); ?>"><?= htmlspecialchars($userMessages->pseudo); ?></a></p>
 				</aside>
 

@@ -144,7 +144,8 @@ class TopicsController extends Controller
 			} else {
 				$user = (object) [
 					'pseudo' => 'Anonyme',
-					'avatar' => 'default.png'
+					'avatar' => 'default.png',
+					'id' => false
 				];
 				$url = function(){
 					$urlcustom = 'topic/webmastertopic-'. $_GET['id'] . '-1';
@@ -180,9 +181,24 @@ class TopicsController extends Controller
 					return $urlCustom_Comment;
 				};
 			}
+
 			$userComment = function($user_id) {
-				$userMessages = $this->usersModel->select([$user_id], 'id');
-				return $userMessages;
+				$c_user = $this->usersModel->select([$user_id], 'id');
+				if($c_user == false){
+					$c_user = (object) [
+						'pseudo' => 'Anonyme',
+						'avatar' => 'default.png',
+						'id' => false
+					];
+				} 
+				return $c_user;
+			};
+
+			$admin = function($user_id){
+				$user_admin = $this->adminModel->count([$user_id], 'user_id');
+				if($user_admin == 1){
+					return true;
+				}
 			};
 
 			if($topic){
@@ -230,7 +246,7 @@ class TopicsController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('show-topic', compact('topic', 'user', 'url', 'comment', 'userComment', 'urlComment', 'pagination'), true);
+		$this->render('show-topic', compact('topic', 'user', 'url', 'comment', 'userComment', 'urlComment', 'pagination', 'admin'), true);
 	}
 
 	/**

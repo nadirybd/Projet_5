@@ -95,6 +95,17 @@ class UsersController extends Controller
 								'date' => $user->sub_date_fr,
 							];
 
+						$verifyAdmin = $this->adminModel->count([$user->id], 'user_id');
+						
+						if($verifyAdmin == 1){
+							$admin_user = $this->adminModel->select([$user->id], 'user_id');
+							if($admin_user->level == 'admin'){
+								$_SESSION['admin'] = 'admin';
+							} else {
+								$_SESSION['contrib'] = 'contrib';
+							}
+						}
+
 						if(isset($_POST['log_remember'])){
 							$cookie_content = $user->id . '-----';
 							$cookie_content .= password_hash($user->pseudo . $user->mail . $_SERVER['REMOTE_ADDR'], PASSWORD_BCRYPT);

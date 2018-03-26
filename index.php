@@ -10,6 +10,8 @@ use App\Controller\Frontend\TopicsController;
 
 use App\Controller\Backend\Users\UsersController as BackUsersController;
 use App\Controller\Backend\TopicsController as BackTopicsController;
+use App\Controller\Backend\Users\Admin\TopicsController as AdTopicsController;
+use App\Controller\Backend\Users\Admin\AdminController;
 use App\Controller\Backend\MessagesController;
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
@@ -97,6 +99,14 @@ switch ($page) {
 
 	case 'edit-message':
 		MessagesController::getInstance()->editMessage();
+		break;
+
+	case 'admin':
+		AdminController::getInstance()->admin();
+		break;
+
+	case 'admin-delete-topic':
+		AdTopicsController::getInstance()->delete();
 		break;
 
 	default:

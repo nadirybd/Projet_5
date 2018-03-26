@@ -20,6 +20,9 @@
 				<ul>
 					<li><a href="home">ACCUEIL</a></li>
 					<li><a href="webmaster-forum">FORUM</a></li>
+					<?php if(isset($_SESSION['user'], $_SESSION['admin'])): ?>
+						<li><a href="admin">ADMIN</a></li>
+					<?php endif; ?>
 					<?php if(isset($_SESSION['user'])): ?>
 						<li><a href="profile">VOTRE PROFIL</a></li>
 						<li><a href="logout">SE DÉCONNECTER</a></li>

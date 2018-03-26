@@ -207,12 +207,18 @@ input[type="submit"]:hover
 {
 	color: red;
 }
+
 .success
 {
 	color: green;
 	border: 1px solid green;
 	padding: 5px;
 	background-color: rgba(0, 255, 0, 0.1);
+}
+
+.admin 
+{
+	color: #e04f5f;
 }
 
 /***************************
@@ -821,6 +827,17 @@ footer
 	max-width: 350px;
 	width: 100%;
 	box-sizing: border-box;
+}
+
+#tb-last-topics thead, #tb-last-posts thead
+{
+	cursor: pointer;
+}
+
+#tb-last-topics .fa-caret-up, #tb-last-posts .fa-caret-up 
+{
+	position: relative;
+	right: -20px;
 }
 
 #tb-last-topics tbody, #tb-last-posts tbody

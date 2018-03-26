@@ -129,7 +129,7 @@ class TopicsController extends Controller
 								$topic_delete = $this->topicsModel->delete([$_GET['id']]);
 								$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
 								$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
-								$follow_delete = $this->folllowModel->deleteByTopic([$_GET['id']]);
+								$follow_delete = $this->followModel->deleteByTopic([$_GET['id']]);
 								header('location: profile');
 						} else {
 							$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';

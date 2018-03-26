@@ -20,7 +20,7 @@
 		<table class="tb" id="tb-last-topics">
 			<thead>
 				<tr>
-					<th>LES 5 DERNIERS TOPICS</th>
+					<th>LES 5 DERNIERS TOPICS <i class="fas fa-caret-up"></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,7 +43,7 @@
 		<table class="tb" id="tb-last-posts"> 
 			<thead>
 				<tr>
-					<th>DERNIERS POSTS</th>
+					<th>DERNIERS POSTS <i class="fas fa-caret-up"></i></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,3 +69,4 @@
 	</aside>
 </div>
 
+<script src="public/js/main-forum.js"></script>
