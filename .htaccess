@@ -39,3 +39,5 @@ RewriteRule ^delete-topic-([0-9]+)$ index.php?p=delete-topic&id=$1
 RewriteRule ^admin$ index.php?p=admin
 
 RewriteRule ^admin/delete-topic-([0-9]+)$ index.php?p=admin-delete-topic&id=$1
+
+RewriteRule ^admin/delete-message-([0-9]+)$ index.php?p=admin-delete-message&id=$1

@@ -51,15 +51,25 @@
 					<hr/>
 
 					<div class="topic-text"><?= htmlspecialchars($comment->content); ?></div>
+					
 
-					<?php if(isset($_SESSION['user']['id'])): ?>
+					<?php if(isset($_SESSION['user']['id'])): ?>			
+					<div class="option-comment">
+						<form class="form report-form" method="post">
+							<input type="hidden" name="report_id" value="<?= $comment->id; ?>" id="report_id" />
+							<button class="btn-report" type="submit" name="sub-report">
+								<i class="fas fa-exclamation-circle"></i> Signaler
+							</button>
+						</form>
+
 						<?php if($userMessages->id == $_SESSION['user']['id']): ?>
-
 							<div class="edit">
-								<a href="edit-message-<?= $comment->id; ?>">Editer votre commentaire</a>
+								<a href="edit-message-<?= $comment->id; ?>" title="Editer le commentaire"><i class="fas fa-edit"></i> Éditer</a>
 							</div>
+						<?php endif; ?>							
+					</div>
 
-						<?php elseif($topic->user_id == $_SESSION['user']['id'] && $comment->best_answer == 0 && $comment->user_id !== $_SESSION['user']['id']): ?>
+						<?php if($topic->user_id == $_SESSION['user']['id'] && $comment->best_answer == 0 && $comment->user_id !== $_SESSION['user']['id']): ?>
 							<form class="form best-answer-form" method="post">
 								<input type="hidden" name="best_answer" value="<?= $comment->id; ?>" />
 								<button type="submit" class="btn-validate" name="sub_bestAnswer"><i class="fas fa-heart"></i></button> 
@@ -79,6 +89,9 @@
 
 	<p><?= $pagination; ?></p>
 
+	<div class="notif">
+	</div>
+	
 	<div id="comment-form-topic">
 		<?php if(isset($_SESSION['user']['id'])): ?>
 			<form class="form comment-fom" method="post">
@@ -93,3 +106,4 @@
 		<?php endif; ?>
 	</div>
 </div>
+<script src="public/js/ajax-report.js"></script>

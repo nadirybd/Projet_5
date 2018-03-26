@@ -10,6 +10,9 @@
 					<?php if(isset($_SESSION['user'])): ?>
 						<td>Option</td>
 					<?php endif; ?>
+					<?php if(isset($_SESSION['admin'])): ?>
+						<td>Suppression</td>
+					<?php endif; ?>
 				</tr>
 			</thead>
 			<tbody>
@@ -48,6 +51,11 @@
 							</form>
 						</td>
 						<?php endif; ?>
+					<?php endif; ?>
+					<?php if(isset($_SESSION['admin'])): ?>
+						<td>
+							<a href="admin/delete-topic-<?= $topic->id; ?>"><span class="delete">Supprimer</span></a>
+						</td>
 					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>

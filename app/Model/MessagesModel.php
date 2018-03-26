@@ -27,6 +27,32 @@ class MessagesModel extends Model
 	}
 
 	/**
+	* Méthode updateReport qui met à jour l'entrée report dans la table 
+	* f_message
+	* @param $attributes
+	* @return true / false
+	*/
+	public function updateReport($attributes, $clean = null){
+		if($clean !== null){
+			$updateReport = $this->my_sql->prepare('UPDATE f_messages SET report = 0 WHERE id = ?', $attributes);
+		} else {
+			$updateReport = $this->my_sql->prepare('UPDATE f_messages SET report = report + 1 WHERE id = ?', $attributes);
+		}
+		return $updateReport;
+	}
+
+	/**
+	* @param array(statement)
+	* @return array(Obj stdClass)
+	*/
+	public function selectByReport(){
+		$selectByReport = $this->my_sql->query('
+			SELECT id, topic_id, user_id, DATE_FORMAT(creation_date, "%d/%m/%Y à %Hh%imin%ss") as messageDate, DATE_FORMAT(edit_date, "%d/%m/%Y à %Hh%imin%ss") as edit_dateFr, edit_date, best_answer, content, report FROM f_messages WHERE report > 0 ORDER BY report DESC');
+
+		return $selectByReport; 
+	}
+
+	/**
 	* Méthode deleteBytopic qui supprime les entrées par topic_id
 	* @param $attributes
 	* @return true / false

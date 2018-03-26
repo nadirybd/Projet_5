@@ -3,16 +3,19 @@ require('app/App.php');
 App::load();
 
 use App\Controller\Frontend\FrontController;
-use App\Controller\Frontend\Users\UsersController;
 use App\Controller\Frontend\CategoriesController;
 use App\Controller\Frontend\TopicsController;
+use App\Controller\Frontend\Users\UsersController;
 
 
-use App\Controller\Backend\Users\UsersController as BackUsersController;
 use App\Controller\Backend\TopicsController as BackTopicsController;
-use App\Controller\Backend\Users\Admin\TopicsController as AdTopicsController;
-use App\Controller\Backend\Users\Admin\AdminController;
 use App\Controller\Backend\MessagesController;
+use App\Controller\Backend\Users\UsersController as BackUsersController;
+use App\Controller\Backend\Users\Admin\TopicsController as AdTopicsController;
+use App\Controller\Backend\Users\Admin\MessagesController as AdMessagesController;
+use App\Controller\Backend\Users\Admin\AdminController;
+
+
 
 if(isset($_GET['p']) && !empty($_GET['p'])){
 	$page = $_GET['p'];
@@ -107,6 +110,10 @@ switch ($page) {
 
 	case 'admin-delete-topic':
 		AdTopicsController::getInstance()->delete();
+		break;
+
+	case 'admin-delete-message':
+		AdMessagesController::getInstance()->delete();
 		break;
 
 	default:

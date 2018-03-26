@@ -20,7 +20,13 @@ class AdminController extends Controller
 	public function admin(){
 		if($this->logged() && isset($_SESSION['admin'])){
 			$lastTopics = $this->topicsModel->lastTopics(5);
-			$this->render('admin', compact('lastTopics'));
+			$reportedMessages = $this->messagesModel->selectByReport();
+			$userMessages = function($user_id){
+				$user = $this->usersModel->select([$user_id], 'id');
+				return $user;
+			};
+
+			$this->render('admin', compact('lastTopics', 'reportedMessages', 'userMessages'));
 		} else {
 			header('location: forbidden');
 		}

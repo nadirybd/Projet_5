@@ -33,18 +33,18 @@ class MysqlDatabase extends Database
 	public function prepare($statement, $attributes, $one = null, $all = null, $count = null, $last = null){
 		$db = $this->getDb();
 		$req = $db->prepare($statement);
-		$req->execute($attributes);
+		$data = $req->execute($attributes);
 		if($one === true){
 			return $req->fetch(PDO::FETCH_OBJ);
-		}
-		if($all === true){
+		} elseif($all === true){
 			return $req->fetchAll(PDO::FETCH_OBJ);
-		}  
-		if($count === true){
+		} elseif($count === true){
 			return $req->fetchColumn();
-		} 
-		if($last === true){
+		} elseif($last === true){
 			return $db->lastInsertId();
-		}  
+		} else {
+			return $data;
+		}
+
 	}
 }

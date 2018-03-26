@@ -19,8 +19,26 @@ class TopicsController extends Controller
 	*/
 	public function delete(){
 		if($this->logged() && isset($_SESSION['admin'])){
-			$topic = $this->topicsModel->select();
-			$this->render('admin-delete-topic', compact('lastTopics'));
+
+			if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+
+				if(isset($_POST['admin-sub-delete'], $_POST['admin_confirm_delete'])){
+					$confirm_delete = $_POST['admin_confirm_delete'];
+					if(!empty($confirm_delete) && $confirm_delete === 'SUPPRIMER'){
+							$topic_delete = $this->topicsModel->delete([$_GET['id']]);
+							$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
+							$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
+							$follow_delete = $this->followModel->deleteByTopic([$_GET['id']]);
+							header('location: admin');
+					} else {
+						$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';
+					}
+				}
+
+				$this->render('delete-topic', compact('lastTopics'));
+			} else {
+				header('location: /Forum/admin');
+			}
 		} else {
 			header('location: forbidden');
 		}
@@ -31,7 +49,7 @@ class TopicsController extends Controller
 	*/
 	public static function getInstance(){
 		if(self::$_instance === null){
-			self::$_instance = new AdminController();
+			self::$_instance = new TopicsController();
 		}
 		return self::$_instance;
 	}

@@ -12,6 +12,10 @@ switch ($request) {
 	case 'subcategories':
 		AjaxController::getInstance()->ajaxFormTopic();
 		break;
+		
+	case 'report':
+		AjaxController::getInstance()->ajaxReportComment();
+		break;
 
 	default:
 		break;
