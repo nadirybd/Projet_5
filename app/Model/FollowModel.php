@@ -25,6 +25,15 @@ class FollowModel extends Model
 	}
 
 	/**
+	*
+	*/
+	public function deleteByTopic($attributes){
+		$delete = $this->my_sql->prepare('DELETE FROM f_follow WHERE topic_id = ?', $attributes);
+		
+		return $delete;
+	}
+
+	/**
 	* Méthode select qui sélectionne une ou plusieurs entrées dans la 
 	* table f_follow
 	* @param array(statement)

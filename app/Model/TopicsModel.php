@@ -25,6 +25,16 @@ class TopicsModel extends Model
 
 		return $update;
 	}
+	
+	/**
+	* @param array(statement)
+	* @return true / false
+	*/
+	public function delete($attributes){
+		$delete = $this->my_sql->prepare('DELETE FROM f_topics WHERE id = ?', $attributes);
+
+		return $delete;
+	}
 
 	/**
 	* @param null or int

@@ -47,4 +47,13 @@ class CategoriesModel extends Model
 		return $insert;
 	}
 
+	/**
+	*
+	*/
+	public function deleteByTopic($attributes){
+		$delete = $this->my_sql->prepare('DELETE FROM f_category_topics WHERE topic_id = ?', $attributes);
+		
+		return $delete;
+	}
+
 }

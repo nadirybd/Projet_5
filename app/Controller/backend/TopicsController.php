@@ -6,7 +6,7 @@ use Core\Controller\Controller;
 * faisant le lien entre "model" et "view"
 */
 class TopicsController extends Controller
-{
+{	
 	/**
 	* @var $viewPath retourne le nom du dossier backend
 	* @var $_instance qui stocke l'instance de la classe
@@ -109,6 +109,38 @@ class TopicsController extends Controller
 				}
 
 				$this->render('edit-topic', compact('topic', 'error_edit'));
+			}
+		} else {
+			header('location: forbidden');
+		}
+	}
+
+	/**
+	* Méthode deleteTopic qui va supprimer gérer la suppression en vérifiant les données de l'utilisateur
+	*/
+	public function deleteTopic(){
+		if($this->logged()){
+			if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+				$verify_user_topic = $this->topicsModel->countTopic([$_GET['id'], $_SESSION['user']['id']], 'id', 'user_id');
+				if($verify_user_topic == 1){
+					if(isset($_POST['sub-delete'], $_POST['confirm_delete'])){
+						$confirm_delete = $_POST['confirm_delete'];
+						if(!empty($confirm_delete) && $confirm_delete === 'SUPPRIMER'){
+								$topic_delete = $this->topicsModel->delete([$_GET['id']]);
+								$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
+								$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
+								$follow_delete = $this->folllowModel->deleteByTopic([$_GET['id']]);
+								header('location: profile');
+						} else {
+							$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';
+						}
+					}
+				} else {
+					header('location: forbidden');
+				}
+				$this->render('delete-topic');
+			} else {
+				header('location: profile');
 			}
 		} else {
 			header('location: forbidden');

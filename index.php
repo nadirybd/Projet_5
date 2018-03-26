@@ -87,6 +87,10 @@ switch ($page) {
 		BackTopicsController::getInstance()->editTopic();
 		break;
 
+	case 'delete-topic':
+		BackTopicsController::getInstance()->deleteTopic();
+		break;
+
 	case 'topic':
 		TopicsController::getInstance()->topic();
 		break;
