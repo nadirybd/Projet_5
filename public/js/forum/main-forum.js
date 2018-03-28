@@ -14,10 +14,12 @@ function tableToogle(tableBody, tableArraw){
 	}	
 };
 
-$('#tb-last-topics thead').on('click', function(){
-	tableToogle('#tb-last-topics tbody', '#tb-last-topics .fa-caret-up');
-});
+$(document).ready(function(){
+	$('#tb-last-topics thead').on('click', function(){
+		tableToogle('#tb-last-topics tbody', '#tb-last-topics .fa-caret-up');
+	});
 
-$('#tb-last-posts thead').on('click', function(){
-	tableToogle('#tb-last-posts tbody', '#tb-last-posts .fa-caret-up');
+	$('#tb-last-posts thead').on('click', function(){
+		tableToogle('#tb-last-posts tbody', '#tb-last-posts .fa-caret-up');
+	});
 });

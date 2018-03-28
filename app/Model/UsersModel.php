@@ -85,6 +85,16 @@ class UsersModel extends Model
 	}
 
 	/**
+	* Méthode select qui renvoi le nombre de column
+	* @param string -> PDO::Statement 
+	* @param string
+	*/
+	public function selectNewUsers($limit){
+		$selectNewUsers = $this->my_sql->query('SELECT id, pseudo, mail, password, avatar, DATE_FORMAT(subscribe_date, "%d/%m/%Y") AS sub_date_fr FROM members ORDER BY id DESC LIMIT '. $limit);
+		return $selectNewUsers;
+	}
+
+	/**
 	* Méthode selectInfo qui renvoi le nombre de column
 	* @param string -> PDO::Statement 
 	* @param string

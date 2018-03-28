@@ -1,8 +1,8 @@
-<div id="login-page" class="page">	
-	<div id="login-content">
+<div id="login-page" class="page form-page">	
+	<div class="form-container">
 		<h2>Authentification</h2>
 		
-		<form class="form log-form" method="post">
+		<form class="form" id="log-form" method="post">
 			<?php if(isset($log_error)): ?>
 				<div class="error"><?= $log_error; ?></div>
 			<?php endif; ?>

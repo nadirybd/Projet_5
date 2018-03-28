@@ -19,7 +19,7 @@ class CategoriesController extends Controller
 	*/
 	public function forum(){
 		$categories = $this->categoriesModel->select();
-		$lastTopics = $this->topicsModel->lastTopics(5);
+		$lastTopics = $this->topicsModel->lastTopics(10);
 		
 		$nbTopics = function($attributes){
 			$number_of_topics = $this->topicsModel->count([$attributes], 'category_id');

@@ -168,9 +168,9 @@ class TopicsController extends Controller
 				$from = $comment_per_page * ($_GET['page'] - 1);
 			}
 
-			$comment = $this->messagesModel->select([$topic->id], 'topic_id', $from, $comment_per_page);
+			$comments = $this->messagesModel->select([$topic->id], 'topic_id', $from, $comment_per_page);
 
-			if(count($comment) > 0){
+			if(count($comments) > 0){
 				$urlComment = function($pseudo){
 					$urlCustom_Comment = 'public-profile/'. $pseudo;
 					return $urlCustom_Comment;
@@ -246,7 +246,7 @@ class TopicsController extends Controller
 			header('location: /Forum/webmaster-forum');
 		}
 
-		$this->render('show-topic', compact('topic', 'user', 'url', 'comment', 'userComment', 'urlComment', 'pagination', 'admin'), true);
+		$this->render('show-topic', compact('topic', 'user', 'url', 'comments', 'userComment', 'urlComment', 'pagination', 'admin'), true);
 	}
 
 	/**

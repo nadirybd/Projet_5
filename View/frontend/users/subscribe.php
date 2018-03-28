@@ -1,9 +1,7 @@
-<div id="subscribe-page" class="page">
-	<div id="subscribe-form">
-		<aside>
-			<h2>Rejoignez la communauté, partagez votre savoir ou bien enrichissez-le !</h2>
-			<h3>Créer votre compte</h3>
-		</aside>
+<div id="subscribe-page" class="page form-page">
+	<div class="form-container">
+		<h2>Rejoignez la communauté, partagez votre savoir ou bien enrichissez-le !</h2>
+		<h3>Créer votre compte</h3>
 
 		<?php if(isset($error)): ?>
 			<div class="error"><?= $error; ?></div>

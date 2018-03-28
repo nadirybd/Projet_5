@@ -1,3 +1,8 @@
+$(document).ready(function(){
+	editDescription();
+	resolvedForm();
+});
+
 var edit_button = $('.edit-button');
 var cancel_button = $('.cancel-description');
 var description = $('.description-content');
@@ -31,6 +36,3 @@ function resolvedForm(){
 		$('.overlay').hide();
 	});
 };
-
-editDescription();
-resolvedForm();

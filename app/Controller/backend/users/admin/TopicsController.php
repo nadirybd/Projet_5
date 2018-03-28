@@ -29,7 +29,7 @@ class TopicsController extends Controller
 							$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
 							$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
 							$follow_delete = $this->followModel->deleteByTopic([$_GET['id']]);
-							header('location: admin');
+							header('location: /Forum/admin');
 					} else {
 						$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';
 					}

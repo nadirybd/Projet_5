@@ -53,6 +53,17 @@ class MessagesModel extends Model
 	}
 
 	/**
+	* Méthode delete qui supprime les entrées par topic_id
+	* @param $attributes
+	* @return true / false
+	*/
+	public function delete($attributes){
+		$delete = $this->my_sql->prepare('DELETE FROM f_messages WHERE id = ?', $attributes);
+		
+		return $delete;
+	}
+
+	/**
 	* Méthode deleteBytopic qui supprime les entrées par topic_id
 	* @param $attributes
 	* @return true / false
@@ -62,6 +73,7 @@ class MessagesModel extends Model
 		
 		return $delete;
 	}
+	
 
 	/**
 	* Méthode select qui sélectionne une ou plusieurs entrées dans la 

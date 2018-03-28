@@ -1,4 +1,4 @@
-<div id="one-topic-page" class="page">
+<div id="topic-page" class="page">
 	<?php if($topic->resolved == 1): ?>
 		<h1>Sujet : <?= strip_tags($topic->title); ?> - <span class="resolved">Résolu <i class="fas fa-check"></i></span></h1>
 	<?php else: ?>
@@ -26,16 +26,28 @@
 		</section>
 	<?php endif; ?>
 
-	<?php if(count($comment) > 0): ?> 
-		<?php foreach($comment as $comment): ?>
+	<?php if(count($comments) > 0): ?> 
+		<?php foreach($comments as $comment): ?>
 			<section>		
 				<?php $userMessages = $userComment($comment->user_id); ?>
 				<aside class="avatar-topic">
-						<p><a href="<?= $urlComment($userMessages->pseudo); ?>"><img src="View/backend/users/avatars/<?= $userMessages->avatar; ?>" /></a></p>
-						<?php if($admin($userMessages->id)): ?>
-							<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
-						<?php endif; ?>
-						<p><a href="<?= $url($userMessages->pseudo); ?>"><?= htmlspecialchars($userMessages->pseudo); ?></a></p>
+					<p><a href="<?= $urlComment($userMessages->pseudo); ?>"><img src="View/backend/users/avatars/<?= $userMessages->avatar; ?>" /></a></p>
+					<?php if($admin($userMessages->id)): ?>
+						<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
+					<?php endif; ?>
+					<p><a href="<?= $url($userMessages->pseudo); ?>"><?= htmlspecialchars($userMessages->pseudo); ?></a></p>
+					<?php if(isset($_SESSION['admin'], $_SESSION['user'])): ?>
+						<div class="delete-message">	
+							<a href="admin/delete-message-<?= $comment->id; ?>"><span class="delete">Supprimer</span></a>
+						</div>	
+					<?php endif; ?>
+
+					<?php if($topic->user_id == $_SESSION['user']['id'] && $comment->best_answer == 0 && $comment->user_id !== $_SESSION['user']['id']): ?>
+						<form class="form best-answer-form" method="post">
+							<input type="hidden" name="best_answer" value="<?= $comment->id; ?>" />
+							<button type="submit" class="btn-like" name="sub_bestAnswer"><i class="fas fa-heart"></i></button> 
+						</form>
+					<?php endif; ?>
 				</aside>
 
 				<div class="topic-content">
@@ -68,13 +80,6 @@
 							</div>
 						<?php endif; ?>							
 					</div>
-
-						<?php if($topic->user_id == $_SESSION['user']['id'] && $comment->best_answer == 0 && $comment->user_id !== $_SESSION['user']['id']): ?>
-							<form class="form best-answer-form" method="post">
-								<input type="hidden" name="best_answer" value="<?= $comment->id; ?>" />
-								<button type="submit" class="btn-validate" name="sub_bestAnswer"><i class="fas fa-heart"></i></button> 
-							</form>
-						<?php endif; ?>
 					<?php endif; ?>
 
 					<?php if($comment->best_answer == 1): ?>
@@ -91,7 +96,7 @@
 
 	<div class="notif">
 	</div>
-	
+
 	<div id="comment-form-topic">
 		<?php if(isset($_SESSION['user']['id'])): ?>
 			<form class="form comment-fom" method="post">

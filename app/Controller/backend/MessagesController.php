@@ -31,13 +31,23 @@ class MessagesController extends Controller
 							$error_edit = 'Le champs ne peut pas être vide !';
 						}
 					}
+					
+					if(isset($_POST['sub-delete-msg'], $_POST['delete_msg'])){
+						$deleteMsg = $_POST['delete_msg'];
+						if(!empty($deleteMsg) && $deleteMsg === 'SUPPRIMER'){
+							$this->messagesModel->delete([$_GET['id']]);
+							header('location: topic/webmastertopic-'. $message->topic_id .'-1');
+						} else {
+							$error_delete = 'Veuillez écrire le mot : SUPPRIMER';
+						}
+					}
 				} else {
 					header('location: forbidden');
 				}
 			} else {
 				header('location: forbidden');
 			}
-			$this->render('edit-message', compact('message', 'error_edit'));
+			$this->render('edit-message', compact('message', 'error_edit', 'error_delete'));
 		} else {
 			header('location: forbidden');
 		}

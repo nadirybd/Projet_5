@@ -1,5 +1,5 @@
-<div class="recup-password-page" class="page">
-	<div class="form-recup-pass">
+<div id="recup-pass-page" class="page form-page">
+	<div class="form-container">
 		<h2>Entrez votre code de récupération</h2>
 		<form class="form form-recup" method="post">
 			<?php if(isset($success)) : ?>

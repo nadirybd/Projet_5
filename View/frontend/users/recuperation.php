@@ -1,7 +1,7 @@
-<div class="recup-password-page" class="page">
-	<div class="form-recup-pass">
+<div id="recup-pass-mail" class="page form-page">
+	<div class="form-container">
 		<h2>Récupération de votre mot de passe</h2>
-		<form class="form form-recup" method="post">
+		<form class="form" id="form-recup" method="post">
 			<?php if(isset($success)) : ?>
 				<div class="success"><?= $success; ?></div>
 			<?php elseif(isset($error)) : ?>

@@ -18,8 +18,18 @@ class MessagesController extends Controller
 	*/
 	public function delete(){
 		if($this->logged() && $_SESSION['admin']){
-			/*if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){*/
-				
+			if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+				if(isset($_POST['sub-delete-message'], $_POST['admin_delete_message'])){
+					$messageDelete = $_POST['admin_delete_message'];
+					if(!empty($messageDelete) && $messageDelete === 'SUPPRIMER'){
+						var_dump($messageDelete);
+						$delete = $this->messagesModel->delete([$_GET['id']]);
+						header('location: /Forum/admin');
+					} else {
+						$error_delete = 'Veuillez écrire le mot : SUPPRIMER';
+					}
+				}
+			}
 			$this->render('delete-message');
 		} else {
 			header('location: forbidden');

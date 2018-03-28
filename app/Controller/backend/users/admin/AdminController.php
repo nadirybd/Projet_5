@@ -19,14 +19,28 @@ class AdminController extends Controller
 	*/
 	public function admin(){
 		if($this->logged() && isset($_SESSION['admin'])){
-			$lastTopics = $this->topicsModel->lastTopics(5);
+			$lastTopics = $this->topicsModel->lastTopics(10);
+			$lastUsers = $this->usersModel->selectNewUsers(10);
 			$reportedMessages = $this->messagesModel->selectByReport();
 			$userMessages = function($user_id){
 				$user = $this->usersModel->select([$user_id], 'id');
 				return $user;
 			};
-
-			$this->render('admin', compact('lastTopics', 'reportedMessages', 'userMessages'));
+			if(isset($_POST['sub-pull-report'], $_POST['pull_report'])){
+				$pull_report = $_POST['pull_report'];
+				if(!empty($pull_report) && intval($pull_report)){
+					$this->messagesModel->updateReport([$pull_report], true);
+					header('location: /Forum/admin');
+				} 
+			}
+			if(isset($_POST['sub-delete-user'], $_POST['delete_user'])){
+				$delete_user = $_POST['delete_user'];
+				if(!empty($delete_user)){
+					$this->usersModel->delete([$delete_user], 'pseudo', 'members');
+					$success_delete_user = 'L\'utilisateur '.$delete_user.' a bien été supprimé';
+				} 
+			}
+			$this->render('admin', compact('lastTopics', 'reportedMessages', 'userMessages', 'lastUsers', 'success_delete_user'), true);
 		} else {
 			header('location: forbidden');
 		}

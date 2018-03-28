@@ -1,3 +1,7 @@
+$(document).ready(function(){
+	report();
+});
+
 function report(){
 	$('.report-form').on('submit', function(e){
 		e.preventDefault();
@@ -13,8 +17,5 @@ function report(){
 		$('.notif').fadeOut();
 	});
 }
-
-
-report();
 
 

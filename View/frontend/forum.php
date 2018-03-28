@@ -1,6 +1,7 @@
-<div id="forum-page" class="page frontpage">
-	<section>
-		<p><a href="add-topic">Ajouter un topics</a></p>
+<div class="page front-page" id="forum-page">
+	
+	<div id="categories-container">
+		<h1>FORUM</h1>
 		<?php foreach($categories as $category): ?>
 			<div class="row-category">
 				<aside>
@@ -8,15 +9,17 @@
 				</aside>
 				<div class="category">
 					<h2><a href="<?= $url($category->name, $category->id); ?>-1"><?= htmlspecialchars($category->name); ?></a></h2>
-					<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
+					<div class="sub">
+						<p><?= $subcat($category->id, $category->id, $category->name); ?></p>
+					</div>
 					<p> Nombre de topics posté : <?= $nbTopics($category->id); ?></p>
 				</div>
 			</div>
 			<hr/>
 		<?php endforeach; ?>
-	</section>
+	</div>
 
-	<aside id="side-tb">
+	<aside id="side-forum">
 		<table class="tb" id="tb-last-topics">
 			<thead>
 				<tr>
@@ -39,34 +42,9 @@
 				</tr>
 			</tfoot>
 		</table>
-
-		<table class="tb" id="tb-last-posts"> 
-			<thead>
-				<tr>
-					<th>DERNIERS POSTS <i class="fas fa-caret-up"></i></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Do eiusmod tempor incididunt ut labore et dolore magna aliqua. At vero eos et accusamus. Inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</td>
-				</tr>
-				<tr>
-					<td>Itaque earum rerum hic tenetur a sapiente delectus. Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</td>
-				</tr>
-				<tr>
-					<td> Ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.</td>
-				</tr>
-				<tr>
-					<td>. Cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia. Quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td><a href="">Voir tous les posts</a></td>
-				</tr>
-			</tfoot>
-		</table>
 	</aside>
 </div>
 
-<script src="public/js/main-forum.js"></script>
+
+<script src="public/js/forum/main-forum.js"></script>
+<script src="public/js/forum/slider.js"></script>

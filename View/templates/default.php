@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
-		<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
 	<body>
@@ -19,13 +19,13 @@
 			<nav>
 				<ul>
 					<li><a href="home">ACCUEIL</a></li>
-					<li><a href="webmaster-forum">FORUM</a></li>
 					<?php if(isset($_SESSION['user'], $_SESSION['admin'])): ?>
-						<li><a href="admin">ADMIN</a></li>
+						<li><a href="admin">ADMINISTRATION</a></li>
 					<?php endif; ?>
+					<li><a href="webmaster-forum">FORUM</a></li>
 					<?php if(isset($_SESSION['user'])): ?>
-						<li><a href="profile">VOTRE PROFIL</a></li>
 						<li><a href="logout">SE DÉCONNECTER</a></li>
+						<li><a href="profile"><i class="fas fa-user-circle fa-2x"></i></a></a></li>
 					<?php else: ?>
 						<li><a href="login">SE CONNECTER</a></li>
 						<li><a href="subscribe">S'INSCRIRE</a></li>

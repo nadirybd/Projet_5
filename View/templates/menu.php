@@ -8,4 +8,7 @@
 			</li>
 		</ul>
 	<?php endforeach; ?>
+	<div id="create-topic">
+		 <a href="add-topic"><i class="fas fa-plus-circle"></i> Ajouter un topic</a>
+	</div>
 </nav>

@@ -1,12 +1,12 @@
-<div class="recup-password-page" class="page">
-	<div class="form-recup-pass">
+<div id="reset-pass-page" class="page form-page">
+	<div class="form-container">
 		<h2>Entrez votre nouveau mot de passe</h2>
-		<form class="form form-recup" method="post">
+		<form class="form" id="form-recup" method="post">
 			<?php if(isset($error)) : ?>
 				<div class="error"><?= $error; ?></div>
 			<?php endif; ?>
 			<p>
-				<label for="reset_pass">Nouveau mot de passe :</label>
+				<label for="reset_pass">Nouveau mot de passe :</label><br/>
 				<input type="password" name="reset_pass" id="reset_pass" placeholder="Nouveau mot de passe" required />
 			</p>
 			<p>

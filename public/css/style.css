@@ -11,7 +11,6 @@ body, html
 
 body
 {
-	height: 100%;
 	font-family: 'Nanum Gothic', sans-serif;
 	word-wrap: break-word;
 }
@@ -23,20 +22,20 @@ a
 	border: none;
 }
 
+ul
+{
+	list-style: none;
+	padding: 0;
+}
+
 #main-container, #contains
 {
-	height: auto;
 	padding: 0; 
 }
 
 .page
 {
 	padding-top: 100px;
-}
-
-.frontpage 
-{
-	margin-top: 159px;
 }
 
 .page a 
@@ -68,6 +67,7 @@ a
 	width: 100%;
 	z-index: 99; 
 }
+
 /***************************
 			BUTTON 
 ****************************/
@@ -86,8 +86,7 @@ a
 	padding: 0;
 }
 
-
-.call-to-action a, .cancel-button a 
+.call-to-action a, .cancel-button a , .btn-default a
 {
 	display: flex;
 	justify-content: center;
@@ -102,6 +101,7 @@ a
 {
 	box-shadow: 0 0 10px #0aa2cb;
 }
+
 
 .cancel-button
 {
@@ -125,12 +125,19 @@ a
 	color: #e04f5f;
 }
 
-.btn-cancel, .btn-validate
+.btn-cancel, .btn-validate, .btn-default
 {
 	border-radius: 8px;
 	color: white;
 	cursor: pointer;
 	padding: 5px 30px;
+	width: 140px;
+}
+
+.btn-default
+{
+	background-color: #31b1d8;
+	border: 2px solid #31b1d8;
 }
 
 .btn-cancel
@@ -149,6 +156,11 @@ a
 .btn-validate:hover
 {
 	box-shadow: 0 0 10px #56c95c;
+}
+
+.btn-cancel:hover
+{
+	box-shadow: 0 0 10px #e04f5f; 
 }
 
 .btn-report
@@ -180,15 +192,22 @@ input[type="submit"]:hover
 /***************************
 			FORM
 ****************************/
+.form 
+{
+	width: 100%;
+}
 
 .form input[type='text'], .form input[type='email'],
 .form input[type='password'], .form select
 {
-	box-sizing: border-box;
-	width: 80%;
+	width: 90%;
+	max-width: 450px;
+	min-width: 250px;
 	background-color: rgba(255, 255, 255, 0.6);
 	border: 2px solid transparent;
 	padding: 10px;
+	box-sizing: border-box;
+	margin: 5px 0;
 }
 
 .form label
@@ -199,16 +218,54 @@ input[type="submit"]:hover
 
 .form textarea
 {
-	width: 80%;
+	width: 100%;
 	height: 300px;
 }
 
+.form-page
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background: url('/Forum/public/images/bg5.jpg');
+	background-size: cover;
+	min-height: 100vh;
+}
+
+.form-container
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	max-width: 550px;
+	width: 100%;
+	padding: 60px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+
+.form-container h1, .form-container h2, .form-container h3,
+.form-container h4, .form-container h5, .form-container h6
+{
+	margin-bottom: 40px;
+}
+
+.form-container p
+{
+	width: 100%;
+}
+
+/*** ERROR ET LINK ***/
 .error
 {
 	color: #e04f5f;
 	border: 1px solid #e04f5f;
 	padding: 5px;
 	background-color: rgba(255, 0, 0, 0.1);
+	margin: 5px 0;
 }
 
 .delete
@@ -222,6 +279,7 @@ input[type="submit"]:hover
 	border: 1px solid green;
 	padding: 5px;
 	background-color: rgba(0, 255, 0, 0.1);
+	margin: 15px 0;
 }
 
 .admin 
@@ -238,6 +296,7 @@ input[type="submit"]:hover
 	margin-bottom: 50px;
 	border-collapse: collapse;
 	background-color: #FFFFFF;
+	min-width: 300px;
 }
 
 .tb	th, .tb	td
@@ -253,7 +312,7 @@ input[type="submit"]:hover
 
 .tb thead, .tb tfoot
 {
-	background-color: #0aa2cb;
+	background-color: #e14e5f;
 	color: white;
 	text-align: center;
 }
@@ -263,6 +322,10 @@ input[type="submit"]:hover
 	color: white;
 }
 
+.tb tbody tr:nth-child(even)
+{
+	background: #e8eaed;
+}
 /***************************
 			WIDGET
 ****************************/
@@ -415,6 +478,21 @@ header nav ul li a:hover
 	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+#create-topic
+{
+	position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translate( 0, -50%);
+}
+
+#create-topic .fa-plus-circle
+{
+	position: relative;
+	top: 1.5px;
+	margin-right: 3px;
+}
+
 /***************************
 		MAIN FOOTER
 ****************************/
@@ -472,99 +550,207 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: #b5b5b5;
+	background: url('../images/slide.jpg');
+	background-size: cover;
 }
 
 #last-topic
 {
 	text-align: left;
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 40px;
-	color: white;
+	background-color: white;
+	max-width: 1000px;
+	width: 100%;
+	color: black;
 }
 
-.wd-4 h4 a
+.wd-4 h3 a
 {
 	color: #0aa2cb;
 }
 
-.wd-4 h3
+.wd-4 h2
 {
 	text-align: center;
 	font-size: 1.4em;
 	margin-bottom: 40px;
+	margin-top: 0;
+	padding: 20px;
+	background-color: #e04f5f;
+	color: white;
+}
+
+#last-topic-content
+{
+	padding: 0 40px 40px 40px;
 }
 
 /***************************
-		SUBCRIBE PAGE
+		FORUM PAGE 
 ****************************/
+.front-page
+{
+	max-width: 1800px;
+	margin: 0 auto;
+	padding: 250px 0 100px 0;
+}
 
-#subscribe-page
+#forum-page
+{
+	display: flex;
+	justify-content: space-around;
+}
+
+#categories-container 
+{
+	background-color: white;
+	box-shadow: 0 0 10px black;
+	max-width: 1000px;
+	width: 100%;
+}
+
+#categories-container h1
+{
+	text-align: center;
+	background-color: #e14e5f;
+	color: white;
+	padding: 40px;
+	margin-top: 0;
+}
+
+#categories-container hr
+{
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	width: 95%;
+}
+
+#categories-container hr:last-child
+{
+	display: none;
+}
+
+.row-category
+{
+	display: flex;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.category, .row-category aside
+{
+	margin: 10px 20px;
+}
+
+.category
+{
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#side-forum
 {
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
-	text-align: center;
-	background: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-	min-height: 100vh;
 }
 
-#subscribe-form
+/****** TABLE FORUM ASIDE ******/
+
+#tb-last-topics, #tb-last-posts
 {
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
-	max-width: 550px;
+	box-shadow: 0 0 10px black;
+	width: 550px;
+	box-sizing: border-box;
+}
+
+#tb-last-topics thead, #tb-last-posts thead
+{
+	cursor: pointer;
+}
+
+#tb-last-topics .fa-caret-up, #tb-last-posts .fa-caret-up 
+{
+	position: relative;
+	right: -10px;
+}
+
+#tb-last-topics tbody, #tb-last-posts tbody
+{
+	display: block;
+	overflow-y: scroll;
+	height: 450px;
+}
+
+#tb-last-topics tbody::-webkit-scrollbar,
+#tb-last-posts tbody::-webkit-scrollbar
+{
+	background-color: white;
+	border: 1px solid grey;
+	width: 5px;
+}
+
+#tb-last-topics tbody::-webkit-scrollbar-thumb, 
+#tb-last-posts tbody::-webkit-scrollbar-thumb
+{
+	background-color: #e14e5f;
+	border-radius: 5px;
+}
+
+/***********  CAROUSEL FORUM  **********/
+
+#carousel-container
+{
+	position: relative;
+	width: 525px;
+	height: 300px;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.7);
+	margin: 0 auto;
 	padding: 0 50px;
+	border-radius: 5px;
 }
 
-#subscribe-form aside h3
+#carousel-content
 {
-	margin: 50px 0;
+	overflow: hidden;
+	width: 500px;
+	height: 100%;
+}
+
+.carousel-img
+{
+	display: flex;
+	position: relative;
+	top: 25px;
+	box-sizing: border-box;
+}
+
+
+.next
+{
+	position: absolute;
+	right: 0;
+	top: 150px;
+	color: white;
+	margin-top: -34px;
+	cursor: pointer;
+	z-index: 10;
+}
+
+.prev
+{
+	position: absolute;
+	left: 0;
+	top: 150px;
+	color: white;
+	margin-top: -34px;
+	cursor: pointer;	
+	z-index: 10;
 }
 
 /***************************
 		LOGIN PAGE
 ****************************/
-#login-page
-{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-	min-height: 100vh;
-}
-	
-#login-content
-{
-	padding: 60px; 
-	min-height: 400px;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
-}
-
-#login-content h2
-{
-	margin-bottom: 50px;
-	text-align: center!important;	
-}
-
-.log-form input[type='text'], .log-form input[type='email'], .log-form input[type='password']
-{
-	width: 90%;
-	padding: 10px;
-}
-
-.log-form 
-{
-	text-align: center;
-	margin-bottom: 40px;
-}
-
-.log-form label
+#log-form label
 {
 	margin-right: 10px;
 }
@@ -574,20 +760,19 @@ footer
 ****************************/
 #profile-page
 {
-	background-color: #f4f4f4;
+	background-color: #dad9ea;
 }
 
 #profile-content
 {
 	display: flex;
-	align-items: flex-start;
-	padding: 100px 50px;
+	padding: 0 10px;
 }
 
 #profile-content aside
 {
 	padding: 10px;
-	margin-right: 100px;
+	margin-right: 50px;
 }
 
 #profile-info
@@ -614,23 +799,30 @@ footer
 	cursor: pointer;
 }
 
+#description-container
+{
+	display: none;
+}
+
 /******************
 	TOPICS TABLE
 *******************/
 #all-profile-topics
 {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 #tb-followed-topics, #tb-created-topics
 {
-	margin: 5px;
+	margin: 15px 0;
+	height: 300px;
+	width: 600px;
 }
 
-/******************
-	RESOLVED FORM
-*******************/
+/********************
+	BUTTON RESOLVED 
+*********************/
 #resolved-form 
 {
 	display: none;
@@ -663,213 +855,6 @@ footer
 }
 
 /***************************
-		EDIT PROFILE
-****************************/
-
-#edit-page
-{
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	background-image: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-	min-height: 100vh;
-	color: white;
-}
-
-#edit-form h2
-{
-	margin-bottom: 30px;
-}
-
-#edit-form
-{
-	background-color: rgba(0, 0, 0, 0.7);
-	padding: 50px;
-	max-width: 500px;
-	width: 100%; 
-	text-align: center;
-}
-
-/*** description ***/
-
-#description-container
-{
-	display: none;
-}
-
-.text-edit
-{
-	height: 300px;
-	width: 100%;
-}
-
-/***************************
-		EDIT AVATAR
-****************************/
-
-#edit-avatar-page
-{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-image: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-	height: 100vh;
-	color: white;
-}
-
-#edit-avatar-form
-{
-	border: 1px solid black;
-	padding: 50px;
-	background-color: rgba(0, 0, 0, 0.7);
-	text-align: center;
-}
-
-#edit-avatar-form h2, p
-{
-	margin-bottom: 30px;
-}
-
-/***************************
-	RECUP PASSWORD PAGE
-****************************/
-
-.recup-password-page
-{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 100vh;
-	background: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-}
-
-.form-recup-pass
-{
-	background-color: rgba(0, 0, 0, 0.5);
-	padding: 80px;
-	color: white;
-	text-align: center;
-}
-
-.form-recup-pass h2
-{
-	margin-bottom: 40px;
-}
-
-.form-recup
-{
-	margin-bottom: 40px;
-}
-
-.form-recup .fa-at, .form-recup .fa-key
-{
-	margin-right: 5px;
-}
-
-/***************************
-		FORUM PAGE 
-****************************/
-#forum-page, #topics-page
-{
-	display: flex;
-	justify-content: space-around;
-	align-items: flex-start;
-	padding: 100px 0;
-	background-color: #f4f4f4;
-}
-
-.row-category, .row-topics
-{
-	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
-	max-width: 800px;
-}
-
-#forum-page section
-{
-	padding: 50px;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
-	background-color: #FFFFFF;
-}
-
-#forum-page section hr:last-child, #topics-page section hr:last-child
-{
-	display: none;
-}
-
-.category, .row-category aside, .topics, .row-topics aside
-{
-	margin: 10px 20px;
-}
-
-#side-info
-{
-	display: flex;
-	flex-direction: column;
-	align-items: flex-end;
-	max-width: 500px;
-	width: 100%;
-}
-
-#forum-page hr
-{
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-#forum-page p:first-child
-{
-	text-align: right;
-}
-
-
-/***************************
-	TABLE FORUM ASIDE
-****************************/
-#tb-last-topics, #tb-last-posts
-{
-	max-width: 350px;
-	width: 100%;
-	box-sizing: border-box;
-}
-
-#tb-last-topics thead, #tb-last-posts thead
-{
-	cursor: pointer;
-}
-
-#tb-last-topics .fa-caret-up, #tb-last-posts .fa-caret-up 
-{
-	position: relative;
-	right: -20px;
-}
-
-#tb-last-topics tbody, #tb-last-posts tbody
-{
-	display: block;
-	overflow-y: scroll;
-	height: 450px;
-}
-
-#tb-last-topics tbody::-webkit-scrollbar,
-#tb-last-posts tbody::-webkit-scrollbar
-{
-	background-color: white;
-	border: 1px solid rgba(0, 0, 0, 0.4);
-	width: 3px;
-}
-
-#tb-last-topics tbody::-webkit-scrollbar-thumb, 
-#tb-last-posts tbody::-webkit-scrollbar-thumb
-{
-	background-color: #0aa2cb;
-	border-radius: 5px;
-}
-/***************************
 	TOPIC BY CATEGORIES
 ****************************/
 #topics-page
@@ -891,60 +876,17 @@ footer
 	text-align: center;
 }
 
-#add-topic-page
-{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background: url('/Forum/public/images/bg5.jpg');
-	background-size: cover;
-	min-height: 100vh;
-}
-	
-.form-topic
-{
-	padding: 60px; 
-	max-width: 600px;
-	width: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
-}
-
-.form-topic textarea
-{
-	width: 100%;
-	height: 300px;
-}
-
-.form-topic input[type='text'], .log-form input[type='email'], .log-form input[type='password']
-{
-	width: 90%;
-	padding: 10px;
-}
-
-.form-topic
-{
-	text-align: center;
-	margin-bottom: 40px;
-}
-
-.form-topic label
-{
-	margin-right: 10px;
-}
-
 /***************************
-		 ONE TOPIC PAGE
+		ONE TOPIC PAGE
 ****************************/
 
-#one-topic-page
+#topic-page
 {
 	max-width: 1024px;
 	margin: 100px auto;
 }
 
-#one-topic-page h1
+#topic-page h1
 {
 	border: 1px solid black;
 	text-align: center;
@@ -954,12 +896,17 @@ footer
 	color: white;
 }
 
-#one-topic-page section
+#topic-page section
 {
 	display: flex;
 	background-color: #dedee0;
 	min-height: 300px;
 	height: 100%;  
+}
+
+#topic-page section:nth-child(odd)
+{
+	background: #f4f4f4;
 }
 
 #comment-form-topic
@@ -1009,18 +956,25 @@ footer
 .best_answer
 {
 	position: absolute;
-	top: 15px;
-	right: 15px;
 	border: 2px solid #5edb64;
 	border-radius: 5px;
 	padding: 5px;
+	top: 10px;
+	right: 10px;
 }
 
 .best-answer-form
 {
-	position: absolute;
-	bottom: 15px;
-	right: 15px;
+	cursor: pointer;
+}
+
+.btn-like
+{
+	background-color: #56c95c;
+	border: none;
+	padding: 7px 10px;
+	border-radius: 5px;
+	color: white;
 }
 
 /************
@@ -1028,12 +982,17 @@ footer
 *************/
 .option-comment
 {
+	position: absolute;
 	display: flex;
 	align-items: center;
 	font-size: 0.8em;
-	position: absolute;
 	bottom: 5px;
 	left: 5px;
+}
+
+.option-comment .edit 
+{
+	width: 99px;
 }
 
 /** REPORT **/
@@ -1053,4 +1012,119 @@ footer
 	display: none;
 	cursor: pointer;
 	border-radius: 10px;
+}
+
+/***********************
+		DELETE PAGE
+************************/
+#section-delete-message
+{
+	display: none;
+}
+
+/************************
+	  ADMINISTRATION
+*************************/
+
+#admin-page
+{
+	text-align: center;
+	max-width: 1200px;
+	margin: 200px auto;
+	padding: 0;
+	box-shadow: 0 0 10px black;
+	background-color: #e8ebef;
+}
+
+#admin-container
+{
+	display: flex;
+	justify-content: space-around;
+	padding: 30px;
+}
+
+#admin-page h1
+{
+	background-color: #4c4c4c;
+	padding: 50px;
+	margin-bottom: 50px;
+	color: white;
+}
+
+/**** LAST TOPIC ADMIN ****/
+#last-topics
+{
+	max-width: 450px;
+	box-shadow: 0 0 5px black;
+	background-color: white;
+	margin-bottom: 20px;
+	max-width: 500px;
+}
+
+#last-topics h2, #reported-comment h2
+{
+	background-color: #e04f5f;
+	color: white;
+	margin-top: 0;
+	padding: 20px; 
+}
+
+#last-topics .admin-list
+{
+	padding: 10px;
+}
+
+#last-topics-content, #report-msg-content
+{
+	max-width: 500px;
+	max-height: 500px;
+	overflow: scroll;
+}
+
+#last-topics hr, #last-users-content hr
+{
+	width: 95%;
+}
+
+#last-topics hr:last-child, #reported-comment hr:last-child,
+#last-users-content hr:last-child
+{
+	display: none;
+}
+
+/**** REPORT MESSAGE ADMIN ****/
+#reported-comment
+{
+	box-shadow: 0 0 5px black;
+	background-color: white;
+	margin-bottom: 20px;
+	max-width: 500px;
+}
+
+.content-report-msg
+{
+	background-color: #e8ebef;
+	padding: 20px 10px;
+}
+/******* ADMIN USER ******/
+#delete-user-form
+{
+	background-color: #bac5d4;
+	padding: 20px;
+	box-sizing: border-box;
+	max-width: 500px;
+}
+
+
+#last-users-content
+{
+	max-width: 500px;
+	background-color: white;
+	padding: 20px;
+	margin-bottom: 10px;
+}
+
+#last-users-content	li
+{
+	padding: 10px;
 }
