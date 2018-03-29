@@ -2,32 +2,32 @@
 	<div id="slider">
 		<div id="slider-content">
 			<h2>Partagez votre expérience, ou bien même trouvez des solutions et devenez expérimentés !</h2>
-			<p>
-				<?php if(isset($_SESSION['user'])): ?>
-					<button class="call-to-action"><a href="profile">VOTRE PROFIL</a></button>
-				<?php else : ?>
-					<button class="call-to-action"><a href="login">SE CONNECTER</a></button>
-					<button class="call-to-action"><a href="subscribe">S'INSCRIRE</a></button>
-				<?php endif; ?>
-			</p>
 		</div>
+		<p>
+			<?php if(isset($_SESSION['user'])): ?>
+				<button class="call-to-action btn-action" onclick="window.location.href='profile'">VOTRE PROFIL</button>
+			<?php else : ?>
+				<button class="call-to-action btn-action" onclick="window.location.href='login'">SE CONNECTER</button>
+				<button class="call-to-action btn-action" onclick="window.location.href='subscribe'">S'INSCRIRE</button>
+			<?php endif; ?>
+		</p>
 	</div>
 
 	<section class="widget-container wd-container-1">
 		<div class="widget wd-1">
 			<div class="icon-widget"><i class="fas fa-newspaper fa-3x"></i></div>
-			<p>Retrouver toutes les actualités</p>
-			<button class="call-to-action"><a href="#">VOIR L'ACTUALITÉ</a></button>
+			<p>Retrouver tous nos tutos !</p>
+			<button class="call-to-action" onclick="window.location.href='#'">NOS TUTORIELS</button>
 		</div>
 		<div class="widget wd-2">
 			<div class="icon-widget"><i class="fas fa-globe fa-3x"></i></div>
 			<p>Besoin d'aide ? Allez-y voir le forum !</p>
-			<button class="call-to-action"><a href="webmaster-forum">FORUM</a></button>
+			<button class="call-to-action" onclick="window.location.href='webmaster-forum'">FORUM</button>
 		</div>
 		<div class="widget wd-3">
 			<div class="icon-widget"><i class="fas fa-phone fa-3x"></i></div>
 			<p>Pour toutes autres informations complémentaires : Contactez-nous !</p>
-			<button class="call-to-action"><a href="#">NOUS CONTACTER</a></button>
+			<button class="call-to-action" onclick="window.location.href='#'">NOUS CONTACTER</button>
 		</div>
 	</section>
 
@@ -44,3 +44,5 @@
 		</div>
 	</section>
 </div>
+
+<script src="public/js/home.js"></script>

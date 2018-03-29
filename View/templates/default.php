@@ -16,26 +16,45 @@
 			<div id="logo">
 				<a href="home"><img src="public/images/logo-header.png" alt="logo"></a>
 			</div>
-			<nav>
-				<ul>
-					<li><a href="home">ACCUEIL</a></li>
-					<?php if(isset($_SESSION['user'], $_SESSION['admin'])): ?>
-						<li><a href="admin">ADMINISTRATION</a></li>
-					<?php endif; ?>
-					<li><a href="webmaster-forum">FORUM</a></li>
+			<div id="main-menu">
+				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
+				<a href="webmaster-forum">FORUM</a>
+				<a href="">BLOG</a>
+				<a href="">CHAT</a>
+				<?php if(isset($_SESSION['user'])): ?>
+					<div id="user-menu">
+						<i class="fas fa-user-circle fa-2x"></i>
 					<?php if(isset($_SESSION['user'])): ?>
-						<li><a href="logout">SE DÉCONNECTER</a></li>
-						<li><a href="profile"><i class="fas fa-user-circle fa-2x"></i></a></a></li>
-					<?php else: ?>
-						<li><a href="login">SE CONNECTER</a></li>
-						<li><a href="subscribe">S'INSCRIRE</a></li>
+						<div id="side-bar">
+							<div class="side-content">
+								<i class="fas fa-caret-up fa-3x"></i>
+								<p><span class="side-avatar"><a href="profile"><img src="View/backend/users/avatars/<?= $_SESSION['user']['avatar']; ?>"></a></span></p>
+								<p><?= strtoupper(($_SESSION['user']['name'])); ?></p>
+								<hr />
+								<p><a href="profile">VOTRE PROFIL</a></p>
+								<hr />
+								<?php if(isset($_SESSION['user'], $_SESSION['admin'])): ?>
+									<p><a href="admin">ADMINISTRATION</a></p>
+								<hr/>
+								<?php endif; ?>
+								<p><a href="add-topic">AJOUTER UN TOPIC</a></p>
+								<hr />
+								<p><span class="logout"><a href="logout">
+									<i class="fas fa-power-off"></i> DÉCONNEXION</a></span></p>
+							</div>
+						</div>
 					<?php endif; ?>
-					<li class="hamburger"><a href=""><i class="fas fa-bars fa-2x"></i></a></li>
-				</ul>
-			</nav>	
+					</div>
+				<?php else: ?>
+					<a href="login">SE CONNECTER</a>
+					<a href="subscribe">S'INSCRIRE</a>
+				<?php endif; ?>
+				<span class="burger"><a href=""><i class="fas fa-bars fa-2x"></i></a></span>
+			</div>
 		</header>
 
 		<?= $menuBis; ?>
+
 
 		<div class="overlay"></div>
 		

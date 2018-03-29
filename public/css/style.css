@@ -22,26 +22,43 @@ a
 	border: none;
 }
 
+a:hover
+{
+	font-weight: bold;
+}
+
 ul
 {
 	list-style: none;
 	padding: 0;
 }
 
-#main-container, #contains
+h2
 {
-	padding: 0; 
+	font-size: 1.6em;
+}
+
+/********************************************
+			DEFAULT CONTENT
+*********************************************/
+#contains
+{
+	background: url('../images/bg3.jpg');
+	background-attachment: fixed;
+	height: 100%;
 }
 
 .page
 {
-	padding-top: 100px;
+	padding: 100px 0;
 }
 
 .page a 
 {
 	color: #0aa2cb;
 }
+
+/*** AVATAR ***/
 
 .avatar img
 {
@@ -53,11 +70,13 @@ ul
 	width: 100px;
 }
 
+/*** RESOLVED ***/
 .resolved
 {
 	color: #56c95c;
 }
 
+/*** OVERLAY ***/
 .overlay
 {
 	display: none;
@@ -74,27 +93,12 @@ ul
 /*CALL TO ACTION & CANCEL BUTTON*/
 .call-to-action
 {
-	margin-top: 40px;
-	max-width: 150px;
-	width: 100%;
-	height: 40px;
 	background-color: #0aa2cb;
 	border: none;
+	padding: 10px 30px;
 	border-radius: 8px;
 	color: white;
 	cursor: pointer;
-	padding: 0;
-}
-
-.call-to-action a, .cancel-button a , .btn-default a
-{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	box-sizing: border-box;
-	height: 100%;
-	width: 100%;
-	color: white;
 }
 
 .call-to-action:hover
@@ -229,7 +233,7 @@ input[type="submit"]:hover
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	background: url('/Forum/public/images/bg5.jpg');
+	background: url('/Forum/public/images/bg6.jpg');
 	background-size: cover;
 	min-height: 100vh;
 }
@@ -243,7 +247,7 @@ input[type="submit"]:hover
 	max-width: 550px;
 	width: 100%;
 	padding: 60px;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
 }
 
@@ -341,7 +345,7 @@ input[type="submit"]:hover
 	padding: 100px;
 	display: block;
 	width: 100%;
-	text-align: center;
+	text-align: center;	
 }
 
 .widget .icon-widget
@@ -355,6 +359,10 @@ input[type="submit"]:hover
 	padding-bottom: 15px;
 }
 
+/***************************************************
+					SITE PAGE
+*****************************************************/
+
 /***************************
 		MAIN HEADER
 ****************************/
@@ -362,16 +370,16 @@ header
 {
 	display: flex;
 	justify-content: space-between;
+	padding: 0 70px;
 	align-items: center;
 	position: fixed;
 	top: 0;
 	right: 0;
 	left: 0;
-	padding: 0 20px;
 	height: 100px;
 	box-shadow: 0 0 10px black;
-	background-color: rgb(76, 76, 76);
-	z-index: 998;
+	background-color: #4c4c4c;
+	z-index: 999;
 }
 
 #logo img
@@ -382,35 +390,86 @@ header
 /***************************
 			MENU
 ****************************/
-header nav, header nav ul, header nav li, header nav li a
+#main-menu
 {
 	display: flex;
-	justify-content: center;
+	flex-flow: row wrap;
+	justify-content: space-between;
 	align-items: center;
-	height: 100%;
-	padding: 0;
+	width: 600px
 }
 
-header nav ul li 
+#main-menu a
 {
-	margin: 5px;
-	min-width: 150px;
+	margin-left: 10px;
 }
 
-header nav ul li a 
-{
-	width: 100%;
-}
-
-header nav ul li a:hover
-{
-	border-bottom: 5px solid #0aa2cb;
-	background-color: #7a7a7a;
-}
-
-.hamburger
+.burger
 {
 	display: none;
+}
+
+/*** SIDEBAR ***/
+#user-menu
+{
+	position: relative;
+	color: white;
+}
+
+#user-menu .fa-user-circle
+{
+	cursor: pointer;
+}
+
+#side-bar
+{
+	display: none;
+	min-height: 310px;
+	padding: 10px;
+	width: 200px;
+	background-color: white;
+	position: absolute;
+	top: 48px;
+	right: -39px;
+	color: black;
+	box-shadow: 0 0 10px black;
+}
+
+#side-bar .fa-caret-up
+{
+	position: absolute;
+	top: -30px;
+	right: 40px;
+	color: white;
+}
+
+.side-content
+{
+	text-align: center;
+}
+
+.logout a
+{
+	color: #e04f5f!important;
+}
+
+.side-content hr
+{
+	width: 95%;
+}
+
+.side-content a
+{
+	color: #0aa2cb;
+}
+
+.side-avatar img
+{
+	box-sizing: border-box;
+	border: 3px solid #e04f5f;
+	border-radius: 50%;
+	width: 70px;
+	height: 70px;
 }
 
 /***************************
@@ -424,7 +483,8 @@ header nav ul li a:hover
 	left: 0;
 	background-color: #0aa2cb;
 	display: flex;
-	z-index: 999;
+	flex-wrap: wrap;
+	z-index: 998;
 }
 
 #menuBis > ul
@@ -510,15 +570,17 @@ footer
 #home-page
 {
 	height: 100%;
+	margin-top: 69px;
 }
 
 /*** SLIDER ***/
 #slider
 {
-	background-image: url('/Forum/public/images/bg4.jpg');
+	background-image: url('/Forum/public/images/bg6.jpg');
 	background-size: cover;
 	background-attachment: fixed;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
@@ -526,11 +588,18 @@ footer
 
 #slider-content
 {
-	padding: 50px;
+	padding: 100px;
 	text-align: center;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
 	border-radius: 5px;
+	margin-bottom: 20px;
+}
+
+.btn-action
+{
+	width: 200px;
+	height: 40px;
 }
 
 /*** WIDGET ***/
@@ -550,7 +619,7 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: url('../images/slide.jpg');
+	background: url('../images/bg7.jpg');
 	background-size: cover;
 }
 
@@ -589,23 +658,27 @@ footer
 ****************************/
 .front-page
 {
-	max-width: 1800px;
-	margin: 0 auto;
-	padding: 250px 0 100px 0;
+	max-width: 1450px;
+	margin: 150px auto;
+	background-color: white;
+	box-shadow: 0 0 10px black;
 }
 
 #forum-page
 {
 	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
 	justify-content: space-around;
 }
 
 #categories-container 
 {
 	background-color: white;
-	box-shadow: 0 0 10px black;
-	max-width: 1000px;
+	max-width: 750px;
 	width: 100%;
+	border: 1px solid black;
+	box-shadow: 0 0 10px #00000073;
 }
 
 #categories-container h1
@@ -619,7 +692,7 @@ footer
 
 #categories-container hr
 {
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 10px #00000073;
 	width: 95%;
 }
 
@@ -649,17 +722,19 @@ footer
 #side-forum
 {
 	display: flex;
-	flex-direction: column;
+	flex-flow: column-reverse wrap;
 	align-items: center;
+	justify-content: space-around;
 }
 
 /****** TABLE FORUM ASIDE ******/
 
 #tb-last-topics, #tb-last-posts
 {
-	box-shadow: 0 0 10px black;
-	width: 550px;
+	box-shadow: 0 0 10px #00000073;
+	width: 450px;
 	box-sizing: border-box;
+	margin-top: 50px;
 }
 
 #tb-last-topics thead, #tb-last-posts thead
@@ -697,54 +772,25 @@ footer
 
 /***********  CAROUSEL FORUM  **********/
 
-#carousel-container
+#carousel
 {
-	position: relative;
-	width: 525px;
 	height: 300px;
+	width: 500px;
+	background-color: rgba(0, 0, 0, 0.9);
 	overflow: hidden;
-	background-color: rgba(0, 0, 0, 0.7);
-	margin: 0 auto;
-	padding: 0 50px;
-	border-radius: 5px;
+	border-radius: 30px;
+	margin-bottom: 150px;
 }
 
-#carousel-content
+.carousel-container
 {
-	overflow: hidden;
-	width: 500px;
-	height: 100%;
+	width: 3000px;
+	height: 300px;
 }
 
 .carousel-img
 {
-	display: flex;
-	position: relative;
-	top: 25px;
-	box-sizing: border-box;
-}
-
-
-.next
-{
-	position: absolute;
-	right: 0;
-	top: 150px;
-	color: white;
-	margin-top: -34px;
-	cursor: pointer;
-	z-index: 10;
-}
-
-.prev
-{
-	position: absolute;
-	left: 0;
-	top: 150px;
-	color: white;
-	margin-top: -34px;
-	cursor: pointer;	
-	z-index: 10;
+	float: left;
 }
 
 /***************************
@@ -760,43 +806,75 @@ footer
 ****************************/
 #profile-page
 {
-	background-color: #dad9ea;
-}
-
-#profile-content
-{
-	display: flex;
-	padding: 0 10px;
-}
-
-#profile-content aside
-{
-	padding: 10px;
-	margin-right: 50px;
+	max-width: 1300px;
+	margin: 100px auto;
 }
 
 #profile-info
 {
-	margin: 50px;
-	flex: 1;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 
-#profile-info fieldset
+#bar-info
 {
-	border: 5px solid rgb(76, 76, 76);
+	max-width: 300px;
+	text-align: center;
+	padding: 10px 20px;
+	background: url('../images/bg5.jpg') center / cover;
 }
 
-#profile-description .description-content
+.user-info
 {
-	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 	padding: 10px;
-	min-height: 300px;
-	margin-bottom: 20px;
+}
+
+.user-info a
+{
+	color: white;
+}
+.user-info p:first-child, .user-info h3
+{
+	align-self: center;
+}
+
+.user-info .fas
+{
+	padding-right: 5px;
+}
+#profile-description
+{
+	padding: 15px 30px;
+	width: 50%;
+	background-color: #FFFFFF;
+	/*box-shadow: 0 0 5px black;*/
+	text-align: center;
+}
+
+#profile-description h3
+{
+	background-color: #4c4c4c;
+	padding: 20px;
+	color: white;
+}
+
+.description-content
+{
+	min-height: 200px;
 }
 
 #profile-description .fa-edit:hover
 {
 	cursor: pointer;
+}
+
+.cancel-description
+{
+	max-width: 110px; 
 }
 
 #description-container
@@ -810,14 +888,15 @@ footer
 #all-profile-topics
 {
 	display: flex;
-	justify-content: space-around;
+	flex-flow: column-reverse wrap;
+	margin-top: 50px;
+	box-sizing: border-box;
 }
 
 #tb-followed-topics, #tb-created-topics
 {
-	margin: 15px 0;
 	height: 300px;
-	width: 600px;
+	box-sizing: border-box;
 }
 
 /********************
@@ -1030,23 +1109,25 @@ footer
 {
 	text-align: center;
 	max-width: 1200px;
-	margin: 200px auto;
-	padding: 0;
-	box-shadow: 0 0 10px black;
-	background-color: #e8ebef;
+	margin: 100px auto;
 }
 
 #admin-container
 {
-	display: flex;
-	justify-content: space-around;
 	padding: 30px;
+	background-color: white;
+}
+#admin-content
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 #admin-page h1
 {
 	background-color: #4c4c4c;
-	padding: 50px;
+	padding: 20px;
 	margin-bottom: 50px;
 	color: white;
 }

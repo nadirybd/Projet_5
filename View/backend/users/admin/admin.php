@@ -1,6 +1,6 @@
-<div class="page front-page" id="admin-page">
-	<h1>Administration <i class="fas fa-chess-king"></i></h1>
+<div class="page" id="admin-page">
 	<div id="admin-container">
+		<h1>Administration <i class="fas fa-chess-king"></i></h1>
 		<div id="admin-content">		
 			<div id="last-topics">
 				<h2>Liste des 10 derniers topics</h2>	
@@ -14,7 +14,6 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
-
 			<div id="reported-comment">	
 				<h2>Les commentaires signalés</h2>
 				<div id="report-msg-content">					
@@ -39,28 +38,28 @@
 				<?php endforeach; ?>
 				</div>
 			</div>
-		</div>
 
-		<div id="user-container">
-			<div id="last-users-content">
-				<h2>LES 10 DERNIERS UTILISATEURS INSCRITS</h2>	
-				<ul>
-				<?php foreach ($lastUsers as $lastUser): ?>
-					<li><a href="public-profile/-<?= $lastTopic->pseudo; ?>"><?= htmlspecialchars($lastUser->pseudo); ?></a></li>
-					<hr/>
-				<?php endforeach; ?>
-				</ul>
+			<div id="user-container">
+				<div id="last-users-content">
+					<h2>LES 10 DERNIERS UTILISATEURS INSCRITS</h2>	
+					<ul>
+					<?php foreach ($lastUsers as $lastUser): ?>
+						<li><a href="public-profile/-<?= $lastTopic->pseudo; ?>"><?= htmlspecialchars($lastUser->pseudo); ?></a></li>
+						<hr/>
+					<?php endforeach; ?>
+					</ul>
+				</div>
+				<form class="form" id="delete-user-form" method="post">
+					<?php if(isset($success_delete_user)): ?>
+						<div class="succes"><?= $success_delete_user; ?></div>
+					<?php endif; ?>
+					<p>
+						<label>Supprimer un utilisateur :</label><br/>
+						<input type="text" name="delete_user" placeholder="Entrez le pseudo de l'utilisateur" />
+					</p>
+						<input type="submit" name="sub-delete-user" value="Bannir">
+				</form>
 			</div>
-			<form class="form" id="delete-user-form" method="post">
-				<?php if(isset($success_delete_user)): ?>
-					<div class="succes"><?= $success_delete_user; ?></div>
-				<?php endif; ?>
-				<p>
-					<label>Supprimer un utilisateur :</label><br/>
-					<input type="text" name="delete_user" placeholder="Entrez le pseudo de l'utilisateur" />
-				</p>
-					<input type="submit" name="sub-delete-user" value="Bannir">
-			</form>
 		</div>
 	</div>
 </div>

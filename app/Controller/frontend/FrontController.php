@@ -19,7 +19,7 @@ class FrontController extends Controller
 	*/
 	public function homepage(){
 		$lastTopic = $this->topicsModel->lastTopics(1, true);
-		$this->render('home', compact('lastTopic'));
+		$this->render('home', compact('lastTopic'), true);
 	}
 
 	/**
