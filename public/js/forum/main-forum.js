@@ -19,7 +19,7 @@ $(document).ready(function(){
 		tableToogle('#tb-last-topics tbody', '#tb-last-topics .fa-caret-up');
 	});
 
-	$('#tb-last-posts thead').on('click', function(){
-		tableToogle('#tb-last-posts tbody', '#tb-last-posts .fa-caret-up');
+	$('#tb-last-chat thead').on('click', function(){
+		tableToogle('#tb-last-chat tbody', '#tb-last-chat .fa-caret-up');
 	});
 });

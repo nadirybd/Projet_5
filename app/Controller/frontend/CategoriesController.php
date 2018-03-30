@@ -20,7 +20,13 @@ class CategoriesController extends Controller
 	public function forum(){
 		$categories = $this->categoriesModel->select();
 		$lastTopics = $this->topicsModel->lastTopics(10);
-		
+		$allChat = $this->chatModel->select();
+		$allChat = array_reverse($allChat);
+		$user = function($user_id){
+		 	$user = $this->usersModel->select([$user_id], 'id');
+		 	return $user;
+		 };
+
 		$nbTopics = function($attributes){
 			$number_of_topics = $this->topicsModel->count([$attributes], 'category_id');
 			
@@ -46,7 +52,7 @@ class CategoriesController extends Controller
 			return $urlCustom;
 		};
 
-		$this->render('forum', compact('categories', 'subcat', 'lastTopics', 'nbTopics', 'url'), true);
+		$this->render('forum', compact('categories', 'subcat', 'lastTopics', 'nbTopics', 'url', 'allChat', 'user'), true);
 	}
 
 	/**
@@ -62,8 +68,10 @@ class CategoriesController extends Controller
 				$subUrl ='topics/'. $this->urlCustom($category_name).'/';
 				$subUrl .= $this->urlCustom($subcategory->name).'/'.$subcategory->id;
 
-				$sub .= '<li><a href="'. $subUrl .'-1">'; 
-				$sub .= $subcategory->name .'</a></li>'; 
+				$sub .= '
+				<li>
+					<a href="'. $subUrl .'-1">'. $subcategory->name .'</a>
+				</li>'; 
 			}
 			return $sub;
 		};

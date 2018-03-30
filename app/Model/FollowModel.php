@@ -16,7 +16,7 @@ class FollowModel extends Model
 	}
 
 	/**
-	* Méthode delete qui lie un utilisateur au topic suivi
+	* Méthode deleteByTopic qui enlève la liaison d'un utilisateur au topic suivi
 	* @param string -> PDO::Statement 
 	*/
 	public function delete($attributes){
@@ -25,7 +25,8 @@ class FollowModel extends Model
 	}
 
 	/**
-	*
+	* Méthode deleteByTopic qui enlève la liaison d'un utilisateur au topic suivi
+	* @param string -> PDO::Statement 
 	*/
 	public function deleteByTopic($attributes){
 		$delete = $this->my_sql->prepare('DELETE FROM f_follow WHERE topic_id = ?', $attributes);

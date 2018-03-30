@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	slide = carousel('#carousel', 3);
+	slide = carousel('#carousel', 2);
 });
 
 

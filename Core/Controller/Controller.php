@@ -20,6 +20,7 @@ class Controller
 	* @var stocke l'instance de la classe messagesModel
 	* @var stocke l'instance de la classe followModel
 	* @var stocke l'instance de la classe adminModel
+	* @var stocke l'instance de la classe chatModel
 	*/
 	protected $topicsModel;
 	protected $usersModel;
@@ -27,6 +28,7 @@ class Controller
 	protected $messagesModel;
 	protected $followModel;
 	protected $adminModel;
+	protected $chatModel;
 
 	/**
 	* Méthode __construct
@@ -49,6 +51,9 @@ class Controller
 		}
 		if($this->adminModel === null){
 			$this->adminModel = new \App\Model\AdminModel();
+		}
+		if($this->chatModel === null){
+			$this->chatModel = new \App\Model\ChatModel();
 		}
 	}
 

@@ -20,17 +20,7 @@ class App
 			BackUsersController::getInstance()->loginCookie();
 		}
 	}
-
-	/**
-	* Méthode loadAjax va charger les autoloaders dans le router Ajax
-	*/
-	static function loadAjax(){
-		require('app/Autoloader.php');
-		App\Autoloader::register();
-		require('Core/Autoloader.php');
-		Core\Autoloader::register();
-	}
-
+	
 	/**
 	* Méthode sendmail qui va envoyer un mail
 	* @param string

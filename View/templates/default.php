@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
+		<link rel="shortcut icon" type="image/x-icon" href="public/images/favicon.png" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
@@ -20,7 +21,6 @@
 				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
 				<a href="webmaster-forum">FORUM</a>
 				<a href="">BLOG</a>
-				<a href="">CHAT</a>
 				<?php if(isset($_SESSION['user'])): ?>
 					<div id="user-menu">
 						<i class="fas fa-user-circle fa-2x"></i>

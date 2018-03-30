@@ -45,6 +45,39 @@ class AjaxController extends Controller
 	}
 
 	/**
+	* Méthode ajaxReportComment gère les données envoyés et renvoi le résultat 
+	*/
+	public function ajaxChat(){
+		if(isset($_POST['action']) && !empty($_POST['action'])){
+			if($this->logged()){
+				if($_POST['action'] == 'addMessage'){
+					if(isset($_POST['text_chat'])){
+						$chat_text = $_POST['text_chat'];
+						if(!empty($chat_text)){
+							if(strlen($chat_text) <= 255){
+								$addText = $this->chatModel->add([
+									$_SESSION['user']['id'],
+									$chat_text
+								]);
+							} 
+						}
+					}
+				}
+			}
+
+			if($_POST['action'] == 'getMessages'){
+				$allChat = $this->chatModel->select();
+				$allChat = array_reverse($allChat);
+			 	$user = function($user_id){
+			 		$user = $this->usersModel->select([$user_id], 'id');
+			 		return $user;
+			 	};
+				$this->ajaxRender('chatAjax', compact('allChat', 'user'));
+			}
+		}
+	}
+
+	/**
 	* @return une instance de la classe
 	*/
 	public static function getInstance(){

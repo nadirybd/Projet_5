@@ -1,6 +1,6 @@
 <?php
 require('app/App.php');
-App::loadAjax();
+App::load();
 
 use App\Controller\Ajax\AjaxController;
 
@@ -15,6 +15,10 @@ switch ($request) {
 		
 	case 'report':
 		AjaxController::getInstance()->ajaxReportComment();
+		break;
+
+	case 'chat':
+		AjaxController::getInstance()->ajaxChat();
 		break;
 
 	default:

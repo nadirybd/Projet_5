@@ -51,6 +51,7 @@ h2
 .page
 {
 	padding: 100px 0;
+	min-height: 100vh;
 }
 
 .page a 
@@ -316,7 +317,7 @@ input[type="submit"]:hover
 
 .tb thead, .tb tfoot
 {
-	background-color: #e14e5f;
+	background-color: #404548;
 	color: white;
 	text-align: center;
 }
@@ -605,7 +606,7 @@ footer
 /*** WIDGET ***/
 .wd-1, .wd-3
 {
-	background-color: #e2e2e2;
+	background-color: #a5a5a5;
 }
 
 .wd-2
@@ -619,17 +620,16 @@ footer
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: url('../images/bg7.jpg');
-	background-size: cover;
+	background: #e2e2e2;
 }
 
 #last-topic
 {
 	text-align: left;
-	background-color: white;
-	max-width: 1000px;
+	max-width: 800px;
+	min-height: 300px; 
 	width: 100%;
-	color: black;
+	box-shadow: 0 0 10px black;
 }
 
 .wd-4 h3 a
@@ -644,27 +644,58 @@ footer
 	margin-bottom: 40px;
 	margin-top: 0;
 	padding: 20px;
-	background-color: #e04f5f;
+	background-color: #0aa2cb;
 	color: white;
 }
 
 #last-topic-content
 {
-	padding: 0 40px 40px 40px;
+	padding: 0 15px 15px 15px;
 }
 
+/***********  CAROUSEL FORUM  **********/
+
+#carousel
+{
+	height: 300px;
+	width: 750px;
+	background-color: rgba(0, 0, 0, 0.9);
+	overflow: hidden;
+	border-radius: 30px;
+}
+
+.carousel-container
+{
+	width: 3000px;
+	height: 300px;
+}
+
+.carousel-img
+{
+	float: left;
+}
+
+.wd-5
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+}
 /***************************
 		FORUM PAGE 
 ****************************/
 .front-page
 {
-	max-width: 1450px;
-	margin: 150px auto;
-	background-color: white;
+	margin-top: 159px;
+	background-color: #e8e9ea;
 	box-shadow: 0 0 10px black;
 }
 
-#forum-page
+#forum-container
 {
 	display: flex;
 	flex-wrap: wrap;
@@ -675,16 +706,16 @@ footer
 #categories-container 
 {
 	background-color: white;
-	max-width: 750px;
+	max-width: 950px;
 	width: 100%;
 	border: 1px solid black;
 	box-shadow: 0 0 10px #00000073;
 }
 
-#categories-container h1
+#categories-container h2
 {
 	text-align: center;
-	background-color: #e14e5f;
+	background-color: #404548;
 	color: white;
 	padding: 40px;
 	margin-top: 0;
@@ -729,15 +760,14 @@ footer
 
 /****** TABLE FORUM ASIDE ******/
 
-#tb-last-topics, #tb-last-posts
+#tb-last-topics, #tb-last-chat
 {
 	box-shadow: 0 0 10px #00000073;
 	width: 450px;
 	box-sizing: border-box;
-	margin-top: 50px;
 }
 
-#tb-last-topics thead, #tb-last-posts thead
+#tb-last-topics thead, #tb-last-chat thead
 {
 	cursor: pointer;
 }
@@ -748,7 +778,7 @@ footer
 	right: -10px;
 }
 
-#tb-last-topics tbody, #tb-last-posts tbody
+#tb-last-topics tbody, #tb-last-chat tbody
 {
 	display: block;
 	overflow-y: scroll;
@@ -756,7 +786,7 @@ footer
 }
 
 #tb-last-topics tbody::-webkit-scrollbar,
-#tb-last-posts tbody::-webkit-scrollbar
+#tb-last-chat tbody::-webkit-scrollbar
 {
 	background-color: white;
 	border: 1px solid grey;
@@ -764,33 +794,10 @@ footer
 }
 
 #tb-last-topics tbody::-webkit-scrollbar-thumb, 
-#tb-last-posts tbody::-webkit-scrollbar-thumb
+#tb-last-chat tbody::-webkit-scrollbar-thumb
 {
-	background-color: #e14e5f;
+	background-color: #404548;
 	border-radius: 5px;
-}
-
-/***********  CAROUSEL FORUM  **********/
-
-#carousel
-{
-	height: 300px;
-	width: 500px;
-	background-color: rgba(0, 0, 0, 0.9);
-	overflow: hidden;
-	border-radius: 30px;
-	margin-bottom: 150px;
-}
-
-.carousel-container
-{
-	width: 3000px;
-	height: 300px;
-}
-
-.carousel-img
-{
-	float: left;
 }
 
 /***************************
@@ -883,7 +890,7 @@ footer
 }
 
 /******************
-	TOPICS TABLE
+PROFILE TOPICS TABLE
 *******************/
 #all-profile-topics
 {
@@ -891,6 +898,12 @@ footer
 	flex-flow: column-reverse wrap;
 	margin-top: 50px;
 	box-sizing: border-box;
+}
+
+#tb-followed-topics thead, #tb-followed-topics tfoot,
+#tb-created-topics thead, #tb-created-topics tfoot
+{
+	background-color: #6b7f97;
 }
 
 #tb-followed-topics, #tb-created-topics
@@ -1104,7 +1117,6 @@ footer
 /************************
 	  ADMINISTRATION
 *************************/
-
 #admin-page
 {
 	text-align: center;
@@ -1114,39 +1126,57 @@ footer
 
 #admin-container
 {
-	padding: 30px;
 	background-color: white;
+	display: flex;
+	justify-content: flex-start;
 }
+
 #admin-content
+{
+	display: flex;
+	flex-direction: column;
+	padding: 10px;
+}
+
+
+#admin-content h2:first-child, #admin-content h3
+{
+	padding: 30px;
+	background-color: #4c4c4c;
+	color: white;
+}
+#admin-last-info
 {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	align-items: center;
+	padding: 50px 20px;
 }
 
-#admin-page h1
+.side-admin
 {
-	background-color: #4c4c4c;
+	background: url('../images/bg2.jpg') center / cover;
 	padding: 20px;
-	margin-bottom: 50px;
+	max-width: 300px;
 	color: white;
+	margin: 0;
 }
 
 /**** LAST TOPIC ADMIN ****/
-#last-topics
+#last-topics, #reported-comment
 {
-	max-width: 450px;
+	width: 45%;
 	box-shadow: 0 0 5px black;
 	background-color: white;
 	margin-bottom: 20px;
-	max-width: 500px;
 }
 
-#last-topics h2, #reported-comment h2
+#last-topics h3, #reported-comment h3
 {
-	background-color: #e04f5f;
+	background-color: #4c4c4c;
 	color: white;
-	margin-top: 0;
+	margin: 0;
 	padding: 20px; 
 }
 
@@ -1157,9 +1187,8 @@ footer
 
 #last-topics-content, #report-msg-content
 {
-	max-width: 500px;
 	max-height: 500px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 #last-topics hr, #last-users-content hr
@@ -1188,24 +1217,43 @@ footer
 	padding: 20px 10px;
 }
 /******* ADMIN USER ******/
+#admin-forum-user
+{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #delete-user-form
 {
-	background-color: #bac5d4;
+	background-color: #4c4c4c;
+	color: white;
 	padding: 20px;
 	box-sizing: border-box;
-	max-width: 500px;
 }
 
-
-#last-users-content
+#user-container
 {
-	max-width: 500px;
+	width: 70%;
 	background-color: white;
-	padding: 20px;
 	margin-bottom: 10px;
+	box-shadow: 0 0 10px black;
 }
 
-#last-users-content	li
+#last-users-content	li, #last-users-content
 {
-	padding: 10px;
+	padding: 15px;
+}
+
+/*****************************
+			CHAT 
+******************************/
+.user_chat
+{
+	font-weight: bold;
+}
+
+.result-error, .result-success
+{
+	display: none;
 }

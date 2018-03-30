@@ -31,10 +31,28 @@
 		</div>
 	</section>
 
+	<section class="widget-container wd-container-3">
+		<div class="widget wd-5">
+			<h2>Échangez sur différents langages ! </h2>
+			<div id="carousel">
+				<ul class="carousel-container">
+					<li class="carousel-img"><img src="public/images/icons/programmation/html.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/css.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/js.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/php.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/sql.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/java.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/python.png" alt="logo programmation"></li>
+					<li class="carousel-img"><img src="public/images/icons/programmation/ruby.png" alt="logo programmation"></li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
 	<section class="widget-container wd-container-2">
 		<div class="widget wd-4">
 			<div id="last-topic">
-				<h2>Le dernier topic posté</h2>
+				<h2>Le dernier topic posté </h2>
 				<div id="last-topic-content">				
 					<h3><a href="topic/webmastertopic-<?= $lastTopic->id; ?>-1"><?= htmlspecialchars($lastTopic->title); ?></a></h3>
 					<p><?= htmlspecialchars(strip_tags(substr($lastTopic->content, 0,500))); ?> ...</p>
@@ -45,4 +63,4 @@
 	</section>
 </div>
 
-<script src="public/js/home.js"></script>
+<script src="public/js/home/slider.js"></script>
