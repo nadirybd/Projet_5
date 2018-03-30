@@ -124,6 +124,10 @@ switch ($page) {
 		PostsController::getInstance()->blog();
 		break;
 
+	case 'post':
+		PostsController::getInstance()->post();
+		break;
+
 	case 'add-post':
 		AdPostsController::getInstance()->addPost();
 		break;

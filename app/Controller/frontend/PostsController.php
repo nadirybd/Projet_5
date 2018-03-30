@@ -24,6 +24,20 @@ class PostsController extends Controller
 	}
 
 	/**
+	*
+	*/
+	public function post(){
+		if(isset($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+			$post = $this->postsModel->select([$_GET['id']], 'id');
+			if(empty($post)){
+				header('location: /Forum/blog');
+			}
+		}
+
+		$this->render('show-post', compact('post'), true);
+	}
+
+	/**
 	* @return une instance de la classe
 	*/
 	public static function getInstance(){

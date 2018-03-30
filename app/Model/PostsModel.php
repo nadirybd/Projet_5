@@ -9,8 +9,12 @@ class PostsModel extends Model
 	/**
 	* Méthode select
 	*/
-	public function select(){
-		$select = $this->my_sql->query('SELECT id, post_title, post_content, post_date, post_img FROM wb_posts');
+	public function select($attributes = null, $where = null){
+		if($where === null){
+			$select = $this->my_sql->query('SELECT id, post_title, post_content, post_date, post_img FROM wb_posts');
+		} else {
+			$select = $this->my_sql->prepare('SELECT id, post_title, post_content, post_date, post_img FROM wb_posts WHERE ' . $where.' = ?', $attributes, true);
+		}
 		return $select;
 	}
 
