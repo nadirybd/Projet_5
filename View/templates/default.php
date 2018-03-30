@@ -10,6 +10,8 @@
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="public/images/favicon.png" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  		<script src="public/js/tinymce.js"></script>
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
 	<body>
@@ -20,7 +22,7 @@
 			<div id="main-menu">
 				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
 				<a href="webmaster-forum">FORUM</a>
-				<a href="">BLOG</a>
+				<a href="blog">BLOG</a>
 				<?php if(isset($_SESSION['user'])): ?>
 					<div id="user-menu">
 						<i class="fas fa-user-circle fa-2x"></i>

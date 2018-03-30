@@ -1163,6 +1163,11 @@ PROFILE TOPICS TABLE
 	margin: 0;
 }
 
+.side-admin a
+{
+	color: white;
+}
+
 /**** LAST TOPIC ADMIN ****/
 #last-topics, #reported-comment
 {

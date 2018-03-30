@@ -2,6 +2,10 @@
 	<div id="admin-container">
 		<div class="side-admin">
 			<h1>Administration <i class="fas fa-chess-king"></i></h1>
+			<fieldset>
+				<legend>Gestionnaire du blog</legend>
+				<p><a href="add-post">Ajouter un nouvel article</a></p>
+			</fieldset>
 		</div>
 		<div id="admin-content">
 			<h2>GESTIONNAIRE DU FORUM</h2>
@@ -11,7 +15,7 @@
 					<div id="last-topics-content">
 					<?php foreach ($lastTopics as $lastTopic): ?>
 						<div class="admin-list">
-							<p><a href="topic/webmastertopic-<?= $lastTopic->id; ?>-1"><?= $lastTopic->title; ?></a></p>
+							<p><a href="topic/webmastertopic-<?= $lastTopic->id; ?>-1"><?= htmlspecialchars($lastTopic->title); ?></a></p>
 							<p><a href="admin/delete-topic-<?= $lastTopic->id; ?>"><span class="delete">Supprimer</span></a></p>
 						</div>
 						<hr/>
@@ -24,7 +28,7 @@
 					<?php foreach ($reportedMessages as $r_message): ?>
 						<?php $r_user = $userMessages($r_message->user_id); ?>
 						<div class="admin-list">
-							<p>Utilisateur : <?= $r_user->pseudo; ?></p>
+							<p>Utilisateur : <?= htmlspecialchars($r_user->pseudo); ?></p>
 							<p>Nombre de report : <?= $r_message->report; ?></p>
 							<div class="content-report-msg"><?= htmlspecialchars($r_message->content); ?></div>
 

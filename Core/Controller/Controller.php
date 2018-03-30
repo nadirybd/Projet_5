@@ -29,6 +29,7 @@ class Controller
 	protected $followModel;
 	protected $adminModel;
 	protected $chatModel;
+	protected $postsModel;
 
 	/**
 	* Méthode __construct
@@ -54,6 +55,9 @@ class Controller
 		}
 		if($this->chatModel === null){
 			$this->chatModel = new \App\Model\ChatModel();
+		}
+		if($this->postsModel === null){
+			$this->postsModel = new \App\Model\PostsModel();
 		}
 	}
 

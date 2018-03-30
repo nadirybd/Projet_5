@@ -5,6 +5,7 @@ App::load();
 use App\Controller\Frontend\FrontController;
 use App\Controller\Frontend\CategoriesController;
 use App\Controller\Frontend\TopicsController;
+use App\Controller\Frontend\PostsController;
 use App\Controller\Frontend\Users\UsersController;
 
 
@@ -14,6 +15,7 @@ use App\Controller\Backend\MessagesController;
 use App\Controller\Backend\Users\UsersController as BackUsersController;
 
 use App\Controller\Backend\Users\Admin\TopicsController as AdTopicsController;
+use App\Controller\Backend\Users\Admin\PostsController as AdPostsController;
 use App\Controller\Backend\Users\Admin\MessagesController as AdMessagesController;
 use App\Controller\Backend\Users\Admin\AdminController;
 
@@ -118,7 +120,15 @@ switch ($page) {
 		AdMessagesController::getInstance()->delete();
 		break;
 
+	case 'blog':
+		PostsController::getInstance()->blog();
+		break;
+
+	case 'add-post':
+		AdPostsController::getInstance()->addPost();
+		break;
+
 	default:
-		
+		FrontController::getInstance()->notFound();
 		break;
 }

@@ -15,7 +15,8 @@ class App
 		App\Autoloader::register();
 		require('Core/Autoloader.php');
 		Core\Autoloader::register();
-		
+
+
 		if(isset($_COOKIE['user']) && !empty($_COOKIE['user']) && !isset($_SESSION['user'])){
 			BackUsersController::getInstance()->loginCookie();
 		}

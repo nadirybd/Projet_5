@@ -170,30 +170,34 @@ class UsersController extends Controller
 					$newAvatar = $_FILES['file_avatar'];
 					$ext = strtolower(substr($newAvatar['name'], -3));
 					$validate_ext = ['jpg', 'png', 'gif'];
-					if(in_array($ext, $validate_ext)){
-						$max_size = 2097152;
-						if($newAvatar['size'] <= $max_size){
-							
-							$rename = $_SESSION['user']['id']. '.'. $ext;	
-							$tmp_path = $newAvatar['tmp_name'];
-							$new_path = 'View/backend/users/avatars/'. $rename;
-							$move = move_uploaded_file($tmp_path, $new_path);
+					if($newAvatar['error'] < 1){	
+						if(in_array($ext, $validate_ext)){
+							$max_size = 2097152;
+							if($newAvatar['size'] <= $max_size){
+								
+								$rename = $_SESSION['user']['id']. '.'. $ext;	
+								$tmp_path = $newAvatar['tmp_name'];
+								$new_path = 'View/backend/users/avatars/'. $rename;
+								$move = move_uploaded_file($tmp_path, $new_path);
 
-							if($move){
-								$this->usersModel->update([
-									':avatar' => $rename,
-									':id' => $_SESSION['user']['id']
-								], 'avatar');
+								if($move){
+									$this->usersModel->update([
+										':avatar' => $rename,
+										':id' => $_SESSION['user']['id']
+									], 'avatar');
 
-								header('location: /Forum/profile');
+									header('location: /Forum/profile');
+								} else {
+									$avatarError = 'Une erreur s\'est produite durant le transfert, veuillez réessayer plus tard. Si le problème persiste, merci de bien vouloir nous contacter.';
+								}
 							} else {
-								$avatarError = 'Une erreur s\'est produite durant le transfert, veuillez réessayer plus tard. Si le problème persiste, merci de bien vouloir nous contacter.';
+								$avatarError = 'La taille maximum est de 2Mo.';
 							}
 						} else {
-							$avatarError = 'La taille maximum est de 2Mo.';
+							$avatarError = 'Les extensions autorisées sont jpg | png | gif.';
 						}
 					} else {
-						$avatarError = 'Les extensions autorisées sont jpg | png | gif.';
+						$avatarError = 'Une erreur est survenue lors de l\'upload';
 					}
 				} else {
 					$avatarError = 'Aucun fichier n\'a été sélectionné';
