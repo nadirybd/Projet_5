@@ -131,6 +131,14 @@ switch ($page) {
 	case 'add-post':
 		AdPostsController::getInstance()->addPost();
 		break;
+	
+	case 'delete-post':
+		AdPostsController::getInstance()->delete();
+		break;
+
+	case 'list-posts':
+		AdPostsController::getInstance()->listPosts();
+		break;
 
 	default:
 		FrontController::getInstance()->notFound();

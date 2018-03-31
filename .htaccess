@@ -44,4 +44,7 @@ RewriteRule ^admin/delete-message-([0-9]+)$ index.php?p=admin-delete-message&id=
 
 RewriteRule ^blog$ index.php?p=blog
 RewriteRule ^post/([0-9]+)$ index.php?p=post&id=$1
-RewriteRule ^add-post$ index.php?p=add-post
+
+RewriteRule ^admin/add-post$ index.php?p=add-post
+RewriteRule ^admin/list-posts-([0-9]+)$ index.php?p=list-posts&page=$1
+RewriteRule ^admin/delete-post-([0-9]+)$ index.php?p=delete-post&id=$1

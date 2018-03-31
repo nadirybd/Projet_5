@@ -32,6 +32,8 @@ class PostsController extends Controller
 			if(empty($post)){
 				header('location: /Forum/blog');
 			}
+		} else {
+			header('location: /Forum/blog');
 		}
 
 		$this->render('show-post', compact('post'), true);

@@ -37,6 +37,8 @@
 								<hr />
 								<?php if(isset($_SESSION['user'], $_SESSION['admin'])): ?>
 									<p><a href="admin">ADMINISTRATION</a></p>
+									<hr/>
+									<p><a href="admin/add-post">AJOUTER UN ARTICLE</a></p>
 								<hr/>
 								<?php endif; ?>
 								<p><a href="add-topic">AJOUTER UN TOPIC</a></p>

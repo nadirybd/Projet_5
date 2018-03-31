@@ -4,7 +4,8 @@
 			<h1>Administration <i class="fas fa-chess-king"></i></h1>
 			<fieldset>
 				<legend>Gestionnaire du blog</legend>
-				<p><a href="add-post">Ajouter un nouvel article</a></p>
+				<p><a href="admin/add-post">Ajouter un nouvel article</a></p>
+				<p><a href="admin/list-posts-1">Modifier un article</a></p>
 			</fieldset>
 		</div>
 		<div id="admin-content">

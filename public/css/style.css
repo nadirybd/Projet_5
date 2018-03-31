@@ -1262,3 +1262,12 @@ PROFILE TOPICS TABLE
 {
 	display: none;
 }
+
+/*******************************************
+				BLOG PAGE
+********************************************/
+.blog-img img
+{
+	width: 250px;
+	height: 150px;
+}
