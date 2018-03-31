@@ -131,6 +131,10 @@ switch ($page) {
 	case 'add-post':
 		AdPostsController::getInstance()->addPost();
 		break;
+
+	case 'edit-post':
+		AdPostsController::getInstance()->editPost();
+		break;
 	
 	case 'delete-post':
 		AdPostsController::getInstance()->delete();

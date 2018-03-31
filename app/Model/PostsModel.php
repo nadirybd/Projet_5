@@ -19,7 +19,7 @@ class PostsModel extends Model
 	}
 
 	/**
-	* Méthode select
+	* Méthode selectByLimit
 	*/
 	public function selectByLimit($limit, $limit2){
 		$select = $this->my_sql->query('SELECT id, post_title, post_content, post_date, post_img FROM wb_posts ORDER BY post_date ASC limit '.$limit.','.$limit2);
@@ -36,7 +36,22 @@ class PostsModel extends Model
 	}
 
 	/**
-	* Méthode add
+	* Méthode update
+	*/
+	public function update($attributes, $cible){
+		if($cible === 'post_title'){
+			$add = $this->my_sql->prepare('UPDATE wb_posts SET post_title = ? WHERE id = ?', $attributes);
+		} elseif ($cible === 'post_content') {
+			$add = $this->my_sql->prepare('UPDATE wb_posts SET post_content = ? WHERE id = ?', $attributes);
+		} elseif ($cible === 'post_img') {
+			$add = $this->my_sql->prepare('UPDATE wb_posts SET post_img =  ? WHERE id = ?', $attributes);
+		} 
+
+		return $add;
+	}
+
+	/**
+	* Méthode delete
 	*/
 	public function delete($attributes){
 		$delete = $this->my_sql->prepare('DELETE FROM wb_posts WHERE id = ?', $attributes);

@@ -1,5 +1,4 @@
 <div class="page" id="profile-page">
-	
 	<div id="profile-content">
 		<div id="profile-info">
 			<div id="bar-info">

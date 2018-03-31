@@ -11,7 +11,7 @@
 			<tr>
 				<td><?= htmlspecialchars($post->post_title); ?></td>
 				<td>
-					<button class="btn-edit">Editer</button>
+					<button class="btn-edit" onclick="window.location.href='admin/edit-post-<?= $post->id; ?>'">Editer</button>
 					<button class="btn-cancel" onclick="window.location.href='admin/delete-post-<?= $post->id; ?>'">Supprimer</button>
 				</td>
 			</tr>

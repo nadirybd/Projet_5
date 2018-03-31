@@ -93,7 +93,7 @@ class PostsController extends Controller
 			$pagination = $this->pagination($number_of_pages, 'admin/list-posts-');
 			$posts = $this->postsModel->selectByLimit($from, $posts_per_page);
 			
-			$this->render('list-posts', compact('posts', 'pagination'));
+			$this->render('list-posts', compact('posts', 'pagination'), 'true');
 		} else {
 			header('location: forbidden');
 		}
@@ -110,12 +110,12 @@ class PostsController extends Controller
 					if(!empty($confirmDelete) && $confirmDelete === 'SUPPRIMER'){
 						$post = $this->postsModel->select([$_GET['id']], 'id');
 						
-						$destroyimg = unlink('public/images/posts/'.$post->post_img);
-						$destroythumb = unlink('public/images/posts/thumbs/thumb_'.$post->post_img);
+						unlink('public/images/posts/'.$post->post_img);
+						unlink('public/images/posts/thumbs/thumb_'.$post->post_img);
 						
 						$delete = $this->postsModel->delete([$_GET['id']]);
 						if($delete){
-							header('location: /Forum/admin');
+							header('location: /Forum/admin/list-posts-1');
 						} else {
 							$error_delete = 'Une erreur est survenue veuillez réessayer !';
 						}
@@ -123,9 +123,79 @@ class PostsController extends Controller
 						$error_delete = 'Veuillez écrire le mot : SUPPRIMER';
 					}
 				}
-				$this->render('delete-post', compact('error_delete'));
+				$this->render('delete-post', compact('error_delete'), true);
 			} else {
 				header('location: /Forum/admin');
+			}
+		} else {
+			header('location: forbidden');
+		}
+	}
+
+	/**
+	* Méthode editPost qui gère la page d'édition d'un post
+	*/
+	public function editPost(){
+		if(isset($_SESSION['admin']) && $this->logged()){
+			if(isset($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+				$post = $this->postsModel->select([$_GET['id']], 'id');
+				if(!empty($post)){
+					if(isset($_POST['sub-edit-posts'])){
+						if(isset($_POST['edit_title_post']) && !empty($_POST['edit_title_post']) && $_POST['edit_title_post'] !== $post->post_title){
+							$editTitle = $_POST['edit_title_post'];
+							if(strlen($editTitle) <= 150){
+								$this->postsModel->update([$editTitle, $_GET['id']], 'post_title');
+								header('location: /Forum/admin/list-posts-1');
+							} else {
+								$error_edit = 'Le titre ne peut dépasser 150 caractères';
+							}
+						}
+						if(isset($_POST['edit_content_post']) && !empty($_POST['edit_content_post']) && $_POST['edit_content_post'] !== $post->post_content){
+							$editContent = $_POST['edit_content_post'];
+							$this->postsModel->update([$editContent, $_GET['id']], 'post_content');
+							header('location: /Forum/admin/list-posts-1');
+						}
+						if(isset($_FILES['edit_img_post'])){
+							$editImg = $_FILES['edit_img_post'];
+							$editImgName = $editImg['name'];
+							$editImgSize = $editImg['size'];
+							$editImgError = $editImg['error'];
+							$editImgTmp = $editImg['tmp_name'];
+							if($editImgSize > 0){
+								if($editImgError < 1){
+									$maxsize = 2097152;
+									if($editImgSize <= $maxsize){
+										$ext = strtolower(substr($editImgName, -3));
+										$authorized = ['jpg', 'png', 'gif'];
+										if(in_array($ext, $authorized)){
+											$newImgName = uniqid('', true).'.'.$ext;
+											$new_path = 'public/images/posts/'.$newImgName;
+											$move_img = move_uploaded_file($editImgTmp, $new_path);
+											if($move_img){
+												unlink('public/images/posts/'.$post->post_img);
+												unlink('public/images/posts/thumbs/thumb_'.$post->post_img);
+												$this->postsModel->update([$newImgName, $_GET['id']], 'post_img');
+											
+												\App\Thumbs::getInstance()->getThumb($ext, $new_path, $newImgName);
+												header('location: /Forum/admin/list-posts-1');
+											}
+										}
+									} else {
+										$error_edit = 'la taille de l\'image ne peut dépasser 2Mo';
+									}
+								} else {
+									$error_edit = 'Une erreur est survenue lors de l\'upload du fichier';
+								}
+							}
+						}
+					}
+						
+					$this->render('edit-post', compact('error_edit', 'post'), true);
+				} else {
+					header('location: /Forum/admin/list-posts-1');
+				}
+			} else {
+				header('location: /Forum/admin/list-posts-1');
 			}
 		} else {
 			header('location: forbidden');
