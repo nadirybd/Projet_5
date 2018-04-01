@@ -1,5 +1,4 @@
 <div class="page front-page" id="forum-page">
-	<div class="banner"></div>
 	<div id="forum-container">
 		<div id="categories-container">
 			<h2>FORUM</h2>
@@ -77,7 +76,7 @@
 					<?php else: ?>
 					<tr>
 						<td>
-							Veuillez vous <a href="login"><strong>connectez</strong></a> pour discuter
+							Veuillez vous <a href="login"><strong>connecter</strong></a> pour discuter
 						</td>
 					</tr> 
 					<?php endif; ?>

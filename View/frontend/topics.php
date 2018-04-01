@@ -1,4 +1,4 @@
-<div id="topics-page" class="page">
+<div id="topics-page" class="page front-page">
 	<section>
 		<table class="tb tb-topics-cat">
 			<thead>
@@ -9,9 +9,6 @@
 					<td>Status</td>
 					<?php if(isset($_SESSION['user'])): ?>
 						<td>Option</td>
-					<?php endif; ?>
-					<?php if(isset($_SESSION['admin'])): ?>
-						<td>Suppression</td>
 					<?php endif; ?>
 				</tr>
 			</thead>
@@ -26,7 +23,7 @@
 						<?= htmlspecialchars($user($topic->user_id)); ?>
 					</td>
 					<td>
-						Date de création du topic : <?= $topic->date_topic; ?>
+						<?= $topic->date_topic; ?>
 					</td>
 					<td>
 						<?php if($topic->resolved == 1): ?>
@@ -49,18 +46,18 @@
 								<input type="hidden" name="follow" value="<?= $topic->id; ?>" />
 								<button class="btn-validate" type="submit" name="sub-follow">Suivre</button>
 							</form>
+							<?php if(isset($_SESSION['admin'])): ?>
+								<button class="btn-cancel" onclick="window.location.href='admin/delete-topic-<?= $topic->id; ?>'">
+									Supprimer
+								</button>
+							<?php endif; ?>
 						</td>
 						<?php endif; ?>
-					<?php endif; ?>
-					<?php if(isset($_SESSION['admin'])): ?>
-						<td>
-							<a href="admin/delete-topic-<?= $topic->id; ?>"><span class="delete">Supprimer</span></a>
-						</td>
 					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>
 			</tbody>
 		</table>
-		<p><?= $pagination; ?> </p>
+		<p>Page : <?= $pagination; ?></p>
 	</section>
 </div>

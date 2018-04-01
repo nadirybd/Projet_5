@@ -1,4 +1,4 @@
-<div id="login-page" class="page form-page">	
+<div id="login-page" class="form-page">	
 	<div class="form-container">
 		<h2>Authentification</h2>
 		

@@ -50,7 +50,7 @@ class PostsController extends Controller
 
 										\App\Thumbs::getInstance()->getThumb($ext, $new_path, $newImgName);
 										
-										header('location: /Forum/blog');
+										header('location: /Forum/blog-1');
 									} else {
 										$post_error = 'Une erreur est survenue lors du transfert de l\'image';
 									}
@@ -83,14 +83,9 @@ class PostsController extends Controller
 			$number_of_posts = count($allPosts);
 			$posts_per_page = 5;
 			$number_of_pages = ceil($number_of_posts / $posts_per_page);
-
-			if(isset($_GET['page']) && intval($_GET['page']) && $_GET['page'] > 0){
-				$from = $posts_per_page * ($_GET['page'] - 1);
-			} else {
-				$_GET['page'] = 1;
-				$from = $posts_per_page * ($_GET['page'] - 1);
-			}
-			$pagination = $this->pagination($number_of_pages, 'admin/list-posts-');
+		
+			$pagination = $this->getPagination()->getPage($number_of_pages, 'admin/list-posts-');
+			$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_pages, $posts_per_page);
 			$posts = $this->postsModel->selectByLimit($from, $posts_per_page);
 			
 			$this->render('list-posts', compact('posts', 'pagination'), 'true');

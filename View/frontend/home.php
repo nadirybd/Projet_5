@@ -16,8 +16,8 @@
 	<section class="widget-container wd-container-1">
 		<div class="widget wd-1">
 			<div class="icon-widget"><i class="fas fa-newspaper fa-3x"></i></div>
-			<p>Retrouver tous nos tutos !</p>
-			<button class="call-to-action" onclick="window.location.href='#'">NOS TUTORIELS</button>
+			<p>Retrouver tous nos articles !</p>
+			<button class="call-to-action" onclick="window.location.href='blog-1'">NOS ARTICLES</button>
 		</div>
 		<div class="widget wd-2">
 			<div class="icon-widget"><i class="fas fa-globe fa-3x"></i></div>

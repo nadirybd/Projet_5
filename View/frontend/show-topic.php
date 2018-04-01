@@ -8,12 +8,14 @@
 		<section>
 			<aside class="avatar-topic">
 					<p><a href="<?= $url($user->pseudo); ?>"><img src="View/backend/users/avatars/<?= $user->avatar; ?>" /></a></p>
+
 					<?php if($admin($user->id)): ?>
 						<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
 					<?php endif; ?>
+					
 					<p><a href="<?= $url($user->pseudo); ?>"><?= htmlspecialchars($user->pseudo); ?></a></p>
-
 			</aside>
+
 			<div class="topic-content">
 				<?php if($topic->t_edit_date !== "00/00/0000 à 00h00min00s"): ?>
 					<p>Posté par <?= htmlspecialchars($user->pseudo); ?> le <?= $topic->date_topic; ?> ( Édité le <?= $topic->t_edit_date; ?> ) :</p>
@@ -26,16 +28,19 @@
 		</section>
 	<?php endif; ?>
 
-	<?php if(count($comments) > 0): ?> 
+	<?php if(!empty($comments)): ?> 
 		<?php foreach($comments as $comment): ?>
 			<section>		
 				<?php $userMessages = $userComment($comment->user_id); ?>
 				<aside class="avatar-topic">
 					<p><a href="<?= $urlComment($userMessages->pseudo); ?>"><img src="View/backend/users/avatars/<?= $userMessages->avatar; ?>" /></a></p>
+
 					<?php if($admin($userMessages->id)): ?>
 						<p><span class="admin">Administrateur <i class="fas fa-chess-king"></i></span></p>
 					<?php endif; ?>
+					
 					<p><a href="<?= $url($userMessages->pseudo); ?>"><?= htmlspecialchars($userMessages->pseudo); ?></a></p>
+					
 					<?php if(isset($_SESSION['admin'], $_SESSION['user'])): ?>
 						<div class="delete-message">	
 							<a href="admin/delete-message-<?= $comment->id; ?>"><span class="delete">Supprimer</span></a>
@@ -65,7 +70,7 @@
 					<div class="topic-text"><?= htmlspecialchars($comment->content); ?></div>
 					
 
-					<?php if(isset($_SESSION['user']['id'])): ?>			
+					<?php if(isset($_SESSION['user']['id']) && !empty($userMessages->id)): ?>			
 					<div class="option-comment">
 						<form class="form report-form" method="post">
 							<input type="hidden" name="report_id" value="<?= $comment->id; ?>" id="report_id" />
@@ -74,7 +79,7 @@
 							</button>
 						</form>
 
-						<?php if($userMessages->id == $_SESSION['user']['id']): ?>
+						<?php if($comment->user_id == $_SESSION['user']['id']): ?>
 							<div class="edit">
 								<a href="edit-message-<?= $comment->id; ?>" title="Editer le commentaire"><i class="fas fa-edit"></i> Éditer</a>
 							</div>
@@ -92,7 +97,7 @@
 		<?php endforeach; ?>
 	<?php endif; ?>
 
-	<p><?= $pagination; ?></p>
+	<div class="pagination"><?= $pagination; ?></div>
 
 	<div class="notif">
 	</div>

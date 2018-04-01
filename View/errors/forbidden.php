@@ -1,3 +1,6 @@
 <div class="page">
-	<h1><i class="fas fa-hand-paper"></i> L'accès à cette page vous est interdit <i class="fas fa-hand-paper"></i></h1>
+	<div id="page-error">
+		<div><img src="public/images/errors/forbidden.png"></div>
+		<h1>Vous ne passerez pas !</h1>
+	</div>
 </div>

@@ -22,7 +22,7 @@ class PostsModel extends Model
 	* Méthode selectByLimit
 	*/
 	public function selectByLimit($limit, $limit2){
-		$select = $this->my_sql->query('SELECT id, post_title, post_content, post_date, post_img FROM wb_posts ORDER BY post_date ASC limit '.$limit.','.$limit2);
+		$select = $this->my_sql->query('SELECT id, post_title, post_content, DATE_FORMAT(post_date, "%d/%m/%Y à %Hh%imin") AS post_dateFr, post_img FROM wb_posts ORDER BY post_date DESC limit '.$limit.','.$limit2);
 
 		return $select;
 	}

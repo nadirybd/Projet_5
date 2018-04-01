@@ -1,4 +1,4 @@
-<div id="recup-pass-mail" class="page form-page">
+<div id="recup-pass-mail" class="form-page">
 	<div class="form-container">
 		<h2>Récupération de votre mot de passe</h2>
 		<form class="form" id="form-recup" method="post">

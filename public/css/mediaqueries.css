@@ -1,0 +1,290 @@
+/*****************************
+		MAXWIDTH 1024px
+******************************/
+
+@media all and (max-width: 1024px){
+	/****************
+	*	HOMEPAGE	*
+	*****************/
+	#slider-content {
+		margin: 0 auto;
+		max-width: 500px;
+		width: 100%;
+		padding: 35px;
+	}
+
+	.widget-container{
+		flex-direction: column;
+	}
+
+	.widget{
+		box-sizing: border-box;
+	}
+
+	/****************
+	*	FORUMPAGE	*
+	*****************/
+	#side-forum{
+		margin-top: 50px;
+	}
+
+	/****************
+	*   TOPICS PAGE	*
+	*****************/
+	#topics-page{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	/****************
+	*	  ADMIN	    *
+	*****************/
+	#admin-last-info{
+		flex-direction: column;
+	}
+	
+	#last-topics, #reported-comment{
+		width: 80%;
+	}
+}
+
+
+/*****************************
+		MAXWIDTH 900px
+******************************/
+
+@media all and (max-width: 900px){
+	/****************
+	*	   MENU     * 
+	*****************/
+	#main-menu a, #main-menu p {
+		display: none;
+	}
+
+	#main-menu{
+		justify-content: flex-end;
+	}
+
+	.burger, #user-menu, #user-menu a, #user-menu p{
+		display: block;
+		margin: 0 15px;
+	}
+
+	/****************
+	*	 MENUBIS 	*
+	*****************/
+	.burger-menuBis{
+		display: block;
+		cursor: pointer;
+	}
+
+	#menuBis ul, #create-topic {
+		display: none;
+	}
+
+	#menuBis p:last-child
+	{
+		margin-left: 15px;
+	}
+
+	/****************
+	*   TOPICS PAGE	*
+	*****************/
+	#topics-page{
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+
+	.tb-topics-cat{
+		text-align: center;
+	}
+
+	.tb-topics-cat tbody tr td:first-child p 
+	{
+		display: none;
+	}
+}
+
+/*****************************
+		MAXWIDTH 800px
+******************************/
+
+@media all and (max-width: 800px){
+	/****************
+	*	HOMEPAGE	*
+	*****************/
+	.wd-container-3{
+		display: none;
+	}
+
+	/********************
+	* PROFILE && ADMIN 	*
+	*********************/
+	#profile-info, #admin-container{
+		flex-direction: column;
+	}
+	#bar-info, #profile-description, .side-admin{
+		width: 100%;
+		max-width: 100%;
+		box-sizing: border-box;
+	}
+	#admin-content{
+		padding: 0;
+	}
+	
+	/****************
+	*   TOPICS PAGE	*
+	*****************/
+	#topics-page{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	.tb-topics-cat tbody td{
+		padding: 8px 2px;
+	}
+}
+
+/*****************************
+		MAXWIDTH 600px
+******************************/
+
+@media all and (max-width: 600px){
+	/****************
+	*	HOMEPAGE	*
+	*****************/
+
+	/****************
+	*	PROFILE  	*
+	*****************/
+
+	/****************
+	*   TOPICS PAGE	*
+	*****************/
+	#topics-page{
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.tb-topics-cat tbody td{
+		padding: 5px;
+	}
+
+	.tb-topics-cat thead tr,
+	.tb-topics-cat tbody tr{
+		display: flex;
+		flex-direction: column;
+	}
+
+	.tb-topics-cat thead tr td{
+		display: none;
+	}
+
+	.tb-topics-cat thead tr td:first-child{
+		display: block;
+	}
+
+	.tb-topics-cat tbody tr{
+		border-collapse: separate;
+		margin: 10px;
+		border: 2px solid black;
+		border-radius: 5px;
+	}
+
+	.tb-topics-cat tbody tr td:nth-child(odd){
+		background-color: #dcdbd8;
+	}
+
+	.tb-topics-cat tbody tr td:last-child button{
+		margin: 5px;
+	}
+}
+
+/*****************************
+		MAXWIDTH 500px
+******************************/
+
+@media all and (max-width: 500px){
+
+	/****************
+	*	DEFAULT 	*
+	*****************/
+	header{
+		padding: 0;
+	}
+	/****************
+	*	HOMEPAGE	*
+	*****************/
+	#slider-content{
+		margin: 0 auto;
+		max-width: 400px;
+		font-weight: 0.9em;
+		box-sizing: border-box;
+		border-radius: 0;
+	}
+
+	#slider button{
+		margin: 5px;
+	}
+
+	#slider p{
+		text-align: center;
+	}
+
+	.widget{
+		padding: 50px;
+	}
+	
+	.wd-4{
+		padding: 20px;
+	}
+	/****************
+	*	  FORUM	    *
+	*****************/
+	#tb-last-topics, #tb-last-chat{
+		max-width: 300px;
+	}
+	.front-page{
+		padding: 100px 0;
+	}
+
+	.category, .row-category aside{
+		padding: 10px;
+	}
+
+	.row-category{
+		flex-direction: column;
+	}
+
+	/****************
+	*	  FORM     	*
+	*****************/
+	.form input[type='text'], .form input[type='email'],
+	.form input[type='password'], .form select {
+		min-width: 150px;
+	}
+
+	/****************
+	*	  TABLE	    *
+	*****************/
+	#tb-created-topics tr, #tb-followed-topics tr{
+		display: flex;
+		flex-direction: column;
+	}
+
+	#tb-created-topics thead td, #tb-followed-topics thead td{
+		display: none;
+	}
+
+	#tb-created-topics thead td:first-child, #tb-followed-topics thead td:first-child{
+		display: block;
+	}
+	
+	/****************
+	*	  MENUBIS   *
+	*****************/
+	#menuBis-mobile{
+		width: 100%;
+		left: -100%;
+	}
+}

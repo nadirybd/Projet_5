@@ -22,7 +22,7 @@ RewriteRule ^reset-password$ index.php?p=reset_password
 
 RewriteRule ^webmaster-forum$ index.php?p=forum
 
-RewriteRule ^topics/([a-zA-Z\-]+)/([a-zA-Z\-\+]+)/([0-9]+)-([0-9a-zA-Z]+)$ index.php?p=topics&category=$1&subcategory=$2&id=$3&page=$3
+RewriteRule ^topics/([a-zA-Z\-]+)/([a-zA-Z\-\+]+)/([0-9]+)-([0-9a-zA-Z]+)$ index.php?p=topics&category=$1&subcategory=$2&id=$3&page=$4
 
 RewriteRule ^topics/([a-zA-Z\-]+)/([0-9]+)-([0-9a-zA-Z]+)$ index.php?p=topics&category=$1&id=$2&page=$3
 
@@ -42,7 +42,7 @@ RewriteRule ^admin/delete-topic-([0-9]+)$ index.php?p=admin-delete-topic&id=$1
 
 RewriteRule ^admin/delete-message-([0-9]+)$ index.php?p=admin-delete-message&id=$1
 
-RewriteRule ^blog$ index.php?p=blog
+RewriteRule ^blog-([0-9]+)$ index.php?p=blog&page=$1
 RewriteRule ^post/([0-9]+)$ index.php?p=post&id=$1
 
 RewriteRule ^admin/list-posts-([0-9]+)$ index.php?p=list-posts&page=$1

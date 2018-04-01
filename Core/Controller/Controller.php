@@ -132,19 +132,10 @@ class Controller
 	}
 
 	/**
-	* Méthode pagination qui va créer un pagination
-	* @return string
+	* getPagination
 	*/
-	protected function pagination($number_of_page, $href){
-		$pagination = '';
-		for ($page=1; $page <= $number_of_page ; $page++){
-			if($page == $_GET['page']){
-				$pagination .= ' | <span>' . $page .'</span> ';
-			} else {
-				$pagination .='| <a href="'.$href.$page.'">'.$page.'</a> ';
-			}
-		}
-		$pagination = substr($pagination, 2, strlen($pagination));
-		return $pagination;
+	protected function getPagination(){
+		$getPagination = new \App\Pagination();
+		return $getPagination;
 	}
 }

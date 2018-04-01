@@ -8,10 +8,32 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk" crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P" crossorigin="anonymous" />
 		<link rel="stylesheet" type="text/css" href="public/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="public/css/mediaqueries.css" />
 		<link rel="shortcut icon" type="image/x-icon" href="public/images/favicon.png" />
+
+		<!-- Metas description -->
+		<meta name="description" content="Webmaster Forum, le partage notre vision !" />
+
+          <!-- Open Graph data -->
+
+        <meta property="og:title" content="Webmaster Forum"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="index.php"/>
+        <meta property="og:image" content="public/images/logo.png"/>
+        <meta property="og:description" content="Webmaster Forum, le partage notre vision !"/>
+
+          <!-- Twitter Card data -->
+
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="Webmaster Forum">
+        <meta name="twitter:description" content="Webmaster Forum, le partage notre vision !">
+        <meta name="twitter:image" content="public/images/logo.png">
+
+        <!-- SCRIPTS -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
   		<script src="public/js/tinymce.js"></script>
+		
 		<title>FORUM | MY NEW WEBSITE</title>
 	</head>
 	<body>
@@ -22,7 +44,8 @@
 			<div id="main-menu">
 				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
 				<a href="webmaster-forum">FORUM</a>
-				<a href="blog">BLOG</a>
+				<a href="blog-1">BLOG</a>
+				<a href="contact">CONTACT</a>
 				<?php if(isset($_SESSION['user'])): ?>
 					<div id="user-menu">
 						<i class="fas fa-user-circle fa-2x"></i>
@@ -53,14 +76,33 @@
 					<a href="login">SE CONNECTER</a>
 					<a href="subscribe">S'INSCRIRE</a>
 				<?php endif; ?>
-				<span class="burger"><a href=""><i class="fas fa-bars fa-2x"></i></a></span>
+				<span class="burger"><i class="fas fa-bars fa-2x"></i></span>
 			</div>
 		</header>
+
+		<div id="burger-sidebar">
+			<div id="burger-content">
+				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
+				<hr/>
+				<a href="webmaster-forum">FORUM</a>
+				<hr/>
+				<a href="blog-1">BLOG</a>
+				<hr/>
+				<a href="contact">CONTACT</a>
+				<hr/>
+				<?php if(!isset($_SESSION['user'])): ?>
+					<a href="login">SE CONNECTER</a>
+					<hr/>
+					<a href="subscribe">S'INSCRIRE</a>
+					<hr/>
+				<?php endif; ?>
+			</div>
+		</div>
 
 		<?= $menuBis; ?>
 
 
-		<div class="overlay"></div>
+		<div class="overlay hide-overlay"></div>
 		
 		<div id="main-container">
 			<div id="contains">

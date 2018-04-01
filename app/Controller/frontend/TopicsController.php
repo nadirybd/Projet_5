@@ -22,41 +22,29 @@ class TopicsController extends Controller
 		if(isset($_GET['id'], $_GET['category']) && !empty($_GET['id']) && !empty($_GET['category']) && intval($_GET['id'])){
 			if(isset($_GET['subcategory']) && !empty('subcategory')){
 				
-				$allTopics = $topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id');
+				$allTopics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id');
 				
-				$href = 'topics/'. $_GET['category'] .'/'. $_GET['subcategory'] .'/'.$_GET['id'] .'-';
+				$href = 'topics/'. $_GET['category'] .'/'. $_GET['subcategory'] .'/'. $_GET['id'] .'-';
 
 				$number_of_topics = count($allTopics);
 				$number_per_page = 5;
-				$number_of_page = ceil($number_of_topics / $number_per_page);
-				
-				$pagination = $this->pagination($number_of_page, $href);
-
-				if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
-					$from = $number_per_page * ($_GET['page'] - 1);  
-				} else {
-					$_GET['page'] = 1;
-					$from = $number_per_page * ($_GET['page'] - 1); 
-				}
+				$number_of_page = ceil($number_of_topics / $number_per_page);				
+				$pagination = $this->getPagination()->getPage($number_of_page, $href);
+				$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_page, $number_per_page);
 
 				$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'subcategory_id', $from, $number_per_page);
 			} else {
 				
-				$allTopics = $topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
+				$allTopics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id');
 				$href = 'topics/'. $_GET['category'] .'/'. $_GET['id'] .'-';
 
 				$number_of_topics = count($allTopics);
 				$number_per_page = 5;
 				$number_of_page = ceil($number_of_topics / $number_per_page);
 				
-				$pagination = $this->pagination($number_of_page, $href);
+				$pagination = $this->getPagination()->getPage($number_of_page, $href);
 
-				if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
-					$from = $number_per_page * ($_GET['page'] - 1);  
-				} else {
-					$_GET['page'] = 1;
-					$from = $number_per_page * ($_GET['page'] - 1); 
-				}
+				$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_page, $number_per_page);
 				
 				$topics = $this->topicsModel->selectByCategory([$_GET['id']], 'category_id', $from, $number_per_page);
 			}
@@ -73,17 +61,9 @@ class TopicsController extends Controller
 			
 			$number_of_topics = count($allTopics);
 			$number_per_page = 5;
-			$number_of_page = ceil($number_of_topics / $number_per_page);
-			
-			$pagination = $this->pagination($number_of_page, $href);
-
-			if(intval($_GET['page']) && isset($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
-				$from = $number_per_page * ($_GET['page'] - 1);  
-			} else {
-				$_GET['page'] = 1;
-				$from = $number_per_page * ($_GET['page'] - 1); 
-			}
-			
+			$number_of_page = ceil($number_of_topics / $number_per_page);	
+			$pagination = $this->getPagination()->getPage($number_of_page, $href);
+			$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_page, $number_per_page);
 			$topics = $this->topicsModel->selectBylimit($from, $number_per_page);
 		}
 
@@ -153,20 +133,14 @@ class TopicsController extends Controller
 				};
 			}
 
-			$comment_per_page = 3;
 			$all_comment = $this->messagesModel->select([$topic->id], 'topic_id');
 			$all_comment = count($all_comment);
+			$comment_per_page = 3;
 			$number_of_page = ceil($all_comment / $comment_per_page);
 
 			$href = 'topic/webmastertopic-'. $topic->id.'-';
-			$pagination = $this->pagination($number_of_page, $href);
-
-			if(isset($_GET['page']) && intval($_GET['page']) && $_GET['page'] <= $number_of_page && $_GET['page'] > 0){
-				$from = $comment_per_page * ($_GET['page'] - 1);
-			} else {
-				$_GET['page'] = 1;
-				$from = $comment_per_page * ($_GET['page'] - 1);
-			}
+			$pagination = $this->getPagination()->getPage($number_of_page, $href);
+			$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_page, $comment_per_page);
 
 			$comments = $this->messagesModel->select([$topic->id], 'topic_id', $from, $comment_per_page);
 
@@ -184,13 +158,13 @@ class TopicsController extends Controller
 
 			$userComment = function($user_id) {
 				$c_user = $this->usersModel->select([$user_id], 'id');
-				if($c_user == false){
+				if(empty($c_user)){
 					$c_user = (object) [
 						'pseudo' => 'Anonyme',
 						'avatar' => 'default.png',
 						'id' => false
 					];
-				} 
+				}
 				return $c_user;
 			};
 

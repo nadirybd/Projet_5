@@ -13,6 +13,7 @@ body
 {
 	font-family: 'Nanum Gothic', sans-serif;
 	word-wrap: break-word;
+	overflow-x: hidden;
 }
 
 a
@@ -54,9 +55,16 @@ h2
 	min-height: 100vh;
 }
 
-.page a 
+.page a, .form-page a 
 {
 	color: #0aa2cb;
+}
+
+.front-page
+{
+	margin-top: 50px;
+	background-color: #e8e9ea;
+	box-shadow: 0 0 10px black;
 }
 
 /*** AVATAR ***/
@@ -80,12 +88,16 @@ h2
 /*** OVERLAY ***/
 .overlay
 {
-	display: none;
 	background-color: rgba(0, 0, 0, 0.6);
 	position: fixed;
 	height: 100%;
 	width: 100%;
 	z-index: 99; 
+}
+
+.hide-overlay
+{
+	display: none;
 }
 
 /***************************
@@ -237,6 +249,7 @@ input[type="submit"]:hover
 	background: url('/Forum/public/images/bg6.jpg');
 	background-size: cover;
 	min-height: 100vh;
+	padding: 100px 0 100px 0;
 }
 
 .form-container
@@ -250,6 +263,7 @@ input[type="submit"]:hover
 	padding: 60px;
 	background-color: rgba(0, 0, 0, 0.7);
 	color: white;
+	box-sizing: border-box;
 }
 
 .form-container h1, .form-container h2, .form-container h3,
@@ -300,8 +314,7 @@ input[type="submit"]:hover
 {
 	margin-bottom: 50px;
 	border-collapse: collapse;
-	background-color: #FFFFFF;
-	min-width: 300px;
+	box-sizing: border-box;
 }
 
 .tb	th, .tb	td
@@ -331,6 +344,11 @@ input[type="submit"]:hover
 {
 	background: #e8eaed;
 }
+.tb tbody tr:nth-child(odd)
+{
+	background: white;
+}
+
 /***************************
 			WIDGET
 ****************************/
@@ -395,19 +413,9 @@ header
 {
 	display: flex;
 	flex-flow: row wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	width: 600px
-}
-
-#main-menu a
-{
-	margin-left: 10px;
-}
-
-.burger
-{
-	display: none;
 }
 
 /*** SIDEBAR ***/
@@ -473,6 +481,44 @@ header
 	height: 70px;
 }
 
+/**** BURGER SIDEBAR ****/
+.burger
+{
+	display: none;
+	color: white;
+	cursor: pointer;
+}
+
+#burger-sidebar
+{
+	background-color: #4c4c4c;
+	width: 200px;
+	position: fixed;
+	top: 100px;
+	right: 0;
+	height: 100%;
+	z-index: 998;
+	display: none;
+	padding: 20px 0;
+}
+
+#burger-content
+{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#burger-content a
+{
+	margin: 10px 0;
+}
+
+#burger-content hr
+{
+	width: 80%;
+}
+
 /***************************
 			MENUBIS
 ****************************/
@@ -482,10 +528,11 @@ header
 	top: 100px;
 	right: 0;
 	left: 0;
+	height: 59px;
 	background-color: #0aa2cb;
 	display: flex;
 	flex-wrap: wrap;
-	z-index: 998;
+	z-index: 997;
 }
 
 #menuBis > ul
@@ -552,6 +599,62 @@ header
 	position: relative;
 	top: 1.5px;
 	margin-right: 3px;
+}
+
+/********** MENUBIS MOBILE **********/
+#menuBis-mobile 
+{
+	display: flex;
+	flex-direction: column;
+	position: fixed;
+	top: 159px;
+	left: -50%;
+	width: 50%;
+	height: 450px;
+	overflow-y: scroll;
+	background-color: #0aa2cb;
+	z-index: 996; 
+}
+
+.menuBis-mobile-active
+{
+	left: 0!important;
+}
+
+.menu-mobile-container hr
+{
+	border-color: #0000001c;
+	width: 100%;
+}
+
+.burger-menuBis
+{
+	display: none;
+	color: white;
+}
+
+.menu-cat
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 5px 15px;
+	color: white;
+}
+
+.subcat-list li
+{
+	padding: 10px;
+}
+
+.hide-subcat 
+{
+	display: none;
+}
+
+.active-submenu
+{
+	display: none;
 }
 
 /***************************
@@ -688,13 +791,6 @@ footer
 /***************************
 		FORUM PAGE 
 ****************************/
-.front-page
-{
-	margin-top: 50px;
-	background-color: #e8e9ea;
-	box-shadow: 0 0 10px black;
-}
-
 #forum-container
 {
 	display: flex;
@@ -800,6 +896,19 @@ footer
 	border-radius: 5px;
 }
 
+/***************************
+		TOPICS
+****************************/
+
+.tb-topics-cat{
+	table-layout: auto;
+	width: 100%;
+}
+
+.tb-topics-cat tbody tr td:last-child
+{
+	text-align: center;
+}
 /***************************
 		LOGIN PAGE
 ****************************/
@@ -947,25 +1056,11 @@ PROFILE TOPICS TABLE
 }
 
 /***************************
-	TOPIC BY CATEGORIES
+	TOPICS BY CATEGORIES
 ****************************/
 #topics-page
 {
 	padding: 150px;
-}
-
-/***************************
-		TOPICS PAGE
-****************************/
-#topics-page
-{
-	margin-top: 100px;
-	background-color: #f4f4f4;
-}
-
-.tb-topics-cat tbody td:last-child
-{
-	text-align: center;
 }
 
 /***************************
@@ -1040,6 +1135,32 @@ PROFILE TOPICS TABLE
 	padding: 5px;
 	box-sizing: content-box;
 	margin-top: 10px;
+}
+
+.pagination
+{
+	text-align: center;
+	margin: 10px 0;
+	background-color: #dedee0;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+
+.pagination a, .pagination span
+{
+	border: 1px solid black;
+	border-radius: 3px;
+	padding: 3px 6px;
+	background-color: white;
+}
+
+.pagination span
+{
+	background-color: #4c4c4c;
+	box-shadow: 0 0 5px white inset;
+	color: white;
+	padding: 2px 5px;
 }
 
 /************
@@ -1135,7 +1256,8 @@ PROFILE TOPICS TABLE
 {
 	display: flex;
 	flex-direction: column;
-	padding: 10px;
+	padding: 15px;
+	flex: 1;
 }
 
 
@@ -1250,6 +1372,12 @@ PROFILE TOPICS TABLE
 	padding: 15px;
 }
 
+/****** ADMIN BLOG ******/
+.list-posts
+{
+	align-self: center;
+}
+
 /*****************************
 			CHAT 
 ******************************/
@@ -1268,6 +1396,99 @@ PROFILE TOPICS TABLE
 ********************************************/
 .blog-img img
 {
-	width: 250px;
-	height: 150px;
+	max-width: 250px;
+	max-height: 150px;
+}
+
+#blog-page h1
+{
+	background-color: #90c53f;
+	padding: 10px;
+	margin: 0 20px 50px 20px;
+	color: white;
+}
+
+#all-posts
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.post-ticket
+{
+	max-width: 300px;
+	width: 100%;
+	min-height: 500px;
+	background-color: white;
+	padding: 30px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 5px #00000047;
+}
+
+.ticket-content
+{
+	margin-top: 30px;
+	padding: 10px 0;
+	box-sizing: border-box;
+}
+
+/********************************
+			ONE POST
+*********************************/
+#show-post
+{
+	margin-top: 50px;
+}
+
+#one-post
+{
+	max-width: 1024px;
+	margin: 0 auto;
+	background-color: #e8e9ea;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 50px;
+}
+
+#one-post h1, #one-post p
+{
+	margin-bottom: 50px;
+}
+
+#one-post h1
+{
+	background-color: #c1c1c1;
+	padding: 20px;
+	width: 90%;
+	text-align: center;
+}
+.one-post-img img
+{
+	max-width: 550px;
+	width: 100%;
+	box-shadow: 0 0 5px black;
+}
+
+/******************************
+			PAGE ERRORS
+******************************/
+#page-error
+{
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 50px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#page-error img
+{
+	max-width: 500px;
+	width: 100%;
 }

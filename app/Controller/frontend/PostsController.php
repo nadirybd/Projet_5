@@ -18,9 +18,15 @@ class PostsController extends Controller
 	*
 	*/
 	public function blog(){
-		$posts = $this->postsModel->select();
-
-		$this->render('blog', compact('posts'), true);
+		$allPosts = $this->postsModel->select();
+		$number_of_posts = count($allPosts);
+		$posts_per_page = 8;
+		$number_of_pages = ceil($number_of_posts / $posts_per_page);
+		$href = 'blog-';
+		$pagination = $this->getPagination()->getPage($number_of_pages, $href);
+		$from = $this->getPagination()->verifyPage($_GET['page'], $number_of_pages, $posts_per_page);
+		$posts = $this->postsModel->selectByLimit($from, $posts_per_page);
+		$this->render('blog', compact('posts', 'pagination'), true);
 	}
 
 	/**
