@@ -20,7 +20,7 @@ class FollowModel extends Model
 	* @param string -> PDO::Statement 
 	*/
 	public function delete($attributes){
-		$add = $this->my_sql->prepare('DELETE FROM f_follow WHERE topic_id = ?', $attributes);
+		$delete = $this->my_sql->prepare('DELETE FROM f_follow WHERE topic_id = ?', $attributes);
 		return $delete;
 	}
 

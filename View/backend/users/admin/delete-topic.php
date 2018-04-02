@@ -7,8 +7,8 @@
 				<input type="text" name="admin_confirm_delete" placeholder="Veuillez écrire le mot : SUPPRIMER"/>
 			</p>
 			<p>
-				<button class="btn-cancel" type="submit" name="admin-sub-delete">Supprimer</button>
-				<button class="btn-default" onclick="window.location.href = 'admin';" type="button">Annuler</button>
+				<button class="btn btn-cancel" type="submit" name="admin-sub-delete">Supprimer</button>
+				<button class="btn btn-default" onclick="window.location.href = 'admin';" type="button">Annuler</button>
 			</p>
 		</form>
 	</div>

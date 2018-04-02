@@ -14,12 +14,6 @@ $(document).ready(function(){
 function toggleSideBar(button, sideBar, className){
 	$(button).click(function(){
 		$(sideBar).toggleClass(className, 500);
-		$('.overlay').toggleClass('hide-overlay');
-	});
-
-	$('.overlay').click(function(){
-		$('.overlay').addClass('hide-overlay');
-		$(sideBar).toggleClass(className, 500);
 	});
 }
 

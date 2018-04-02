@@ -35,7 +35,7 @@
 						<?php endif; ?>
 						<p>
 							<input type="submit" name="sub_description" />
-							<button class="btn-cancel cancel-description" type="button">Annuler</button>
+							<button class="btn btn-cancel cancel-description" type="button">Annuler</button>
 						</p>
 					</form>
 				</div>
@@ -78,7 +78,7 @@
 					</tbody>
 					<tfoot>
 						<tr>
-							<td colspan="4"><button class="resolved-button btn-validate">Résolu</button></td>
+							<td colspan="4"><button class="resolved-button btn btn-validate">Résolu</button></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -112,7 +112,7 @@
 								<td>
 									<form method="post">
 										<input type="hidden" name="unfollow" value="<?= $topicF->id; ?>" />
-										<button class="btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
+										<button class="btn btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
 									</form>
 								</td>
 							</tr>	

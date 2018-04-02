@@ -52,7 +52,7 @@ class TopicsController extends Controller
 			$verifytopic = count($topics);
 			
 			if($verifytopic <= 0) {
-				header('location: /Forum/topics/1');
+				$this->redirection('topics/1');
 			}
 
 		} else {
@@ -83,7 +83,10 @@ class TopicsController extends Controller
 				if(!empty($followTopic) && intval($followTopic)){
 					$verifyTopic = $this->topicsModel->countTopic([$followTopic], 'id');
 					if($verifyTopic == 1){
-						$this->followModel->add([$_SESSION['user']['id'], $followTopic]);
+						$verifyFollow = $this->followModel->count([$followTopic, $_SESSION['user']['id']], 'topic_id', 'user_id');
+						if($verifyFollow == 0){
+							$this->followModel->add([$_SESSION['user']['id'], $followTopic]);
+						}
 					}
 				}
 			} 
@@ -206,18 +209,18 @@ class TopicsController extends Controller
 						if($verifyMessage == 1){
 							$this->messagesModel->updateBestAnswer([$_POST['best_answer']]);
 						} else {
-							header('location: forum');
+							$this->redirection('forum');
 						}
 					}else {
-						header('location: forum');
+						$this->redirection('forum');
 					}
 				}
 			} else {
-				header('location: /Forum/webmaster-forum');
+				$this->redirection('webmaster-forum');
 			}
 
 		} else {
-			header('location: /Forum/webmaster-forum');
+			$this->redirection('webmaster-forum');
 		}
 
 		$this->render('show-topic', compact('topic', 'user', 'url', 'comments', 'userComment', 'urlComment', 'pagination', 'admin'), true);

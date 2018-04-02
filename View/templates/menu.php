@@ -20,7 +20,7 @@
 		<div class="menu-mobile">
 			<div class="menu-mobile-container">
 				<div class="menu-cat">
-					<h3><a href=""><?= $category->name; ?></a></h3>
+					<h3><a href="<?= $url($category->name, $category->id); ?>-1""><?= $category->name; ?></a></h3>
 					<i class="fas fa-chevron-down"></i>
 				</div>
 				<div class="subcat hide-subcat">

@@ -50,7 +50,7 @@ class PostsController extends Controller
 
 										\App\Thumbs::getInstance()->getThumb($ext, $new_path, $newImgName);
 										
-										header('location: /Forum/blog-1');
+										$this->redirection('blog-1');
 									} else {
 										$post_error = 'Une erreur est survenue lors du transfert de l\'image';
 									}
@@ -70,7 +70,7 @@ class PostsController extends Controller
 			} 
 			$this->render('add-post', compact('post_error'));
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 
@@ -90,7 +90,7 @@ class PostsController extends Controller
 			
 			$this->render('list-posts', compact('posts', 'pagination'), 'true');
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 	
@@ -110,7 +110,7 @@ class PostsController extends Controller
 						
 						$delete = $this->postsModel->delete([$_GET['id']]);
 						if($delete){
-							header('location: /Forum/admin/list-posts-1');
+							$this->redirection('admin/list-posts-1');
 						} else {
 							$error_delete = 'Une erreur est survenue veuillez réessayer !';
 						}
@@ -120,10 +120,10 @@ class PostsController extends Controller
 				}
 				$this->render('delete-post', compact('error_delete'), true);
 			} else {
-				header('location: /Forum/admin');
+				$this->redirection('admin');
 			}
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 
@@ -140,7 +140,7 @@ class PostsController extends Controller
 							$editTitle = $_POST['edit_title_post'];
 							if(strlen($editTitle) <= 150){
 								$this->postsModel->update([$editTitle, $_GET['id']], 'post_title');
-								header('location: /Forum/admin/list-posts-1');
+								$this->redirection('admin/list-posts-1');
 							} else {
 								$error_edit = 'Le titre ne peut dépasser 150 caractères';
 							}
@@ -148,7 +148,7 @@ class PostsController extends Controller
 						if(isset($_POST['edit_content_post']) && !empty($_POST['edit_content_post']) && $_POST['edit_content_post'] !== $post->post_content){
 							$editContent = $_POST['edit_content_post'];
 							$this->postsModel->update([$editContent, $_GET['id']], 'post_content');
-							header('location: /Forum/admin/list-posts-1');
+							$this->redirection('admin/list-posts-1');
 						}
 						if(isset($_FILES['edit_img_post'])){
 							$editImg = $_FILES['edit_img_post'];
@@ -172,7 +172,7 @@ class PostsController extends Controller
 												$this->postsModel->update([$newImgName, $_GET['id']], 'post_img');
 											
 												\App\Thumbs::getInstance()->getThumb($ext, $new_path, $newImgName);
-												header('location: /Forum/admin/list-posts-1');
+												$this->redirection('admin/list-posts-1');
 											}
 										}
 									} else {
@@ -187,13 +187,13 @@ class PostsController extends Controller
 						
 					$this->render('edit-post', compact('error_edit', 'post'), true);
 				} else {
-					header('location: /Forum/admin/list-posts-1');
+					$this->redirection('admin/list-posts-1');
 				}
 			} else {
-				header('location: /Forum/admin/list-posts-1');
+				$this->redirection('admin/list-posts-1');
 			}
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 	

@@ -30,7 +30,7 @@ class AdminController extends Controller
 				$pull_report = $_POST['pull_report'];
 				if(!empty($pull_report) && intval($pull_report)){
 					$this->messagesModel->updateReport([$pull_report], true);
-					header('location: /Forum/admin');
+					$this->redirection('admin');
 				} 
 			}
 			if(isset($_POST['sub-delete-user'], $_POST['delete_user'])){
@@ -42,7 +42,7 @@ class AdminController extends Controller
 			}
 			$this->render('admin', compact('lastTopics', 'reportedMessages', 'userMessages', 'lastUsers', 'success_delete_user'), true);
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 

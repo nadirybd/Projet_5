@@ -43,7 +43,7 @@ class UsersController extends Controller
 						], 'description');
 					}
 					
-					header('location: /Forum/profile');
+					$this->redirection('profile');
 				} 
 			}
 
@@ -53,7 +53,7 @@ class UsersController extends Controller
 					$verifyUser_topic = $this->topicsModel->count([$resolved_topic, $_SESSION['user']['id']], 'id', 'user_id', 'f_topics');
 					if($verifyUser_topic == 1){
 						$this->topicsModel->resolved([$resolved_topic]);
-						header('location: profile');
+						$this->redirection('profile');
 					} else {
 						$resolved_errors = "Le topic n'existe pas ou plus";
 					}
@@ -66,17 +66,17 @@ class UsersController extends Controller
 				$unfollowTopic = $_POST['unfollow'];
 				if(!empty($unfollowTopic) && intval($unfollowTopic)){
 					$verifyUnfollow = $this->followModel->count([$unfollowTopic, $_SESSION['user']['id']], 'topic_id', 'user_id');
-					var_dump($verifyUnfollow);
+
 					if($verifyUnfollow == 1){
 						$this->followModel->delete([$unfollowTopic]);
-						header('location: profile');
+						$this->redirection('profile');
 					}
 				}
 			}
 
 			$this->render('profile', compact('infoUser', 'user', 'topics', 'resolved_errors', 'messages', 'topicsFollowed'), true);
 		} else {
-			header('location: /Forum/login');
+			$this->redirection('login');
 		}
 	}
 
@@ -99,7 +99,7 @@ class UsersController extends Controller
 						], 'pseudo');
 
 						$_SESSION['user']['name'] = $edit_name;
-						header('location: /Forum/profile');
+						$this->redirection('profile');
 					} else {
 						$edit_error = 'Le nom d\'utilisateur existe déjà !';
 					}
@@ -122,7 +122,7 @@ class UsersController extends Controller
 						], 'mail');
 
 						$_SESSION['user']['mail'] = $edit_mail;
-						header('location: /Forum/profile');
+						$this->redirection('profile');
 					} else {
 						$edit_error = 'L\'adresse mail existe déjà !';
 					}
@@ -155,7 +155,7 @@ class UsersController extends Controller
 			$this->render('edit_profile', compact('edit_error', 'success'));
 		
 		} else {
-			header('location: /Forum/login');
+			$this->redirection('login');
 		}
 	}
 
@@ -186,7 +186,7 @@ class UsersController extends Controller
 										':id' => $_SESSION['user']['id']
 									], 'avatar');
 
-									header('location: /Forum/profile');
+									$this->redirection('profile');
 								} else {
 									$avatarError = 'Une erreur s\'est produite durant le transfert, veuillez réessayer plus tard. Si le problème persiste, merci de bien vouloir nous contacter.';
 								}
@@ -206,7 +206,7 @@ class UsersController extends Controller
 	
 			$this->render('edit_avatar', compact('user', 'avatarError', 'success'));
 		} else {
-			header('location: /Forum/login');
+			$this->redirection('login');
 		}
 	}
 
@@ -251,9 +251,9 @@ class UsersController extends Controller
 			session_destroy();
 			setcookie('user', '', time()-3600);
 			$this->render('logout');
-			header('location: /Forum/home');
+			$this->redirection('home');
 		} else {
-			header('location: /Forum/login');
+			$this->redirection('login');
 		}
 	}
 

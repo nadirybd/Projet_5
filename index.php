@@ -32,6 +32,10 @@ switch ($page) {
 		FrontController::getInstance()->homepage();
 		break;
 
+	case 'search':
+		FrontController::getInstance()->search();
+		break;
+
 	case '404':
 		FrontController::getInstance()->notFound();
 		break;
@@ -114,6 +118,10 @@ switch ($page) {
 
 	case 'admin-delete-topic':
 		AdTopicsController::getInstance()->delete();
+		break;
+	
+	case 'admin-close-topic':
+		AdTopicsController::getInstance()->closeTopic();
 		break;
 
 	case 'admin-delete-message':

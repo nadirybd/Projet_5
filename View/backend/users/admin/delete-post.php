@@ -10,7 +10,7 @@
 				<input type="text" name="confirm_delete_post" placeholder="Veuillez écrire le mot : SUPPRIMER"/>
 			</p>
 			<p>
-				<button class="btn-cancel" type="submit" name="sub-delete-post">Supprimer</button>
+				<button class="btn btn-cancel" type="submit" name="sub-delete-post">Supprimer</button>
 			</p>
 		</form>
 		<p><a href="admin">Retourner à l'administration</a></p>

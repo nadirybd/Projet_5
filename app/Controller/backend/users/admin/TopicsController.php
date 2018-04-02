@@ -29,7 +29,7 @@ class TopicsController extends Controller
 							$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
 							$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
 							$follow_delete = $this->followModel->deleteByTopic([$_GET['id']]);
-							header('location: /Forum/admin');
+							$this->redirection('admin');
 					} else {
 						$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';
 					}
@@ -37,10 +37,36 @@ class TopicsController extends Controller
 
 				$this->render('delete-topic', compact('lastTopics'));
 			} else {
-				header('location: /Forum/admin');
+				$this->redirection('admin');
 			}
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
+		}
+	}
+
+	/**
+	* Méthode closeTopic qui gère la fermeture d'un topic par l'admin
+	*/
+	public function closeTopic(){
+		if($this->logged() && isset($_SESSION['admin'])){
+
+			if(isset($_GET['id']) && !empty($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
+				if(isset($_POST['sub-close'], $_POST['topic_close'])){
+					$topic_close = $_POST['topic_close'];
+					if(!empty($topic_close) && $topic_close === 'CLORE'){
+							$topic_close = $this->topicsModel->close([$_GET['id']]);
+							$this->redirection('topic/webmastertopic-'.$_GET['id'].'-1');
+					} else {
+						$error_close = 'Veuillez entrer le mot : CLORE';
+					}
+				}
+
+				$this->render('close-topic', compact('error_close'));
+			} else {
+				$this->redirection('admin');
+			}
+		} else {
+			$this->redirection('forbidden');
 		}
 	}
 

@@ -41,7 +41,7 @@ class UsersController extends Controller
 												':mail' => $mail,
 												':password' => $pass
 											]);
-											header('location: /Forum/login');
+											$this->redirection('login');
 										} else {
 											$error = 'L\'adresse mail existe déjà !';
 										}
@@ -113,7 +113,7 @@ class UsersController extends Controller
 							setcookie('user', $cookie_content, time()+60*60*24*30, null, null, false, true);
 						}	
 
-						header('location: /Forum/profile');
+						$this->redirection('profile');
 					} else {
 						$log_error = 'Mot de passe incorrect !';
 					}
@@ -194,7 +194,7 @@ class UsersController extends Controller
 							':recup_mail' => $_SESSION['recup_mail']]
 							,'validate');
 
-						header('location: /Forum/reset-password');
+						$this->redirection('reset-password');
 					} else {
 						$error = 'Le code est incorrect !';
 					}
@@ -228,7 +228,7 @@ class UsersController extends Controller
 
 							$this->usersModel->delete([$_SESSION['recup_mail']], 'recup_mail', 'recup_password');
 
-							header('location: /Forum/login');
+							$this->redirection('login');
 						} else {
 							$error = "Les mots de passe ne correspondent pas";
 						}
@@ -241,7 +241,7 @@ class UsersController extends Controller
 			}
 			$this->render('reset-password', compact('error', 'success'));
 		} else {
-			header('location: /Forum/recuperation-code');
+			$this->redirection('recuperation-code');
 		}
 	}
 
@@ -255,15 +255,15 @@ class UsersController extends Controller
 			if(is_object($user)){
 				if(isset($_SESSION['user']['id'])){
 					if($user->id == $_SESSION['user']['id']){
-						header('location: /Forum/profile');
+						$this->redirection('profile');
 					}
 				}
 				$infoUser = $this->usersModel->selectInfo([$user->id]);
 			} else {
-				header('location: /Forum/webmaster-forum');
+				$this->redirection('webmaster-forum');
 			}	
 		} else {
-			header('location: /Forum/webmaster-forum');
+			$this->redirection('webmaster-forum');
 		}
 
 		$this->render('public-profile', compact('user', 'infoUser'));

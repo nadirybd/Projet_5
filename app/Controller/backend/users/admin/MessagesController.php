@@ -24,7 +24,7 @@ class MessagesController extends Controller
 					if(!empty($messageDelete) && $messageDelete === 'SUPPRIMER'){
 						var_dump($messageDelete);
 						$delete = $this->messagesModel->delete([$_GET['id']]);
-						header('location: /Forum/admin');
+						$this->redirection('admin');
 					} else {
 						$error_delete = 'Veuillez écrire le mot : SUPPRIMER';
 					}
@@ -32,7 +32,7 @@ class MessagesController extends Controller
 			}
 			$this->render('delete-message');
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 

@@ -18,7 +18,7 @@
 			</p>
 			<p>
 				<input type="submit" name="sub-editMessage" value="Mettre  à jour" />
-				<button class="btn-cancel" id="btn-delete-msg" type="button">Supprimer</button>
+				<button class="btn btn-cancel" id="btn-delete-msg" type="button">Supprimer</button>
 			</p>
 		</form>	
 		
@@ -29,8 +29,8 @@
 					<input type="text" name="delete_msg" placeholder="Veuillez écrire le mot : SUPPRIMER"/>
 				</p>
 				<p>
-					<button class="btn-cancel" type="submit" name="sub-delete-msg">Supprimer</button>
-					<button class="btn-validate" id="btn-edit-msg" type="button">Modifier</button>
+					<button class="btn btn-cancel" type="submit" name="sub-delete-msg">Supprimer</button>
+					<button class="btn btn-validate" id="btn-edit-msg" type="button">Modifier</button>
 				</p>
 			</form>
 		 </div>	

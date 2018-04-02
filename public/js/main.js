@@ -10,7 +10,7 @@ $(document).ready(function(){
 
 	$('#user-menu .fa-user-circle').on('click', function(e){
 		if(display == 'none'){
-			$('#side-bar').fadeIn();
+			$('#side-bar').show();
 		}
 	});
 

@@ -36,10 +36,10 @@ class PostsController extends Controller
 		if(isset($_GET['id']) && intval($_GET['id']) && $_GET['id'] > 0){
 			$post = $this->postsModel->select([$_GET['id']], 'id');
 			if(empty($post)){
-				header('location: /Forum/blog');
+				$this->redirection('blog');
 			}
 		} else {
-			header('location: /Forum/blog');
+			$this->redirection('blog');
 		}
 
 		$this->render('show-post', compact('post'), true);

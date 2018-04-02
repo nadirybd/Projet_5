@@ -36,8 +36,8 @@
 							<form class="form" method="post">
 								<input type="hidden" name="pull_report" value="<?= $r_message->id; ?>" />
 								<p>
-									<input type="submit" name="sub-pull-report" value="Approuver"/>
-									<button class="btn-cancel" onclick="window.location.href='admin/delete-message-<?= $r_message->id; ?>'" type="button">
+									<button class="btn btn-validate" type="submit" name="sub-pull-report">Approuver</button>
+									<button class="btn btn-delete" onclick="window.location.href='admin/delete-message-<?= $r_message->id; ?>'" type="button">
 										Supprimer
 									</button>
 								</p>

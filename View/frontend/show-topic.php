@@ -103,12 +103,16 @@
 	</div>
 
 	<div id="comment-form-topic">
-		<?php if(isset($_SESSION['user']['id'])): ?>
+		<?php if(isset($_SESSION['user']['id']) && $topic->closed == 0): ?>
 			<form class="form comment-fom" method="post">
 				<p>Ajoutez un commentaire : </p>
 				<textarea name="comment-topic"></textarea>
 				<p><input type="submit" name="submit-comment" value="Répondre" /></p>	
 			</form>
+		<?php elseif($topic->closed == 1): ?>
+			<div>
+				Le sujet a été fermé par l'administrateur <i class="fas fa-times-circle"></i>
+			</div>
 		<?php else: ?>
 			<div>
 				Veuillez vous connectez pour y répondre : <a href="login">Connectez vous !</a> <br /> Toujours pas de compte ? <a href="subscribe">Inscrivez-vous</a>

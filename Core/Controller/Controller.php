@@ -138,4 +138,11 @@ class Controller
 		$getPagination = new \App\Pagination();
 		return $getPagination;
 	}
+
+	/**
+	* redirection qui va rediriger vers une page toute en gardant le chemin complet
+	*/
+	protected function redirection($path){
+		return header('location: /Forum/'. $path);
+	}
 }

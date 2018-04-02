@@ -27,32 +27,42 @@
 					</td>
 					<td>
 						<?php if($topic->resolved == 1): ?>
-							<span class="resolved">Résolu <i class="fas fa-check"></i></span>
+							<span class="resolved">Résolu <i class="fas fa-check"></i></span><br/>
 						<?php else: ?>
-							Non résolu
+							Non résolu<br/>
+						<?php endif; ?>
+						<?php if($topic->closed == 1): ?>
+							<span class="delete">Fermé</span>
 						<?php endif; ?>
 					</td>
 					<?php if(isset($_SESSION['user'])): ?>
-						<?php if($followed($topic->id) == 1): ?>
 						<td>
+						<?php if($followed($topic->id) == 1): ?>
 							<form method="post">
 								<input type="hidden" name="unfollow" value="<?= $topic->id; ?>" />
-								<button class="btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
+								<button class="btn btn-cancel" type="submit" name="sub-unfollow">Ne plus suivre</button>
 							</form>
-						</td>
 						<?php else: ?>
-						<td>
 							<form method="post">
 								<input type="hidden" name="follow" value="<?= $topic->id; ?>" />
-								<button class="btn-validate" type="submit" name="sub-follow">Suivre</button>
+								<button class="btn btn-validate" type="submit" name="sub-follow">Suivre</button>
 							</form>
-							<?php if(isset($_SESSION['admin'])): ?>
-								<button class="btn-cancel" onclick="window.location.href='admin/delete-topic-<?= $topic->id; ?>'">
+						<?php endif; ?>
+						<?php if(isset($_SESSION['admin'])): ?>
+							<p>								
+								<button class="btn btn-delete" onclick="window.location.href='admin/delete-topic-<?= $topic->id; ?>'">
 									Supprimer
 								</button>
+							</p>
+							<?php if($topic->closed == 0): ?>
+								<p>
+									<button class="btn btn-cancel" onclick="window.location.href='admin/close-topic-<?= $topic->id; ?>'">
+									Clore le sujet
+									</button>
+								</p>
 							<?php endif; ?>
+					<?php endif; ?>
 						</td>
-						<?php endif; ?>
 					<?php endif; ?>
 				</tr>
 			<?php endforeach; ?>

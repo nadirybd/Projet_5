@@ -42,10 +42,15 @@
 				<a href="home"><img src="public/images/logo-header.png" alt="logo"></a>
 			</div>
 			<div id="main-menu">
-				<a href="home"><i class="fas fa-home"></i> ACCUEIL</a>
+				<form class="search-form" method="post" action="search">
+					<button type="submit" name="sub-req">
+						<i class="fas fa-search"></i>
+					</button>
+					<input type="search" name="req" placeholder="Rechercher">
+				</form>
+				<a href="home">ACCUEIL</a>
 				<a href="webmaster-forum">FORUM</a>
 				<a href="blog-1">BLOG</a>
-				<a href="contact">CONTACT</a>
 				<?php if(isset($_SESSION['user'])): ?>
 					<div id="user-menu">
 						<i class="fas fa-user-circle fa-2x"></i>
@@ -88,14 +93,18 @@
 				<hr/>
 				<a href="blog-1">BLOG</a>
 				<hr/>
-				<a href="contact">CONTACT</a>
-				<hr/>
 				<?php if(!isset($_SESSION['user'])): ?>
 					<a href="login">SE CONNECTER</a>
 					<hr/>
 					<a href="subscribe">S'INSCRIRE</a>
 					<hr/>
 				<?php endif; ?>
+				<form class="search-form" method="post" action="search">
+					<button type="submit" name="sub-req">
+						<i class="fas fa-search"></i>
+					</button>
+					<input type="search" name="req" placeholder="Rechercher">
+				</form>
 			</div>
 		</div>
 

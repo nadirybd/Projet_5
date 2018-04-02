@@ -23,8 +23,8 @@
 						<tr>
 							<td><?= htmlspecialchars($post->post_title); ?></td>
 							<td>
-								<button class="btn-edit" onclick="window.location.href='admin/edit-post-<?= $post->id; ?>'">Editer</button>
-								<button class="btn-cancel" onclick="window.location.href='admin/delete-post-<?= $post->id; ?>'">Supprimer</button>
+								<button class="btn btn-validate" onclick="window.location.href='admin/edit-post-<?= $post->id; ?>'">Editer</button>
+								<button class="btn btn-cancel" onclick="window.location.href='admin/delete-post-<?= $post->id; ?>'">Supprimer</button>
 							</td>
 						</tr>
 					<?php endforeach ?>

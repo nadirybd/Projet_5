@@ -23,6 +23,31 @@ class FrontController extends Controller
 	}
 
 	/**
+	* Méthode home qui gère l'affichage de la homepage
+	*/
+	public function search(){
+		if(isset($_POST['req'], $_POST['sub-req']) && !empty($_POST['req']) && strlen($_POST['req']) >= 3){			
+			$req = explode(' ', $_POST['req']);
+
+			$topics = $this->topicsModel->search($req);
+
+			$user = function($user_id){
+				$username = $this->usersModel->select([$user_id], 'id');
+				if($username){
+					$username = $username->pseudo;
+				} else {
+					$username = "Anonyme";
+				}
+				return $username;
+			};
+
+			$this->render('search', compact('topics', 'user', 'followed'), true);
+		} else {
+			$this->redirection('home');
+		}
+	}
+
+	/**
 	* Méthode home qui gère l'affichage de la page 404
 	*/
 	public function notFound(){

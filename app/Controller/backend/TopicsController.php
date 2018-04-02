@@ -55,6 +55,7 @@ class TopicsController extends Controller
 									':category_id' => $addCategory,
 									':subcategory_id' => $addSubcategory
 								]);
+								$this->redirection('topic/webmastertopic-'.$topic.'-1');
 							}
 						} else {
 							$error_addtopic = "Le titre ne peut dépasser 100 caractères";
@@ -69,7 +70,7 @@ class TopicsController extends Controller
 
 			$this->render('add-topic', compact('categories', 'error_addtopic'));
 		} else {
-			header('location: /Forum/login');
+			$this->redirection('login');
 		}
 	}
 
@@ -89,7 +90,7 @@ class TopicsController extends Controller
 								':title' => $_POST['edit_title'],
 								':id' => $topic->id
 							], 'title');
-							header('location: profile');
+							$this->redirection('profile');
 						} else {
 							$error_edit = 'Les champs sont vides ou bien identiques !';
 						}
@@ -99,19 +100,19 @@ class TopicsController extends Controller
 								':content' => $_POST['edit_content'],
 								':id' => $topic->id
 							], 'content');
-							header('location: profile');
+							$this->redirection('profile');
 						} else {
 							$error_edit = 'Les champs sont vides ou bien identiques !';
 						}
 					}
 				} else {
-					header('location: forbidden');
+					$this->redirection('forbidden');
 				}
 
 				$this->render('edit-topic', compact('topic', 'error_edit'));
 			}
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 
@@ -130,20 +131,20 @@ class TopicsController extends Controller
 								$message_delete = $this->messagesModel->deleteByTopic([$_GET['id']]);
 								$categories_delete = $this->categoriesModel->deleteByTopic([$_GET['id']]);
 								$follow_delete = $this->followModel->deleteByTopic([$_GET['id']]);
-								header('location: profile');
+								$this->redirection('profile');
 						} else {
 							$error_delete = 'Veuillez confirmez la suppression en entrant le mot : SUPPRIMER';
 						}
 					}
 				} else {
-					header('location: forbidden');
+					$this->redirection('forbidden');
 				}
 				$this->render('delete-topic');
 			} else {
-				header('location: profile');
+				$this->redirection('profile');
 			}
 		} else {
-			header('location: forbidden');
+			$this->redirection('forbidden');
 		}
 	}
 
