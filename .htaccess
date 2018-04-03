@@ -53,3 +53,9 @@ RewriteRule ^admin/list-posts-([0-9]+)$ index.php?p=list-posts&page=$1
 RewriteRule ^admin/add-post$ index.php?p=add-post
 RewriteRule ^admin/delete-post-([0-9]+)$ index.php?p=delete-post&id=$1
 RewriteRule ^admin/edit-post-([0-9]+)$ index.php?p=edit-post&id=$1
+
+RewriteRule ^events$ index.php?p=events
+RewriteRule ^admin/add-event$ index.php?p=add-event
+RewriteRule ^admin/list-events-([0-9]+)$ index.php?p=list-events&page=$1
+RewriteRule ^admin/edit-event-([0-9]+)$ index.php?p=edit-event&id=$1
+RewriteRule ^admin/delete-event-([0-9]+)$ index.php?p=delete-event&id=$1

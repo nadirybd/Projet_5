@@ -249,7 +249,7 @@ class UsersController extends Controller
 		if($this->logged()){
 			$_SESSION = array();
 			session_destroy();
-			setcookie('user', '', time()-3600);
+			setcookie('user', '', time()-3600, '/', null, false, true);
 			$this->render('logout');
 			$this->redirection('home');
 		} else {

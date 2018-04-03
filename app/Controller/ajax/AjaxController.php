@@ -45,7 +45,7 @@ class AjaxController extends Controller
 	}
 
 	/**
-	* Méthode ajaxReportComment gère les données envoyés et renvoi le résultat 
+	* Méthode ajaxChat gère les données envoyés et renvoi le résultat 
 	*/
 	public function ajaxChat(){
 		if(isset($_POST['action']) && !empty($_POST['action'])){
@@ -72,9 +72,29 @@ class AjaxController extends Controller
 			 		$user = $this->usersModel->select([$user_id], 'id');
 			 		return $user;
 			 	};
+
 				$this->ajaxRender('chatAjax', compact('allChat', 'user'));
 			}
 		}
+	}
+
+	/**
+	* Méthode ajaxCookies gère l'acceptation des cookies
+	*/
+	public function ajaxCookies(){
+		if(isset($_POST['accept']) && !empty($_POST['accept'])){
+			if($_POST['accept'] == true){
+				$accept = setcookie('accept_cookies', true, time()+60*60*24*60, '/', null, false, true);
+			}
+		}
+	}
+
+	/**
+	* Méthode ajaxEvents gère l'envoi des données des événements
+	*/
+	public function ajaxEvents(){
+		$events = $this->eventsModel->select();
+		echo json_encode($events);
 	}
 
 	/**

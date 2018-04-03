@@ -51,6 +51,7 @@
 				<a href="home">ACCUEIL</a>
 				<a href="webmaster-forum">FORUM</a>
 				<a href="blog-1">BLOG</a>
+				<a href="events">ÉVÉNEMENTS</a>
 				<?php if(isset($_SESSION['user'])): ?>
 					<div id="user-menu">
 						<i class="fas fa-user-circle fa-2x"></i>
@@ -93,6 +94,8 @@
 				<hr/>
 				<a href="blog-1">BLOG</a>
 				<hr/>
+				<a href="blog-1">ÉVÉNEMENTS</a>
+				<hr/>
 				<?php if(!isset($_SESSION['user'])): ?>
 					<a href="login">SE CONNECTER</a>
 					<hr/>
@@ -112,7 +115,11 @@
 
 
 		<div class="overlay hide-overlay"></div>
-		
+
+		<?php if(!isset($_COOKIE['accept_cookies'])): ?>
+			<div id="cookies">En poursuivant votre navigation sur ce site, vous acceptez l’utilisation de cookies : <button class="btn btn-validate" id="hide-cookies">J'ai compris</button></div>
+		<?php endif; ?>
+
 		<div id="main-container">
 			<div id="contains">
 				<?= $content; ?>
@@ -123,7 +130,6 @@
 			<p>Copyright © 2018 Yebdri Webmaster Tous droits réservés.</p>
 		</footer>
 
-		<script src="public/js/form/validate-form.js"></script>
 		<script src="public/js/main.js"></script>
 	</body>
 </html>

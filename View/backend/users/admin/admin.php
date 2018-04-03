@@ -1,14 +1,19 @@
-<div class="page" id="admin-page">
-	<div id="admin-container">
+<div class="page admin-page">
+	<div class="admin-container">
 		<div class="side-admin">
 			<h1>Administration <i class="fas fa-chess-king"></i></h1>
 			<fieldset>
 				<legend>Gestionnaire du blog</legend>
 				<p><a href="admin/add-post">Ajouter un nouvel article</a></p>
 				<p><a href="admin/list-posts-1">Modifier un article</a></p>
+			</fieldset><br/>
+			<fieldset>
+				<legend>Gestionnaire des événements</legend>
+				<p><a href="admin/add-event">Ajouter un événements</a></p>
+				<p><a href="admin/list-events-1">Modifier un événement</a></p>
 			</fieldset>
 		</div>
-		<div id="admin-content">
+		<div class="admin-content">
 			<h2>GESTIONNAIRE DU FORUM</h2>
 			<div id="admin-last-info">
 				<div id="last-topics">

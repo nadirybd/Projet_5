@@ -30,6 +30,7 @@ class Controller
 	protected $adminModel;
 	protected $chatModel;
 	protected $postsModel;
+	protected $eventsModel;
 
 	/**
 	* Méthode __construct
@@ -58,6 +59,9 @@ class Controller
 		}
 		if($this->postsModel === null){
 			$this->postsModel = new \App\Model\PostsModel();
+		}
+		if($this->eventsModel === null){
+			$this->eventsModel = new \App\Model\EventsModel();
 		}
 	}
 

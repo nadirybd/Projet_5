@@ -25,9 +25,9 @@
 			<button class="call-to-action" onclick="window.location.href='webmaster-forum'">FORUM</button>
 		</div>
 		<div class="widget wd-3">
-			<div class="icon-widget"><i class="fas fa-phone fa-3x"></i></div>
-			<p>Pour toutes autres informations complémentaires : Contactez-nous !</p>
-			<button class="call-to-action" onclick="window.location.href='#'">NOUS CONTACTER</button>
+			<div class="icon-widget"><i class="fas fa-calendar-alt fa-3x"></i></div>
+			<p>les événements organisés par la team Webmaster Forum ! </p>
+			<button class="call-to-action" onclick="window.location.href='events'">Événements</button>
 		</div>
 	</section>
 

@@ -21,6 +21,14 @@ switch ($request) {
 		AjaxController::getInstance()->ajaxChat();
 		break;
 
+	case 'cookies':
+		AjaxController::getInstance()->ajaxCookies();
+		break;
+
+	case 'events':
+		AjaxController::getInstance()->ajaxEvents();
+		break;
+
 	default:
 		break;
 }

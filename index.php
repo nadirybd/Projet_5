@@ -6,6 +6,7 @@ use App\Controller\Frontend\FrontController;
 use App\Controller\Frontend\CategoriesController;
 use App\Controller\Frontend\TopicsController;
 use App\Controller\Frontend\PostsController;
+use App\Controller\Frontend\EventsController;
 use App\Controller\Frontend\Users\UsersController;
 
 
@@ -17,6 +18,7 @@ use App\Controller\Backend\Users\UsersController as BackUsersController;
 use App\Controller\Backend\Users\Admin\TopicsController as AdTopicsController;
 use App\Controller\Backend\Users\Admin\PostsController as AdPostsController;
 use App\Controller\Backend\Users\Admin\MessagesController as AdMessagesController;
+use App\Controller\Backend\Users\Admin\EventsController as AdEventsController;
 use App\Controller\Backend\Users\Admin\AdminController;
 
 
@@ -150,6 +152,26 @@ switch ($page) {
 
 	case 'list-posts':
 		AdPostsController::getInstance()->listPosts();
+		break;
+
+	case 'events':
+		EventsController::getInstance()->events();
+		break;
+
+	case 'add-event':
+		AdEventsController::getInstance()->addEvent();
+		break;
+
+	case 'edit-event':
+		AdEventsController::getInstance()->editEvent();
+		break;
+
+	case 'list-events':
+		AdEventsController::getInstance()->listEvents();
+		break;
+
+	case 'delete-event':
+		AdEventsController::getInstance()->delete();
 		break;
 
 	default:

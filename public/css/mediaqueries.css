@@ -37,6 +37,17 @@
 	}
 
 	/****************
+	*	  EVENT	    *
+	*****************/
+	#event-container{
+		flex-direction: column-reverse;
+	}
+
+	.info-event{
+		margin-top: 50px;
+		width: 50%;
+	}
+	/****************
 	*	  ADMIN	    *
 	*****************/
 	#admin-last-info{
@@ -120,7 +131,7 @@
 	/********************
 	* PROFILE && ADMIN 	*
 	*********************/
-	#profile-info, #admin-container{
+	#profile-info, .admin-container{
 		flex-direction: column;
 	}
 	#bar-info, #profile-description, .side-admin{
@@ -128,7 +139,7 @@
 		max-width: 100%;
 		box-sizing: border-box;
 	}
-	#admin-content{
+	.admin-content{
 		padding: 0;
 	}
 	
@@ -253,7 +264,7 @@
 	*	  FORM     	*
 	*****************/
 	.form input[type='text'], .form input[type='email'],
-	.form input[type='password'], .form select {
+	.form input[type='password'], .form select, .form input[type='date'] {
 		min-width: 150px;
 	}
 

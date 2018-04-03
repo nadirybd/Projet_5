@@ -42,4 +42,13 @@ $(document).ready(function(){
 		}
 	});
 
+	/*****************
+	* 	   COOKIES   *
+	******************/
+	$('#hide-cookies').on('click', function(){
+		var url = 'indexAjax.php?req=cookies';
+		$.post(url, {accept:'accept'}, function(data){
+				window.location.reload();
+		});
+	});
 });

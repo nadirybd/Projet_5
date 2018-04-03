@@ -234,7 +234,7 @@ input
 }
 
 .form input[type='text'], .form input[type='email'],
-.form input[type='password'], .form select
+.form input[type='password'], .form select, .form input[type='date']
 {
 	width: 90%;
 	max-width: 450px;
@@ -466,7 +466,12 @@ header
 	flex-flow: row wrap;
 	justify-content: space-around;
 	align-items: center;
-	width: 600px
+	width: 800px;
+}
+
+#main-menu a
+{
+	margin: 0 5px;
 }
 
 /*** SIDEBAR ***/
@@ -661,7 +666,8 @@ header
 	top: 159px;
 	left: -50%;
 	width: 50%;
-	height: 450px;
+	height: auto;
+	max-height: 100vh;
 	overflow-y: scroll;
 	background-color: #0aa2cb;
 	z-index: 996; 
@@ -676,6 +682,11 @@ header
 {
 	border-color: #0000001c;
 	width: 100%;
+}
+
+.menu-mobile-container hr:last-child
+{
+	display: none;
 }
 
 .burger-menuBis
@@ -1081,10 +1092,10 @@ PROFILE TOPICS TABLE
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	max-width: 300px;
-	height: 150px;
-	margin-left: -150px;
-	margin-top: -75px;
+	max-width: 320px;
+	height: 300px;
+	margin-left: -160px;
+	margin-top: -150px;
 	color: white;
 	text-align: center;
 	padding: 20px;
@@ -1289,21 +1300,21 @@ PROFILE TOPICS TABLE
 /************************
 	  ADMINISTRATION
 *************************/
-#admin-page
+.admin-page
 {
 	text-align: center;
 	max-width: 1200px;
 	margin: 100px auto;
 }
 
-#admin-container
+.admin-container
 {
 	background-color: white;
 	display: flex;
 	justify-content: flex-start;
 }
 
-#admin-content
+.admin-content
 {
 	display: flex;
 	flex-direction: column;
@@ -1312,7 +1323,7 @@ PROFILE TOPICS TABLE
 }
 
 
-#admin-content h2:first-child, #admin-content h3
+.admin-content h2:first-child, .admin-content h3
 {
 	padding: 30px;
 	background-color: #4c4c4c;
@@ -1542,4 +1553,90 @@ PROFILE TOPICS TABLE
 {
 	max-width: 500px;
 	width: 100%;
+}
+
+/***********************
+		COOKIES
+*************************/
+#cookies
+{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 60px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+/***********************
+		EVENTS
+*************************/
+#coords-info
+{
+	display: none;
+}
+
+#event-map
+{
+	height: 500px;
+	width: 60%;
+	box-shadow: 0 0 5px black;
+}
+
+#event-page
+{
+	text-align: center;
+}
+
+#event-page h1
+{
+	margin-bottom: 80px;
+	background-color: white;
+	padding: 20px 0;
+}
+
+#event-container
+{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.info-event
+{
+	width: 25%;
+	background-color: white;
+	box-shadow: 0 0 5px black;
+}
+
+.info-event address, 
+.description-event,
+.info-event p
+{
+	margin: 10px;
+	min-height: 30px;
+	box-sizing: border-box;
+}
+
+.info-event h3
+{
+	background-color: #0aa2cb;
+	color: white;
+	margin-top: 0;
+	margin-bottom: 20px;
+	padding: 20px 5px;
+	text-align: center;
+}
+
+.description-event
+{
+	background-color: #e8e9ea;
+	padding: 30px 10px;
+	min-height: 150px;
 }
